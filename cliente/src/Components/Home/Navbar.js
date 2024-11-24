@@ -9,11 +9,12 @@ const NavBar = () =>{
     const [menuVisible, setMenuVisible] = useState(false);
 
     const handleOpenMenu = () => {
-         console.log("Botón de abrir menú clickeado");
+        document.querySelector('.abrir-menu').style.display = 'none';
         setMenuVisible(true);
     };
  
     const handleCloseMenu = () => {
+        document.querySelector('.abrir-menu').style.display = 'block';
         setMenuVisible(false);
     };
  
