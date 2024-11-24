@@ -1,0 +1,124 @@
+
+header{
+  display: flex;
+  align-items: center;
+  background-color: #050038;
+  justify-content: space-between;
+  padding: 8px 150px; /*Aqui modificar despues del padding del ancho (252px): alto, ancho*/
+}
+
+.logo{
+  max-width: 120px;
+}
+
+
+.nav-list{
+  list-style-type: none;
+  display: flex;
+  gap: 32px;
+  padding-top: 20px;
+}
+
+.nav-list li a{
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 20px;
+}
+
+.abrir-menu, .cerrar-menu{
+  display: none;
+}
+
+
+.fondo-boton{
+  background-color: #FFC700;
+  border-radius: 40px;
+  width: 160px;
+  height: 40px;
+}
+
+.letra-boton{
+  color: #02033B;
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+
+  
+  .abrir-menu, .cerrar-menu{
+      display: block;
+      border: 0;
+      font-size: 40px;
+      background-color: transparent;
+      color: #ffffff;
+      cursor: pointer;
+  }
+
+  .abrir-menu{
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  header{
+      padding: 8px 16px;
+  }
+
+  .nav-1{
+      /*opacity: 0;
+      visibility: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #050038;
+      padding: 2rem;
+      box-shadow: 0 0 0 100vmax rgba(1, 3, 40, 0.5);*/
+
+      opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1rem;
+  background-color: #050038;
+  padding: 2rem;
+  box-shadow: 0 0 0 100vmax rgba(1, 3, 40, 0.5);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .nav-1.visible{
+      opacity: 1;
+      visibility: visible;
+  }
+
+  .desactivacion-boton{
+      display: none;
+  }
+
+  .nav-list{
+      flex-direction: column;
+      align-items: end;
+  }
+
+
+}
+

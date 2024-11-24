@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.fondo-funcionalidades{
+    background-color: rgba(240, 240, 240, 1);
+    padding-left: 70px;
+    padding-right: 55px;
+    padding-bottom: 50px;
+}
+
+.funcionalidades-title{
+    margin-bottom: 50px;
+    font-size: 45px;
+    font-weight: bold;
+    color: #000;
+    font-family: 'Oswald';
+}
+
+.highlight-text {
+    font-weight: bold;
+    color: #FFC700;
+}
+
+.subheading {
+    color: #05041E;
+    font-size: 15px;
+    font-family: 'Open Sans';
+}
+
+.funcionalidades-button{
+    margin-top: 50px;
+    align-items: start;
+}
+
+.funcionalidades-contact{
+    margin-top: 5px;
+    padding-left: 20px;
+    color: rgba(5, 4, 30, 1);
+}
+
+.imagen13{
+    transform: translate(40%, -0%);
+    height: 400px;
+}
+
+.image-grid-funcionalidades {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;    
+}
+  
+.image-grid-funcionalidades img {
+    width: 160%;
+    border-radius: 10px; 
+}
+
+.premiun-color{
+    color: #FFC700;
+}
+
+.elite-color{
+    color: #006F6A;
+}
+
+.btn-warning-funci{
+    background-color: #FFC60C;
+    border-radius: 40px;
+    font-family: 'Oswald';
+    font-size: 20px;
+    font-weight: 500;
+    color: #02033B;
+    margin-top: 30px;
+}
+
+.btn-warning-funci:hover{
+    background-color: #f0bc00;
+    transition: .5s;
+}
+
+/*Responsivo*/
+
+@media (max-width: 500px) {
+
+    .fondo-funcionalidades{
+        height: 690px;
+    }
+
+    .funcionalidades-title {
+        font-size: 25px;
+        font-family: 'Oswald';
+    }
+    
+    .subheading {
+        font-size: 12px;
+        font-weight: 400;
+    }
+    
+    .boton-comenzar {
+        justify-content: center;
+        margin: 1rem auto;
+        margin-left: 70px;
+        margin-top: 15px;
+    }
+
+    .funcionalidades-imagen-1-mobile {
+        height: 325px;
+        width: 287px;
+        align-items: center;
+        margin-left: 25px;
+        margin-top: 30px;
+      }
+}

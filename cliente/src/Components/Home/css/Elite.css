@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+.custom-image {
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translate(25%,0%);
+    height: 500px;
+    width: 390px;
+}
+.custom-bg {
+    background-color: #006F6A; 
+    height: 634px;
+}
+.custom-title {
+    font-weight: bold;
+    color: #212529;
+    font-family: 'Oswald';
+    font-size: 45px;
+}
+
+.custom-text{
+    padding-top: 7px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    color: #05041E;
+}
+
+.custom-highlight {
+    color: #006F6A;
+    font-size: 26px;
+    font-family: 'Open Sans';
+}
+
+
+.elite-info{
+    padding-top: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: rgba(240, 240, 240, 1);;
+}
+
+.elite-custom{
+    margin-right: 1px;
+}
+
+
+@media (max-width: 450px) {
+    .custom-image {
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 272px; 
+        height: 344px; 
+        transform: none;
+    }
+    
+    .custom-bg {
+        background-color: #006F6A;
+        height: 432px; 
+        padding: 15px;
+    }
+    
+    .custom-title {
+        font-weight: bold;
+        color: #212529;
+        font-family: 'Oswald';
+        font-size: 64px; 
+    }
+    
+    .custom-text {
+        padding-top: 10px;
+        font-family: 'Open Sans';
+        font-size: 20px; 
+        color: #05041E;
+        font-weight: 400;
+    }
+    
+    .custom-highlight {
+        color: #006F6A;
+        font-size: 32px; 
+
+        font-family: 'Open Sans';
+    }
+    
+    .elite-info {
+        padding: 20px; 
+        background-color: rgba(240, 240, 240, 1);
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 950px;
+    }
+    
+    .elite-custom {
+        margin-right: 0;
+        flex-wrap: wrap;
+    }
+}

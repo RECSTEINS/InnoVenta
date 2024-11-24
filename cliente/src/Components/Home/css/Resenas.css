@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.fondo-resenas{
+    background-color: rgba(240, 240, 240, 1);
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+
+.review-card {
+    background-color: #EDECF4;
+    min-height: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ajustes-card{
+    padding: 20px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.card-pie-resenas{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.review-card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.review-card h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.stars {
+    color: #FFC700;
+}
+.section-title-resenas {
+    font-size: 42px;
+    color: #070C33;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Oswald';
+}
+
+.name-card{
+    font-family: 'Roboto';
+    color: #070C33;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.btn-mas{
+    padding-top: 6px;
+    padding-bottom: -1px;
+    background-color: #4FA6DB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.color-btn{
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 400;
+    padding-top: 1px;
+}
+
+.star-off{
+    color: #B7B7B7;
+}
+
+.text-card-reseña{
+    color: #070C33;
+    font-weight: 400;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+/*Responsivo*/
+
+@media (max-width: 500px) {
+    .section-title-resenas {
+        font-size: 32px;
+        color: #070C33;
+        text-align: center;
+        margin-bottom: 40px;
+        font-family: 'Oswald';
+    }
+
+    .fondo-resenas{
+        background-color: rgba(240, 240, 240, 1);
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 50px;
+        padding-bottom: 25px;
+    }
+
+    .stars {
+        color: #FFC700;
+        margin-top: -20px;
+    }
+
+    .name-card-mobile{
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: -60px;
+        margin-left: 50px;
+    }
+
+    .name-card-mobile-1{
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: -60px;
+        margin-left: 25px;
+    }
+
+    .name-card-mobile-2{
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: -60px;
+        margin-left: 35px;
+    }
+
+    .name-card-mobile-3{
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: -60px;
+        margin-left: 85px;
+    }
+
+    .name-card-mobile-4{
+        font-family: 'Roboto';
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: -60px;
+        margin-left: 15px;
+    }
+    
+    
+    .custom-card {
+        width: 320px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+      }
+      .custom-card img {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        margin-top: 15px;
+        transform: translate(-120%, 10%);
+      }
+      .custom-card h5 {
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      .custom-card .star-rating {
+        color: #ffc107;
+        font-size: 28px;
+        margin-bottom: 10px;
+        margin-top: -20px;
+        margin-left: 40px;
+        margin-bottom: 10px;
+      }
+
+      .custom-card .info-button-mobile {
+        background-color: #4FA6DB;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-left: 0px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .custom-card .info-button:hover {
+        background-color: #0056b3;
+      }
+
+      .prueba-mobile{
+        padding-bottom: 20px;
+      }
+}

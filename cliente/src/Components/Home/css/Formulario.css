@@ -1,0 +1,56 @@
+
+.formulario{
+    margin-left: 252px;
+    margin-right: 252px;
+    border: 2px solid;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.formulario h1{
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    padding-top: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 2%;
+}
+
+.formulario label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+form{
+    padding-bottom: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.btn-enviar{
+    width: 10%;
+}
+
+@media screen and (max-width: 768px){
+    .formulario{
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+
+    .formulario h1{
+        padding-top: 4%;
+        padding-left: 6%;
+        padding-right: 6%;
+        padding-bottom: 2%;
+    }
+    
+    form{
+        padding-bottom: 4%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .btn-enviar{
+        width: 40%;
+    }
+}

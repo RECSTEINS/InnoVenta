@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.fondo-planes{
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.row {
+    display: flex; 
+    justify-content: center; 
+}
+
+.basic-plan-header {
+    padding: 10px;
+    background-color: #FF8C00;
+}
+
+.pro-plan-header {
+    background-color: #FFC700;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Oswald';
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+.price-section {
+    background-color: #050038; 
+    color: #ffffff;
+    padding: 20px; 
+    border-bottom: none;
+}
+
+.price-section-basic {
+    background-color: #050038; 
+    color: #ffffff;
+    padding: 20px; 
+    padding-top: 30px;
+    border-bottom: none;
+    height: 180px;
+}
+
+.price-section-elite{
+    background-color: #050038; 
+    color: #ffffff;
+    padding: 20px; 
+    padding-top: 30px;
+    border-bottom: none;
+    height: 180px;
+}
+
+
+.price-section-premiun{
+    background-color: #050038; 
+    color: #ffffff;
+    padding: 20px; 
+    padding-bottom: 0px;
+    border-bottom: none;
+}
+
+.plan-title{
+    font-size: 45px;
+    font-weight: bold;
+    color: #050038;
+    font-family: 'Oswald';
+}
+
+.plan-subtitle{
+    font-size: 16px;
+    color: #05041E;
+    font-family: 'Open Sans';
+}
+
+.price {
+    font-size: 2.3rem; 
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+}
+
+.billing-text {
+    font-size: 13px; 
+    color: #ffffff;
+    margin-top: 5px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+}
+
+.billing-text2 {
+    font-size: 11px; 
+    color: #ffffff;
+    margin-top: -5px;
+    font-family: 'Open Sans';
+    font-weight:400;
+}
+
+
+
+.feature-list {
+    list-style-type: none;
+    padding: 15px;
+    color: #333;
+    font-size: 0.85rem; 
+    background-color: #f9f9f9;
+    margin: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.feature-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0; 
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.icon-cancel-plan{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.icon-check-plan{
+    font-size: 20px;
+    font-weight: bold;
+    color: #55C20D;
+}
+
+.custom-btn {
+    background-color: #FFD700;
+    color: #05041E;
+    border: none;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    border-radius: 25px;
+    text-decoration: none; 
+    margin: 10px 0; 
+    width: 200px;
+}
+
+.custom-btn:hover {
+    background-color: #FFC107;
+    color: #0f1247;
+}
+
+.pricing-card {
+    max-width: 300px;
+    width: 100%; 
+    margin: 50px; 
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pricing-card:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .col-md-6 {
+        flex: 0 0 100%; 
+        max-width: 100%;
+    }
+}
+
+.plan-title{
+    color: rgba(5, 0, 56, 1);
+}
+
+.reducir-separacion .col-md-3,
+.reducir-separacion .col-md-4 {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.premiun-list{
+    padding-bottom: 0px;
+    font-weight: bold;
+}
+
+.premiun-list-text{
+    font-size: 9px;
+    margin-bottom: -1px;
+    
+}
+.plan-list-subtext{
+    font-size: 9px;
+    margin-bottom: -1px;
+    font-family: 'Open Sans';
+    font-style: italic;
+}
+
+.icon-check-plan2{
+    font-size: 20px;
+    font-weight: bold;
+    color: #55C20D;
+}
+
+.elite-plan-header{
+    background-color: #006F6A;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.price-elite{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 3px;
+    color: #ffffff;
+    font-family: 'Oswald';
+}
+
+.billing-text-elite{
+    font-size: 16px; 
+    color: #FFC700;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: 'Oswald';
+}
+
+.billing-text-elite2{
+    font-size: 0.7rem;
+    color: #ffffff;
+    margin-bottom: 0px;
+    margin-top: 7px;
+    font-family: 'Open Sans';
+}
+
+.alert-text-caso{
+    color: #FFC700;
+}
+
+.basic-plan-card-completa{
+    margin-top: 75px;
+}
+
+.plan-title-basic{
+    font-weight: 600;
+    font-family: 'Oswald';
+    font-size: 30px;
+    margin-bottom: -10px;
+}
+
+.price-basic {
+    font-size: 30px;
+    font-family: 'Oswald'; 
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+}
+
+.plan-list{
+    padding-bottom: 0px;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    color: #05041E;
+}
+
+@media (max-width: 450px) {
+    .fondo-planes{
+        background-color: rgba(240, 240, 240, 1);
+        height: 2023px;
+    }
+
+    .plan-title{
+        font-size: 30px;
+        font-weight: bold;
+        color: #050038;
+        font-family: 'Oswald';
+    }
+    
+    .plan-subtitle{
+        font-size: 12px;
+        color: #05041E;
+        margin-top: 20px;
+        margin-left: 15px;
+        margin-right: 10px;
+        margin-bottom: -45px;        
+        font-family: 'Open Sans';
+        text-align: center;
+    }
+
+    .price-section-basic {
+        background-color: #050038; 
+        color: #ffffff;
+        padding: 20px; 
+        padding-top: 20px;
+        border-bottom: none;
+        height: 140px;
+    }
+
+    .card-basic{
+        margin-bottom: 20px;
+    }
+
+    .card-premiun{
+        margin-top: -70px;
+    }
+
+    .card-elite{
+        margin-top: -100px;
+    }
+}

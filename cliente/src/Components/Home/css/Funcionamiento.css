@@ -1,0 +1,48 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+.fondo-funcionamiento{
+    background-color: #BDE5F9;
+}
+ 
+.step-image {
+    width: 700px;
+    height: 200px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.step-text {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.step-info{
+    align-items: center;
+}
+
+.no{
+    margin-top: -15px;
+}
+
+.flecha{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.step-container {
+    display: flex;
+    align-items: center;
+    
+}
+/*margin-bottom: 2rem;*/
+
+.step-number {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.step-main-title{
+    padding-top: 40px;
+    color: black;
+}
