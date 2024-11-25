@@ -2,14 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import Presentacion from './Components/Home/Presentacion';
 import Funcionalidades from './Components/Home/Funcionalidades';
+import Login from "./Components/Login/Login";
+import DashboardAdmin from "./Components/Dashboard/AdminPanel/Inicio";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:<App/>
+  },
+  {
+    path: "/login",
+    element:<Login/>
+  },
+  {
+    path: "/dashboardAdmin",
+    element:<DashboardAdmin/>
+  }
+])
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 

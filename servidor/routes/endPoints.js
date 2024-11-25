@@ -1,7 +1,11 @@
 const express=require("express")
 const router = express.Router()
+const {login} = require("../controllers/loginController")
 const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../controllers/rolesController");
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
+
+//Login
+router.post('/login', login);
 
 //Roles
 router.get('/getRoles', getRoles);
