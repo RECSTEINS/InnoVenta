@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 // Rutas
 app.use('/', routes);
 
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT || 3001;  
 
 httpServer.listen(PORT, () => {
     console.log("El servidor está en el puerto " + PORT);

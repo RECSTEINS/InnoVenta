@@ -7,7 +7,25 @@ const {connection}= require ("../config/config.db");
 const { request, response } = require("..");
 
 const getUsuarios= (request, response) => {
-    connection.query("SELECT * FROM usuarios",
+    connection.query(`
+        SELECT 
+            usuarios.pk_usuario,
+            usuarios.usuario_nombre,
+            usuarios.usuario_img,
+            usuarios.usuario_email,
+            usuarios.usuario_pass,
+            usuarios.usuario_fec_creacion,
+            usuarios.usuario_telefono,
+            usuarios.usuario_estado,
+            usuarios.usuario_direccion,
+            roles.rol_nombre AS rol
+        FROM 
+            usuarios
+        JOIN 
+            roles
+        ON 
+            usuarios.fk_rol = roles.pk_rol
+        `,
     (error,results)=>{
         if(error)
         throw error;
@@ -17,7 +35,26 @@ const getUsuarios= (request, response) => {
 
 const getUsuarioId= (request, response) => {
     const id = request.params.id;
-    connection.query("SELECT * FROM usuarios WHERE pk_usuario = ?",
+    connection.query(`
+        SELECT 
+            usuarios.pk_usuario,
+            usuarios.usuario_nombre,
+            usuarios.usuario_img,
+            usuarios.usuario_email,
+            usuarios.usuario_pass,
+            usuarios.usuario_fec_creacion,
+            usuarios.usuario_telefono,
+            usuarios.usuario_estado,
+            usuarios.usuario_direccion,
+            roles.rol_nombre AS rol
+        FROM 
+            usuarios
+        JOIN 
+            roles
+        ON 
+            usuarios.fk_rol = roles.pk_rol
+        WHERE pk_usuario = ?
+        `,
     [id],
     (error,results)=>{
         if(error)
@@ -35,53 +72,53 @@ const updateUsuario = (request, response) => {
         [nombre, img, email, password, telefono, direccion, id],
         (error, results) => {
             if (error) {
-                console.error("Error al actualizar el rol:", error);
+                console.error("Error al actualizar el usuario:", error);
                 response.status(500).json({ error: "Error interno del servidor" });
             } else {
                 if (results.affectedRows > 0) {
-                    response.status(200).json({ message: "Rol actualizado correctamente" });
+                    response.status(200).json({ message: "Usuario actualizado correctamente" });
                 } else {
-                    response.status(404).json({ error: "Rol no encontrado" });
+                    response.status(404).json({ error: "Usuario no encontrado" });
                 }
             }
         }
     );
 }
 
-const postRoles = (request, response) => {
+const postUsuario = (request, response) => {
     const { id, nombre, action } = request.body;
 
     if (action === "insert") {
         connection.query(
-            "INSERT INTO roles (rol_nombre) VALUES (?)",
-            [nombre],
+            "INSERT INTO usuarios (usuario_nombre, usuario_img, usuario_email, usuario_pass, usuario_fec_creacion, usuario_telefono, usuario_estado, usuario_direccion, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [nombre, img, email, password, fec_creacion, telefono, estado, direccion, fk_rol ],
             (error, results) => {
                 if (error)
                     throw error;
-                response.status(201).json({ "Rol añadido correctamente": results.affectedRows });
+                response.status(201).json({ "Usuario añadido correctamente": results.affectedRows });
             }
         );
     }else if (action === "update") {
         connection.query(
-            "UPDATE roles SET rol_nombre = ? WHERE pk_rol = ?",
-            [nombre, id],
+            "UPDATE usuarios SET usuario_nombre = ?, usuario_img = ?, usuario_email = ?, usuario_pass = ?, usuario_telefono = ?, usuario_estado =?, usuario direccion = ?, fk_rol = ? WHERE pk_usuario = ?",
+            [nombre, img, email, password, telefono, estado, direccion, fk_rol, id],
             (error, results) => {
                 if (error)
                     throw error;
-                response.status(201).json({ "Rol actualizado correctamente": results.affectedRows });
+                response.status(201).json({ "Usuario actualizado correctamente": results.affectedRows });
             }
         );
     }
 };
 
-const delRoles = (request, response)=>{
+const delUsuario = (request, response)=>{
     const id =request.params.id;
-    connection.query("DELETE FROM roles WHERE pk_rol = ?",[id],
+    connection.query("DELETE FROM usuarios WHERE pk_usuario = ?",[id],
     (error, results)=>{
         if(error)
             throw error;
-        response.status(201).json({"Rol eliminado":results.affectedRows});
+        response.status(201).json({"Usuario eliminado":results.affectedRows});
     });
 };
 
-module.exports = {getRoles, getRolesId, updateRoles, postRoles, delRoles};
+module.exports = {getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario};
