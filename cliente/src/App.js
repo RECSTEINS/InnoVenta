@@ -12,24 +12,13 @@ import Elite from "./Components/Home/Elite";
 import Formulario from "./Components/Home/Formulario";
 import { Form } from "react-bootstrap"; 
 
+
+import RecoverPassword from "./Components/Login/RecoverPassword";
+
 function App() {
   return (
     <div>
-      <NavBar/>
-      <Presentacion/>
-
-      <Funcionalidades/>
- 
-      <Demo/>
-      <Planes/>
-
-      <Elite/>
-      
-      <Casos/>
-      <Formulario/>
-      <Descuentos/>
-      <Resenas/>
-      <Footer/>
+        <RecoverPassword/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 {
   "name": "servidor",
   "version": "1.0.0",
-  "description": "Proyecto Web Sabores del Sur. Equipo InnoVenta",
+  "description": "Proyecto Web PosInnoVenta para restaurantes. Equipo InnoVenta: Paola Reyes, Estrella Dzib, Alexis Ake, Rodrigo Rojas y Cedeño Raúl.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
