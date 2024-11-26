@@ -28,11 +28,11 @@ const getRolesId= (request, response) => {
 
 const updateRoles = (request, response) => {
     const id = request.params.id;
-    const { nombre} = request.body;
+    const { nombre, descripcion} = request.body;
 
     connection.query(
-        "UPDATE roles SET rol_nombre = ? WHERE pk_rol = ?",
-        [nombre, id],
+        "UPDATE roles SET rol_nombre = ?, rol_descripcion = ? WHERE pk_rol = ?",
+        [nombre, descripcion, id],
         (error, results) => {
             if (error) {
                 console.error("Error al actualizar el rol:", error);
@@ -49,12 +49,12 @@ const updateRoles = (request, response) => {
 }
 
 const postRoles = (request, response) => {
-    const { id, nombre, action } = request.body;
+    const { id, nombre, descripcion, action } = request.body;
 
     if (action === "insert") {
         connection.query(
-            "INSERT INTO roles (rol_nombre) VALUES (?)",
-            [nombre],
+            "INSERT INTO roles (rol_nombre, rol_descripcion) VALUES (?, ?)",
+            [nombre, descripcion],
             (error, results) => {
                 if (error)
                     throw error;
@@ -63,8 +63,8 @@ const postRoles = (request, response) => {
         );
     }else if (action === "update") {
         connection.query(
-            "UPDATE roles SET rol_nombre = ? WHERE pk_rol = ?",
-            [nombre, id],
+            "UPDATE roles SET rol_nombre = ?, rol_descripcion = ? WHERE pk_rol = ?",
+            [nombre, descripcion, id],
             (error, results) => {
                 if (error)
                     throw error;

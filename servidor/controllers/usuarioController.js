@@ -9,6 +9,9 @@ const { request, response } = require("..");
 const getUsuarios= (request, response) => {
     connection.query(`
         SELECT 
+            usuarios.pk_usuario
+
+        SELECT 
             usuarios.pk_usuario,
             usuarios.usuario_nombre,
             usuarios.usuario_img,

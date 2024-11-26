@@ -3,6 +3,8 @@ const router = express.Router()
 const {login} = require("../controllers/loginController")
 const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../controllers/rolesController");
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
+const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado} = require("../controllers/empleadoController");
+const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
 
 //Login
 router.post('/login', login);
@@ -21,5 +23,18 @@ router.get('/getUsuarioId/:id', getUsuarioId);
 router.post('/postUsuario', postUsuario);
 router.post('/updateUsuario/:id', updateUsuario);
 router.delete('/delUsuario/:id', delUsuario);
+
+
+//Empleados
+router.get('/getEmpleados', getEmpleados);
+router.get('/getEmpleadoId/:id', getEmpleadoId);
+router.post('/postEmpleado', postEmpleado);
+router.post('/updateEmpleado/:id', updateEmpleado);
+router.delete('/delEmpleado/:id', delEmpleado);
+
+
+
+//Restaurantes
+
 
 module.exports = router;
