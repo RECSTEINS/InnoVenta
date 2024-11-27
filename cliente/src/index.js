@@ -7,7 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import Presentacion from './Components/Home/Presentacion';
 import Funcionalidades from './Components/Home/Funcionalidades';
 import Login from "./Components/Login/Login";
-import DashboardAdmin from "./Components/Dashboard/AdminPanel/Inicio";
+
+
+import DashboardAdmin from "./Components/Dashboard/AdminPanel/InicioAdmin";
+import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados";
+import RolesPanel from "./Components/Dashboard/AdminPanel/Roles";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +22,19 @@ const router = createBrowserRouter([
     path: "/login",
     element:<Login/>
   },
+
+  //Admin Paneles
   {
     path: "/dashboardAdmin",
     element:<DashboardAdmin/>
+  },
+  {
+    path: "/empleados",
+    element:<EmpleadosPanel/>
+  },
+  {
+    path: "/roles",
+    element:<RolesPanel/>
   }
 ])
 

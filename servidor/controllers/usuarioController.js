@@ -9,25 +9,19 @@ const { request, response } = require("..");
 const getUsuarios= (request, response) => {
     connection.query(`
         SELECT 
-            usuarios.pk_usuario
-
-        SELECT 
             usuarios.pk_usuario,
             usuarios.usuario_nombre,
-            usuarios.usuario_img,
-            usuarios.usuario_email,
-            usuarios.usuario_pass,
-            usuarios.usuario_fec_creacion,
-            usuarios.usuario_telefono,
-            usuarios.usuario_estado,
-            usuarios.usuario_direccion,
+            usuarios.usuario_password,
+            usuarios.usuario_fecha_creacion,
+            usuarios.usuario_activo,
+            restaurantes.restaunrate_nombre AS restaurante,
+            empleados.empleado_nombre AS empleado,
             roles.rol_nombre AS rol
-        FROM 
+        FROM
             usuarios
-        JOIN 
-            roles
-        ON 
-            usuarios.fk_rol = roles.pk_rol
+        LEFT JOIN restaurantes ON usuarios.fk_restaurante = restaurantes.pk_restaurante
+        LEFT JOIN empleados ON usuarios.fk_empleado = empleados.pk_empleado
+        LEFT JOIN roles ON usuarios.fk_rol = roles.pk_rol
         `,
     (error,results)=>{
         if(error)
@@ -42,20 +36,17 @@ const getUsuarioId= (request, response) => {
         SELECT 
             usuarios.pk_usuario,
             usuarios.usuario_nombre,
-            usuarios.usuario_img,
-            usuarios.usuario_email,
-            usuarios.usuario_pass,
-            usuarios.usuario_fec_creacion,
-            usuarios.usuario_telefono,
-            usuarios.usuario_estado,
-            usuarios.usuario_direccion,
+            usuarios.usuario_password,
+            usuarios.usuario_fecha_creacion,
+            usuarios.usuario_activo,
+            restaurantes.restaunrate_nombre AS restaurante,
+            empleados.empleado_nombre AS empleado,
             roles.rol_nombre AS rol
-        FROM 
+        FROM
             usuarios
-        JOIN 
-            roles
-        ON 
-            usuarios.fk_rol = roles.pk_rol
+        LEFT JOIN restaurantes ON usuarios.fk_restaurante = restaurantes.pk_restaurante
+        LEFT JOIN empleados ON usuarios.fk_empleado = empleados.pk_empleado
+        LEFT JOIN roles ON usuarios.fk_rol = roles.pk_rol
         WHERE pk_usuario = ?
         `,
     [id],
@@ -68,11 +59,11 @@ const getUsuarioId= (request, response) => {
 
 const updateUsuario = (request, response) => {
     const id = request.params.id;
-    const { nombre} = request.body;
+    const { nombre, password, activo, fkrol} = request.body;
 
     connection.query(
-        "UPDATE usuarios SET usuario_nombre = ?, usuario_img = ?, usuario_email = ?, usuario_pass = ?, usuario_telefono = ?, usuario_direccion = ? WHERE pk_usuario = ?",
-        [nombre, img, email, password, telefono, direccion, id],
+        "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_activo = ?, fk_rol = ? WHERE pk_usuario = ?",
+        [nombre, password, activo, fkrol, id],
         (error, results) => {
             if (error) {
                 console.error("Error al actualizar el usuario:", error);
@@ -89,12 +80,12 @@ const updateUsuario = (request, response) => {
 }
 
 const postUsuario = (request, response) => {
-    const { id, nombre, action } = request.body;
+    const { id, nombre, password, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol, action } = request.body;
 
     if (action === "insert") {
         connection.query(
-            "INSERT INTO usuarios (usuario_nombre, usuario_img, usuario_email, usuario_pass, usuario_fec_creacion, usuario_telefono, usuario_estado, usuario_direccion, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [nombre, img, email, password, fec_creacion, telefono, estado, direccion, fk_rol ],
+            "INSERT INTO usuarios (usuario_nombre, usuario_password, usuario_fecha_creacion, usuario_activo, fk_restaurante, fk_empleado, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [nombre, password, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol],
             (error, results) => {
                 if (error)
                     throw error;
@@ -103,8 +94,8 @@ const postUsuario = (request, response) => {
         );
     }else if (action === "update") {
         connection.query(
-            "UPDATE usuarios SET usuario_nombre = ?, usuario_img = ?, usuario_email = ?, usuario_pass = ?, usuario_telefono = ?, usuario_estado =?, usuario direccion = ?, fk_rol = ? WHERE pk_usuario = ?",
-            [nombre, img, email, password, telefono, estado, direccion, fk_rol, id],
+            "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_activo =?, fk_rol = ? WHERE pk_usuario = ?",
+            [nombre, password, activo, fkrol, id],
             (error, results) => {
                 if (error)
                     throw error;

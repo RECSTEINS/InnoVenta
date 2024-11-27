@@ -1,18 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'bootstrap';
 import './Login.css';
-import DashboardAdmin from "../Dashboard/AdminPanel/Inicio";
+import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin";
+import NavBar from '../Home/Navbar';
+import Footer from '../Home/Footer';
 
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login(){
     const [password, setPassword] = useState('');
-    const [nombre, setNombre] = useState('');
+    const [email, setNombre] = useState('');
     const [loginSuccessful, setLoginSuccessful] = useState(false);
     const goTo = useNavigate();
 
-    const URL = 'http://localhost:7777/getUsuarios';
+    const URL = 'http://localhost:7777/login-list';
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -39,9 +41,9 @@ function Login(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    nombre: nombre,
+                    email: email,
                     password: password
-                })
+                }) 
             });
 
             const result = await response.json();
@@ -67,30 +69,28 @@ function Login(){
 
 
     return(
-
+        
         <>
+            <NavBar/>
             {loginSuccessful ? <DashboardAdmin/> :
-                <main class="form-signin w-100 m-auto">
-                    <form onSubmit={handleSubmit}>
-                        <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"/>
-                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" onChange={(event) => setNombre(event.target.value)}/>
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                    
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" onChange={(event) => setPassword(event.target.value)}/>
-                            <label for="floatingPassword">Password</label>
-                        </div>
-    
-                   
-                        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-                        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
-                    </form>
+                <main class="caja-principal">
+                    <div class="caja-informativa">
+                        <h1>Bienvenido</h1>
+                        <form onSubmit={handleSubmit}>
+                            <div class="">
+                                <label for="usuario" class="">Usuario:</label><br/>
+                                <input type='text' class="input-style inputs-letra" id="usuario" placeholder='Usuario' onChange={(event) => setNombre(event.target.value)}/>
+                            </div>
+                            <div class="caja-inputs">
+                                <label for="password" class="">Contrseña:</label><br/>
+                                <input type="password" class="input-boton caja-boton boton-letra" id="password" placeholder='******' onChange={(event) => setPassword(event.target.value)}/>
+                            </div>
+                            <button type='submit' class="input-boton caja-boton boton-letra">Ingresar</button>
+                        </form>
+                    </div>
                 </main>
             }
+            <Footer/>
         </>
     );
 }

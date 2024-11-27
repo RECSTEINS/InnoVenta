@@ -18,7 +18,16 @@ import RecoverPassword from "./Components/Login/RecoverPassword";
 function App() {
   return (
     <div>
-        <RecoverPassword/>
+        <NavBar/>
+        <Presentacion/>
+        <Funcionalidades/>
+        <Demo/>
+        <Planes/>
+        <Formulario/>
+        <Elite/>
+        <Casos/>
+        <Resenas/>
+        <Footer/>
     </div>
   );
 }
