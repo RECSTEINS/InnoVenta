@@ -84,4 +84,30 @@ const delEmpleado = (request, response)=>{
     });
 };
 
-module.exports = {getEmpleados, getEmpleadoId, postEmpleado, updateEmpleado, delEmpleado};
+
+
+const agregarEmpleado = (request, response) =>{
+    const { nombre, apellido, edad, genero, telefono, email, direccion, rfc, nss, fecha_alta, activo} = request.body;
+
+     // Convertir fecha_alta al formato 'YYYY-MM-DD HH:MM:SS'
+     const fechaAltaFormateada = new Date(fecha_alta).toISOString().slice(0, 19).replace('T', ' ');
+
+    connection.query(
+        "INSERT INTO empleados (empleado_nombre, empleado_apellido, empleado_edad, empleado_genero, empleado_telefono, empleado_email, empleado_direccion, empleado_rfc, empleado_nss, empleado_fecha_alta, empleado_activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [nombre, apellido, edad, genero, telefono, email, direccion, rfc, nss, fechaAltaFormateada, activo],
+        (error, results) => {
+            if (error) {
+                console.error("Error al agregar el empleado:", error);
+                response.status(500).json({ error: "Error interno del servidor" });
+            } else {
+                if (results.affectedRows > 0) {
+                    response.status(200).json({ message: "Empleado agregado correctamente" });
+                } else {
+                    response.status(404).json({ error: "Empleado no agregado, no fue posible realizar el insert." });
+                }
+            }
+        }
+    )
+};
+
+module.exports = {getEmpleados, getEmpleadoId, postEmpleado, updateEmpleado, delEmpleado, agregarEmpleado};

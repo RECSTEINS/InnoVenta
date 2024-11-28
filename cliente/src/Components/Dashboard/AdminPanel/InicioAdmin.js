@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./css/Inicio.css";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css"; 
 
 import EmpleadosPanel from "./Empleados/Empleados";
 import AgregarEmpleado from "./Empleados/AgregarEmpleado";

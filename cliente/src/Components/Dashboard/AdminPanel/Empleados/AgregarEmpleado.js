@@ -2,74 +2,179 @@ import React, { useState } from "react";
 import "../css/AgregarEmpleado.css";
 import { Link } from "react-router-dom";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../Auth/firebaseConfig";
 
 
 function AgregarEmpleado(){
 
 
+    const [formData, setFormData] = useState({
+        nombres: "",
+        apellidos: "",
+        edad: "",
+        genero: "",
+        telefono: "",
+        correo: "",
+        direccion: "",
+        rfc: "",
+        imss: ""
+    });
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({
+            ...formData,
+            [id]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            // Registrar correo en Firebase
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.correo, "contraseñaPredeterminada123");
+            console.log("Usuario registrado en Firebase:", userCredential.user);
+    
+            // Enviar datos al servidor
+            const response = await fetch("http://localhost:7777/agregar-empleado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nombre: formData.nombres,
+                    apellido: formData.apellidos,
+                    edad: formData.edad,
+                    genero: formData.genero,
+                    telefono: formData.telefono,
+                    email: formData.correo,
+                    direccion: formData.direccion,
+                    rfc: formData.rfc,
+                    nss: formData.imss,
+                    fecha_alta: new Date().toISOString().slice(0, 19).replace("T", " "),
+                    activo: "Activo",
+                }),
+            });
+    
+            const result = await response.json();
+            if (response.status === 201) {
+                alert("Empleado agregado correctamente.");
+            } else {
+                alert("Error al agregar empleado: " + result.message);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Ocurrió un error al registrar el empleado.");
+        }
+
+
+        /*
+        try {
+            const response = await fetch("http://localhost:7777/agregar-empleado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre: formData.nombres,
+                    apellido: formData.apellidos,
+                    edad: formData.edad,
+                    genero: formData.genero,
+                    telefono: formData.telefono,
+                    email: formData.correo,
+                    direccion: formData.direccion,
+                    rfc: formData.rfc,
+                    nss: formData.imss,
+                    fecha_alta: new Date().toISOString(), 
+                    activo: "Activo" 
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.status === 201) {
+                alert("Empleado agregado exitosamente.");
+                setFormData({
+                    nombres: "",
+                    apellidos: "",
+                    edad: "",
+                    genero: "",
+                    telefono: "",
+                    correo: "",
+                    direccion: "",
+                    rfc: "",
+                    imss: ""
+                });
+            } else {
+                alert(result.message || "Error al agregar el empleado.");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud:", error);
+            alert("Error al conectar con el servidor.");
+        }*/
+    };
+
+
     return(
-        <section class="section-ingresar-empleados">
-            <form action="#" method="POST" >
-                <div class="caja-ingresar-empleados Margin-divs-abajo">
-                    <div class="Titulo margin-abajo">
+        <section className="section-ingresar-empleados">
+            <form onSubmit={handleSubmit}>
+                <div className="caja-ingresar-empleados Margin-divs-abajo">
+                    <div className="Titulo margin-abajo">
                         <h1>Información Personal</h1>
                     </div>
-                    <div class="Caja-Nombre-Apellido margin-abajo">
-                        <div class="Caja-Nombre margin-derecha">
-                            <label for="Nombres" class="Nombres">Nombres:</label><br/>
-                            <input type="text" class="" id="Nombres" placeholder="Nombres"/>
+                    <div className="Caja-Nombre-Apellido margin-abajo">
+                        <div className="Caja-Nombre margin-derecha">
+                            <label htmlFor="nombres" className="Nombres">Nombres:</label><br/>
+                            <input type="text" id="nombres" placeholder="Nombres" value={formData.nombres} onChange={handleChange} />
                         </div>
-                        <div class="Caja-Apellido">
-                            <label for="Apellidos" class="Apellidos">Apellidos:</label><br/>
-                            <input type="text" class="" id="Apellidos" placeholder="Apellidos"/>
+                        <div className="Caja-Apellido">
+                            <label htmlFor="apellidos" className="Apellidos">Apellidos:</label><br/>
+                            <input type="text" id="apellidos" placeholder="Apellidos" value={formData.apellidos} onChange={handleChange} />
                         </div>
                     </div>
 
-                    <div class="Caja-Edad-Genero-Telefono margin-abajo">
-                        <div class="Caja-Edad margin-derecha">
-                            <label for="Edad" class="Edad">Edad:</label><br/>
-                            <input type="number" max="100" class="" id="Edad" placeholder="Edad"/>
+                    <div className="Caja-Edad-Genero-Telefono margin-abajo">
+                        <div className="Caja-Edad margin-derecha">
+                            <label htmlFor="edad" className="Edad">Edad:</label><br/>
+                            <input type="number" max="100" id="edad" placeholder="Edad" value={formData.edad} onChange={handleChange} />
                         </div>
-                        <div class="Caja-Genero margin-derecha">
-                            <label for="Genero" class="Genero">Genero:</label><br/>
-                            <select name="Genero" id="Genero">
+                        <div className="Caja-Genero margin-derecha">
+                            <label htmlFor="genero" className="Genero">Género:</label><br/>
+                            <select id="genero" value={formData.genero} onChange={handleChange}>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
                         </div>
-                        <div class="Caja-Telefono">
-                            <label for="Telefono" class="Telefono">Telefono:</label><br/>
-                            <input type="text" class="" id="Telefono" placeholder="Telefono"/>
+                        <div className="Caja-Telefono">
+                            <label htmlFor="telefono" className="Telefono">Teléfono:</label><br/>
+                            <input type="text" id="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} />
                         </div>
                     </div>
 
-                    <div class="Caja-Correo margin-abajo">
-                        <div class="SubCaja-Correo margin-derecha">
-                            <label for="Correo" class="">Correo Electronico:</label>
-                        </div>
-                        <input type="email" class="" id="Correo" placeholder="Correo"/>
+                    <div className="Caja-Correo margin-abajo">
+                        <label htmlFor="correo" className="">Correo Electrónico:</label><br/>
+                        <input type="email" id="correo" placeholder="Correo" value={formData.correo} onChange={handleChange} />
                     </div>
-                    <div class="Caja-Direccion margin-abajo">
-                        <div class="SubCaja-Direccion margin-derecha">
-                            <label for="Direccion" class="Direccion">Direccion:</label><br/>
-                        </div>
-                        <input type="text" class="" id="Direccion" placeholder="Direccion"/>
+                    <div className="Caja-Direccion margin-abajo">
+                        <label htmlFor="direccion" className="Direccion">Dirección:</label><br/>
+                        <input type="text" id="direccion" placeholder="Dirección" value={formData.direccion} onChange={handleChange} />
                     </div>
-                    <div class="Caja-RFC-IMSS">
-                        <div class="Caja-RFC margin-derecha">
-                            <label for="RFC" class="RFC">RFC:</label><br/>
-                            <input type="text" class="" id="RFC" placeholder="RFC"/>
+                    <div className="Caja-RFC-IMSS">
+                        <div className="Caja-RFC margin-derecha">
+                            <label htmlFor="rfc" className="RFC">RFC:</label><br/>
+                            <input type="text" id="rfc" placeholder="RFC" value={formData.rfc} onChange={handleChange} />
                         </div>
-                        <div class="Caja-IMSS">
-                            <label for="IMSS" class="IMSS">IMSS:</label><br/>
-                            <input type="text" class="" id="IMSS" placeholder="IMSS"/>
+                        <div className="Caja-IMSS">
+                            <label htmlFor="imss" className="IMSS">IMSS:</label><br/>
+                            <input type="text" id="imss" placeholder="IMSS" value={formData.imss} onChange={handleChange} />
                         </div>
                     </div>
-                
                 </div>
-                <div class="Botones">
-                    <button type="submit" class="Boton-Regresar Texto-Boton margin-boton-izquierda margin-boton-Regresar">Regresar</button>
-                    <button type="submit" class="Boton-Ingresar Texto-Boton">Ingresar</button>
+                <div className="Botones">
+                    <button type="button" className="Boton-Regresar Texto-Boton margin-boton-izquierda margin-boton-Regresar">Regresar</button>
+                    <button type="submit" className="Boton-Ingresar Texto-Boton">Ingresar</button>
                 </div> 
             </form>
         </section>

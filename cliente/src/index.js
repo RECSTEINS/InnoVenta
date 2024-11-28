@@ -13,6 +13,7 @@ import DashboardAdmin from "./Components/Dashboard/AdminPanel/InicioAdmin";
 import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados/Empleados";
 import RolesPanel from "./Components/Dashboard/AdminPanel/Roles";
 import AgregarEmpleado from './Components/Dashboard/AdminPanel/Empleados/AgregarEmpleado';
+import RecoverPassword from './Components/Login/RecoverPassword';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element:<Login/>
+  },
+  {
+    path: "/recoverPassword",
+    element:<RecoverPassword/>
   },
 
   //Admin Paneles
@@ -40,7 +45,7 @@ const router = createBrowserRouter([
 
 
 
-  
+
   //Eliminar despues 
   {
     path: "/agregarEmpleado",
