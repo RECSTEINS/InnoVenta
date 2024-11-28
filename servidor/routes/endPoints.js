@@ -10,7 +10,7 @@ const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, d
 router.post('/login', login);
 router.get('/login-list', usuarios_login);
 
-//Roles
+//Roles 
 router.get('/getRoles', getRoles);
 router.post('/postRoles', postRoles);
 router.get('/getRolId/:id', getRolesId);

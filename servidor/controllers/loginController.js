@@ -10,7 +10,7 @@ module.exports.login = (req, res) => {
             usuarios
         LEFT JOIN empleados ON  usuarios.fk_empleado = empleados.pk_empleado
         WHERE usuarios.usuario_password = ? AND empleados.empleado_email = ?
-    ;`
+    ;` 
     try {
         connection.query(consult, [password, email], (err, result) => {
             if (err) {

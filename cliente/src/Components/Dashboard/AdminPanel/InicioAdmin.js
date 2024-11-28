@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./css/Inicio.css";
 import { Link } from "react-router-dom";
 
-import EmpleadosPanel from "./Empleados";
+import EmpleadosPanel from "./Empleados/Empleados";
+import AgregarEmpleado from "./Empleados/AgregarEmpleado";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
@@ -26,6 +27,12 @@ function InicioAdmin(){
             case "empleados":
                 return  <div>
                             <EmpleadosPanel/>
+                        </div>
+            case "agregarEmpleado":
+                return  <div>
+                            <Link to={"/agregarEmpleado"}>
+
+                            </Link>
                         </div>
         }
 
@@ -65,7 +72,7 @@ function InicioAdmin(){
                 </Link>
             </li>
             <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
+                <Link to={"/agregarEmpleado"}>
                     <span className="icon">
                         <ion-icon name="people-outline"></ion-icon>
                     </span>

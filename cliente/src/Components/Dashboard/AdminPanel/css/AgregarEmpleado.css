@@ -1,0 +1,223 @@
+.section-ingresar-empleados{
+    background-color: #070C33;
+    width: 1112px;
+    height: 1248px;
+}
+
+.section-ingresar-empleados input:hover{
+    background-color: #44464a;
+    color: #fff;
+}
+
+.section-ingresar-empleados select:hover{
+    background-color: #44464a;
+    color: #fff;
+}
+
+.caja-ingresar-empleados{
+    width: 906px;
+    height: 702px;
+    background-color: #070C33;
+    color: #fff;
+    /*
+    background-color: #fff;
+    color: #070C33;
+    */
+    margin: 0px 104px;
+    padding: 45px 45px;
+    border: none;
+    border-radius: 5px;
+}
+
+.margin-abajo{
+    margin-bottom: 32px;
+}
+
+.margin-derecha{
+    margin-right: 32px;
+}
+
+.Titulo{
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+}
+
+.Titulo h1{
+    margin: 0px;
+    padding: 0px;
+}
+
+.Caja-Nombre-Apellido{
+    display: flex;
+    width: 816px;
+}
+
+.Caja-Nombre-Apellido label{
+    font-family: 'open sans', sans-serif;
+    font-size: 24px;
+}
+
+.Caja-Nombre-Apellido input{
+    width: 392px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.Caja-Edad-Genero-Telefono{
+    display: flex;
+    width: 816px;
+}
+
+.Caja-Edad-Genero-Telefono label{
+    font-family: 'open sans', sans-serif;
+    font-size: 24px;
+}
+
+.Caja-Edad-Genero-Telefono input{
+    width: 250px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.Caja-Genero select{
+    width: 250px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.Caja-Correo{
+    display: flex;
+    width: 816px;
+}
+
+.Caja-Correo label{
+    font-family: 'open sans', sans-serif;
+    font-size: 24px;
+}
+
+.Caja-Correo input{
+    width: 568px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.SubCaja-Correo{
+    width: 216px;
+}
+
+.Caja-Direccion{
+    display: flex;
+    width: 816px;
+}
+
+.Caja-Direccion label{
+    font-family: 'open sans', sans-serif;
+    font-size: 24px;
+}
+
+.Caja-Direccion input{
+    width: 568px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.SubCaja-Direccion{
+    width: 216px;
+}
+
+.Caja-RFC-IMSS{
+    display: flex;
+    width: 816px;
+}
+
+.Caja-RFC-IMSS label{
+    font-family: 'open sans', sans-serif;    
+    font-size: 24px;
+}
+
+.Caja-RFC-IMSS input{
+    width: 392px;
+    height: 56px;
+    flex-shrink: 0;    
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.Margin-divs-abajo{
+    margin-bottom: 240px;
+}
+
+.margin-boton-izquierda{
+    margin-right: 192px;
+}
+
+.margin-boton-Regresar{
+    margin-left: 90px;
+}
+
+.Botones{
+    width: 906px;
+    height: 104px;
+    margin: 0px 104px;
+    padding: 8px 40px;
+}
+
+.Boton-Regresar{
+    width: 228px;
+    height: 64px;
+    border: 1px solid #FFC700;
+    background-color: #070C33;
+    color: #ffffff;
+    border-radius: 40px;
+}
+
+.Boton-Ingresar{
+    width: 228px;
+    height: 64px;
+    border: 1px solid #FFC700;
+    background-color: #FFC700;
+    border-radius: 40px;
+}
+
+.Texto-Boton{
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+} 
+
+
+.Boton-Regresar:hover{
+    background-color: #ffffff;
+    color: #070C33;
+    border: 1px solid #FFC700;
+    transition: all 0.7s;
+    cursor: pointer;
+}
+
+.Boton-Ingresar:hover{
+    background-color: #BDE5F9;
+    color: #070C33;
+    border: 1px solid #4FA6DB;
+    transition: all 0.7s;
+    cursor: pointer;
+}

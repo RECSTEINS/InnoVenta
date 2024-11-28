@@ -17,6 +17,19 @@ header{
   display: flex;
   gap: 32px;
   padding-top: 20px;
+  text-decoration: none;
+  text-decoration-color: #FFC700;
+}
+
+.navbar-list{
+  color: #ffff;
+  text-decoration: none;
+  text-decoration-color: #050038;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .nav-list li a{

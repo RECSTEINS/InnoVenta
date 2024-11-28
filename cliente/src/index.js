@@ -10,8 +10,9 @@ import Login from "./Components/Login/Login";
 
 
 import DashboardAdmin from "./Components/Dashboard/AdminPanel/InicioAdmin";
-import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados";
+import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados/Empleados";
 import RolesPanel from "./Components/Dashboard/AdminPanel/Roles";
+import AgregarEmpleado from './Components/Dashboard/AdminPanel/Empleados/AgregarEmpleado';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,18 @@ const router = createBrowserRouter([
   {
     path: "/roles",
     element:<RolesPanel/>
+  },
+
+
+
+  
+  //Eliminar despues 
+  {
+    path: "/agregarEmpleado",
+    element: <AgregarEmpleado/>
   }
+
+
 ])
 
 

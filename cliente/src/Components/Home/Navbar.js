@@ -30,7 +30,9 @@ const NavBar = () =>{
                     <i className="bi bi-x-circle"></i>
                 </button>
                 <ul className="nav-list">
-                    <li><a href="#">Inicio</a></li>
+                    <Link to={"/"} >
+                        <li className='navbar-list'>Inicio</li>
+                    </Link>
                     <li><a href="#">Membresia</a></li>
                     <li><a href="#">Productos</a></li>
                     <li><a href="#">Contacto</a></li>
