@@ -1,11 +1,15 @@
 import ClientAxios from "../../../../Config/axios";
 import React, { useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
+import { Link } from "react-router-dom";
+import AgregarEmpleado from "./AgregarEmpleado";
+import '../css/Empleado.css';
 
 function EmpleadosPanel(){
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null); 
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [mostrarAddEmpleado, setMostrarAddEmpleado] = useState(false);
 
     const URL = 'http://localhost:7777/getEmpleados'
 
@@ -50,24 +54,28 @@ function EmpleadosPanel(){
 
     return(
         <div className="empleado">
-            <h2>Empleados</h2>
-            <button onClick={""} className="adaptive-button">
-                <ion-icon name="person-add-outline"></ion-icon>
-                Nuevo empleado
-            </button>
-            
-            {/*<input className="empleadoBuscador" type="text" onChange={handleChange} placeholder="Buscar por nombre"/>*/}
-
-                
-
-            <DataTable
-                columns={columns}
-                data={filteredUsers}
-                paginationPerPage={7}
-                pagination
-            />
-
-          
+            {!mostrarAddEmpleado ? (
+                <>
+                    <h2>Empleados</h2>
+                    <button
+                        className="adaptive-button"
+                        onClick={() => setMostrarAddEmpleado(true)}
+                    >
+                        <ion-icon name="person-add-outline"></ion-icon>
+                        Nuevo empleado
+                    </button>
+                    <DataTable
+                        columns={columns}
+                        data={filteredUsers}
+                        paginationPerPage={7}
+                        pagination
+                    />
+                </>
+            ) : (
+                <div className="agregar-empleado-panel">
+                    <AgregarEmpleado onRegresar={() => setMostrarAddEmpleado(false)}/>   
+                </div>
+            )}
         </div>
     )
 }

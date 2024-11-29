@@ -42,108 +42,67 @@ function InicioAdmin(){
     }
 
     return(
-        <div className="dashboard-container">
-      <div className={`dashboard ${isMenuActive ? "active" : ""}`}>
-      <div className={"containe"}>
-        <div className="navigation">
-          <ul>
-            <li>
-              <a href="" onClick={() => handleViewChange("inicio")}>
-                <span className="icon">
-                  <ion-icon name="logo-apple-ar"></ion-icon>
-                </span>
-                <span className="title">INNOVENTA</span>
-              </a>
-            </li>
-            <li>
-                <Link to={""} onClick={() => handleViewChange("inicio")}>
-                    <span className="icon">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span className="title">Inicio</span>
-                </Link>
-            </li>
-            <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Empleados</span>
-                    
-                </Link>
-            </li>
-            <li>
-                <Link to={"/agregarEmpleado"}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Ventas</span>
-                </Link>
-            </li>
+        <div className="container-fluid">
+            <div className="row">
+            {/* Panel Izquierdo */}
+                <div className={`col-2 text-white vh-100 d-flex flex-column dashboard-izquierdo ${
+                    isMenuActive ? "active" : "" }`}>
+                    <h2 className="text-center py-5"><p></p></h2>
+                    <ul className="nav flex-column">
+                        <li className={`nav-item ${activeView === "inicio" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("inicio")}>
+                                Inicio
+                            </Link>
+                        </li>
+                        <li className={`nav-item ${activeView === "empleados" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("empleados")}>
+                                Empleados  <i className="bi bi-people-fill me-4 icono-dashboard"></i>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to=""
+                                className="nav-link"
+                                onClick={() => handleViewChange("ventas")}
+                            >
+                                Inventario<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to=""
+                                className="nav-link"
+                                onClick={() => handleViewChange("ventas")}
+                            >
+                                Ventas/Ordenes<i className="bi bi-cash-coin me-1 mx-4 "></i>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/login" className="nav-link">
+                                Cerrar sesión<i className="bi bi-box-arrow-right me-4 mx-5 "></i>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
 
-            <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Reportes</span>
-                </Link>
-            </li>            
-            <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Platillos</span>
-                </Link>
-            </li>
- 
-            <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Roles</span>
-                </Link>
-            </li>
-            <li>
-                <Link to={""} onClick={() => handleViewChange("empleados")}>
-                    <span className="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    
-                      <span className="title">Pagos</span>
-                </Link>
-            </li>
-            <li>
-                <Link to={"/login"}>
-                    <span className="icon">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                    </span>
-                    <span className="title">Cerrar sesión</span>
-                </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
+                {/* Contenido Principal */}
+                <div className="col-9 ">
+                    {/* Barra Superior */}
+                    <div className="d-flex  align-items-end  text-white py-2 px-4 barra-superior-dashboard">
+                        <h5 className="rol-dashboard">Administrador</h5>
+                    </div>
 
-      <div className={`main_dashboard ${isMenuActive ? "active" : ""}`}>
-        <div className="topbar_dashboard">
-          <div className="toggle_dashboard" onClick={toggleMenu}>
-            <ion-icon name="menu-outline"></ion-icon>
-          </div>
+                    {/* Contenido Dinámico */}
+                    <div className="p-4 contenido-dashboard">{renderContent()}</div>
+                </div>
+            </div>
         </div>
-        <div className="Contenido">
-          {renderContent()} {/* Renderizar el contenido dinámico */}
-        </div>
-      </div>
-    </div>
-    </div>
     )
 }
 
