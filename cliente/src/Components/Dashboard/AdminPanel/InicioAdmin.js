@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
 
 import EmpleadosPanel from "./Empleados/Empleados";
-import AgregarEmpleado from "./Empleados/AgregarEmpleado.js";
+import UsuariosPanel from "./Usuarios/Usuarios";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
@@ -30,11 +30,9 @@ function InicioAdmin(){
                 return  <div>
                             <EmpleadosPanel/>
                         </div>
-            case "agregarEmpleado":
+            case "usuarios":
                 return  <div>
-                            <Link to={"/agregarEmpleado"}>
-
-                            </Link>
+                            <UsuariosPanel/>
                         </div>
         }
 
@@ -63,6 +61,14 @@ function InicioAdmin(){
                                 className="nav-link"
                                 onClick={() => handleViewChange("empleados")}>
                                 Empleados  <i className="bi bi-people-fill me-4 icono-dashboard"></i>
+                            </Link>
+                        </li>
+                        <li className={`nav-item ${activeView === "usuarios" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("usuarios")}>
+                                Usuarios  <i className="bi bi-people-fill me-4 icono-dashboard"></i>
                             </Link>
                         </li>
                         <li className="nav-item">

@@ -123,7 +123,9 @@ function AgregarEmpleado({ onRegresar }){
                             className="form-select" 
                             value={formData.genero} 
                             onChange={handleChange}
+                            required
                         >
+                            <option></option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                         </select>

@@ -59,11 +59,11 @@ const getUsuarioId= (request, response) => {
 
 const updateUsuario = (request, response) => {
     const id = request.params.id;
-    const { nombre, password, activo, fkrol} = request.body;
+    const { nombre, password, img, activo, fkrol} = request.body;
 
     connection.query(
-        "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_activo = ?, fk_rol = ? WHERE pk_usuario = ?",
-        [nombre, password, activo, fkrol, id],
+        "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_img = ?, usuario_activo = ?, fk_rol = ? WHERE pk_usuario = ?",
+        [nombre, password, img, activo, fkrol, id],
         (error, results) => {
             if (error) {
                 console.error("Error al actualizar el usuario:", error);
@@ -80,12 +80,12 @@ const updateUsuario = (request, response) => {
 }
 
 const postUsuario = (request, response) => {
-    const { id, nombre, password, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol, action } = request.body;
+    const { id, nombre, password, img, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol, action } = request.body;
 
     if (action === "insert") {
         connection.query(
-            "INSERT INTO usuarios (usuario_nombre, usuario_password, usuario_fecha_creacion, usuario_activo, fk_restaurante, fk_empleado, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            [nombre, password, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol],
+            "INSERT INTO usuarios (usuario_nombre, usuario_password, usuario_img, usuario_fecha_creacion, usuario_activo, fk_restaurante, fk_empleado, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [nombre, password, img, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol],
             (error, results) => {
                 if (error)
                     throw error;
@@ -94,8 +94,8 @@ const postUsuario = (request, response) => {
         );
     }else if (action === "update") {
         connection.query(
-            "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_activo =?, fk_rol = ? WHERE pk_usuario = ?",
-            [nombre, password, activo, fkrol, id],
+            "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_img = ?, usuario_activo =?, fk_rol = ? WHERE pk_usuario = ?",
+            [nombre, password, img, activo, fkrol, id],
             (error, results) => {
                 if (error)
                     throw error;
