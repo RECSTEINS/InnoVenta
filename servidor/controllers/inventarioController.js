@@ -32,7 +32,7 @@ const agregarProducto = (request, response) =>{
                 if(results.affectedRows > 0){
                     response.status(200).json({ message: "Producto agregado correctamente."});
                 } else{
-                    response.status(404).json({ error: "Producto no agregra, no fue posible realizar el insert."});
+                    response.status(404).json({ error: "Producto no agregrado, no fue posible realizar el insert."});
                 }
             }
         }

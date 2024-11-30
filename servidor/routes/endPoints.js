@@ -6,7 +6,8 @@ const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = req
 const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, agregarEmpleado} = require("../controllers/empleadoController");
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
 const { getInventario, agregarProducto, eliminarProducto } =require("../controllers/inventarioController");
-
+const { agregarCategoria } = require("../controllers/categoriaController");
+const { agregarPlatillo } = require("../controllers/platilloController");
 
 //Login
 router.post('/login', login);
@@ -49,5 +50,13 @@ router.delete('/delRestaurante/:id', delRestaurante);
 router.get('/getInventario', getInventario);
 router.post('/agregar-producto', agregarProducto);
 router.delete('/eliminar-producto/:id', eliminarProducto);
+
+
+//Categoria
+router.post('/agregar-categoria', agregarCategoria);
+
+
+//Platillo
+router.post('/agregar-platillo', agregarPlatillo);
 
 module.exports = router;
