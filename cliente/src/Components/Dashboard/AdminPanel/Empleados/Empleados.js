@@ -3,7 +3,7 @@ import React, { useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from "react-router-dom";
 import AgregarEmpleado from "./AgregarEmpleado";
-import '../css/Empleado.css';
+import './css_Empleado/Empleado.css';
 
 function EmpleadosPanel(){
     const [users, setUsers] = useState([]);

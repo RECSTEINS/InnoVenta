@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
 
 import EmpleadosPanel from "./Empleados/Empleados";
-import AgregarEmpleado from "./Empleados/AgregarEmpleado";
+import AgregarEmpleado from "./Empleados/AgregarEmpleado.js";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);

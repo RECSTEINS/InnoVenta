@@ -28,11 +28,11 @@ const getEmpleadoId= (request, response) => {
 
 const updateEmpleado = (request, response) => {
     const id = request.params.id;
-    const { nombre, apellido, edad, email, telefono, direccion, rfc, nss, img} = request.body;
+    const { nombre, apellido, edad, email, telefono, direccion, rfc, nss} = request.body;
 
     connection.query(
-        "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ?, empleado_img = ? WHERE pk_empleado = ?",
-        [nombre, apellido, edad, email, telefono, direccion, rfc, nss, img, id],
+        "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ? WHERE pk_empleado = ?",
+        [nombre, apellido, edad, email, telefono, direccion, rfc, nss, id],
         (error, results) => {
             if (error) {
                 console.error("Error al actualizar el empleado:", error);
@@ -49,12 +49,12 @@ const updateEmpleado = (request, response) => {
 }
 
 const postEmpleado = (request, response) => {
-    const { id, nombre,  apellido, edad, email, telefono, direccion, rfc, nss, fecha_alta, activo, img, action } = request.body;
+    const { id, nombre,  apellido, edad, email, telefono, direccion, rfc, nss, fecha_alta, activo, action } = request.body;
 
     if (action === "insert") {
         connection.query(
-            "INSERT INTO empleados (empleado_nombre, empleado_apellido, empleado_edad, empleado_email, empleado_telefono, empleado_direccion, empleado_rfc, empleado_nss, empleado_fecha_alta, empleado_activo, empleado_img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [nombre, apellido, edad, email, telefono, direccion, rfc, nss, fecha_alta, activo, img],
+            "INSERT INTO empleados (empleado_nombre, empleado_apellido, empleado_edad, empleado_email, empleado_telefono, empleado_direccion, empleado_rfc, empleado_nss, empleado_fecha_alta, empleado_activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [nombre, apellido, edad, email, telefono, direccion, rfc, nss, fecha_alta, activo],
             (error, results) => {
                 if (error)
                     throw error;
@@ -63,8 +63,8 @@ const postEmpleado = (request, response) => {
         );
     }else if (action === "update") {
         connection.query(
-            "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ?, empleado_activo = ?, empleado_img = ? WHERE pk_empleado = ?",
-            [nombre, apellido, edad, email, telefono, direccion, rfc, nss, activo, img, id],
+            "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ?, empleado_activo = ? WHERE pk_empleado = ?",
+            [nombre, apellido, edad, email, telefono, direccion, rfc, nss, activo, id],
             (error, results) => {
                 if (error)
                     throw error;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/AgregarEmpleado.css";
+import "./css_Empleado/AgregarEmpleado.css";
 import { Link } from "react-router-dom";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
