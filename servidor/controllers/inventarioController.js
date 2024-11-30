@@ -39,4 +39,15 @@ const agregarProducto = (request, response) =>{
     )
 };
 
-module.exports = {getInventario, agregarProducto}
+
+const eliminarProducto = (request, response)=>{
+    const id = request.params.id;
+    connection.query("DELETE FROM productos WHERE pk_productos = ?",[id],
+    (error, resulst) =>{
+        if(error)
+            throw error;
+        response.status(201).json({"Producto eliminado":resulst.affectedRows});
+    });
+}
+
+module.exports = {getInventario, agregarProducto, eliminarProducto}
