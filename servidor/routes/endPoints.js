@@ -1,10 +1,12 @@
 const express=require("express")
 const router = express.Router()
-const {login, usuarios_login} = require("../controllers/loginController")
+const { login, usuarios_login } = require("../controllers/loginController")
 const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../controllers/rolesController");
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
 const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, agregarEmpleado} = require("../controllers/empleadoController");
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
+const { getInventario, agregarProducto } =require("../controllers/inventarioController");
+
 
 //Login
 router.post('/login', login);
@@ -42,5 +44,9 @@ router.post('/postRestaurante', postRestaurante);
 router.post('/updateRestaurante/:id', updateRestaurante);
 router.delete('/delRestaurante/:id', delRestaurante);
 
+
+//Inventario
+router.get('/getInventario', getInventario);
+router.post('/agregar-producto', agregarProducto);
 
 module.exports = router;

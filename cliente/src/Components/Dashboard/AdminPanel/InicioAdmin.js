@@ -6,15 +6,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import EmpleadosPanel from "./Empleados/Empleados";
 import UsuariosPanel from "./Usuarios/Usuarios";
+import InventarioPanel from "./Inventario/Inventario.js";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
     const [activeView, setActiveView] = useState("");
 
 
-    const toggleMenu = () => {
+    /*const toggleMenu = () => {
         setMenuActive(!isMenuActive);
-    };
+    };*/
     const handleViewChange = (view) => {
         setActiveView(view);
     };
@@ -34,9 +35,11 @@ function InicioAdmin(){
                 return  <div>
                             <UsuariosPanel/>
                         </div>
+            case "inventario":
+                return <div>
+                            <InventarioPanel/>
+                        </div>
         }
-
-
     }
 
     return(
@@ -71,15 +74,16 @@ function InicioAdmin(){
                                 Usuarios  <i className="bi bi-people-fill me-4 icono-dashboard"></i>
                             </Link>
                         </li>
-                        <li className="nav-item">
+
+                        <li className={`nav-item ${activeView === "inventario" ? "active" : ""}`}>
                             <Link
-                                to=""
+                                to="#"
                                 className="nav-link"
-                                onClick={() => handleViewChange("ventas")}
-                            >
+                                onClick={() => handleViewChange("inventario")}>
                                 Inventario<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
                             </Link>
                         </li>
+
                         <li className="nav-item">
                             <Link
                                 to=""
