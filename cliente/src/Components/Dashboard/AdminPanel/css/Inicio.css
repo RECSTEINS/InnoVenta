@@ -65,3 +65,7 @@
     transform: translate(0%, -8%);
     min-height: 100vh;
 }
+
+.cerrar-sesion-dashboard{
+    margin-top: 120px;
+}

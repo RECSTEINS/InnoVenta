@@ -7,6 +7,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import EmpleadosPanel from "./Empleados/Empleados";
 import UsuariosPanel from "./Usuarios/Usuarios";
 import InventarioPanel from "./Inventario/Inventario.js";
+import PagosPanel from "./Pagos/Pagos.js";
+import PlatillosPanel from "./Platillos/Platillo.js";
+import OrdenesVentasPanel from "./Ordenes/Ordenes_Ventas.js";
+import ReportePanel from "./Reports/Reporte.js";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
@@ -36,8 +40,24 @@ function InicioAdmin(){
                             <UsuariosPanel/>
                         </div>
             case "inventario":
-                return <div>
+                return  <div>
                             <InventarioPanel/>
+                        </div>
+            case "ordenes":
+                return  <div>
+                            <OrdenesVentasPanel/>
+                        </div>
+            case "cobro":
+                return  <div>
+                            <PagosPanel/>
+                        </div>
+            case "platillos":
+                return  <div>
+                            <PlatillosPanel/>
+                        </div>
+            case "reportes":
+                return  <div>
+                            <ReportePanel/>
                         </div>
         }
     }
@@ -75,6 +95,15 @@ function InicioAdmin(){
                             </Link>
                         </li>
 
+                        <li className={`nav-item ${activeView === "platillos" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("platillos")}>
+                                Platillos<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
                         <li className={`nav-item ${activeView === "inventario" ? "active" : ""}`}>
                             <Link
                                 to="#"
@@ -83,18 +112,36 @@ function InicioAdmin(){
                                 Inventario<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
                             </Link>
                         </li>
-
-                        <li className="nav-item">
+                        
+                        <li className={`nav-item ${activeView === "ordenes" ? "active" : ""}`}>
                             <Link
                                 to=""
                                 className="nav-link"
-                                onClick={() => handleViewChange("ventas")}
+                                onClick={() => handleViewChange("ordenes")}
                             >
                                 Ventas/Ordenes<i className="bi bi-cash-coin me-1 mx-4 "></i>
                             </Link>
                         </li>
+
+                        <li className={`nav-item ${activeView === "cobro" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("cobro")}>
+                                Cobro<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
+                        <li className={`nav-item ${activeView === "reportes" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("reportes")}>
+                                Reportes<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
                         <li className="nav-item">
-                            <Link to="/login" className="nav-link">
+                            <Link to="/login" className="nav-link cerrar-sesion-dashboard">
                                 Cerrar sesión<i className="bi bi-box-arrow-right me-4 mx-5 "></i>
                             </Link>
                         </li>
