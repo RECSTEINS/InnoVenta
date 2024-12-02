@@ -67,15 +67,17 @@ function InventarioPanel(){
                 <>
                     {row.producto_nombre}{' '}
                     {row.producto_stock <= row.producto_minimo_stock && (
-                        <i
-                            className="bi bi-emoji-dizzy-fill"
+                        <div className='stock-bajo-row'>
+                            <i
+                            className="bi bi-exclamation-octagon"
                             style={{
                                 color: '#FFC700',
                                 marginLeft: '8px',
                                 fontSize: '18px',
                             }}
                             title="Stock bajo"
-                        ></i>
+                            ></i>
+                        </div>
                     )}
                 </>
             ),

@@ -1,0 +1,12 @@
+.platillos-panel{
+    padding: 20px;
+    background-color: #FFFF;
+    color: black;   
+}
+
+.header-platillo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}

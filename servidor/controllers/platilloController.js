@@ -57,7 +57,7 @@ const getPlatillos = (request, response) =>{
                 
                 if (fk_producto) {
                     acc[pk_platillo].productos.push({
-                        nombre: producto_nombre
+                        nombre_producto: producto_nombre
                     });
                 }
 
