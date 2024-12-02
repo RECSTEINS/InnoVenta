@@ -1,6 +1,7 @@
 import ClientAxios from "../../../../Config/axios";
 import React, { useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
+import { Dropdown, DropdownButton} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import AgregarEmpleado from "./AgregarEmpleado";
 import './css_Empleado/Empleado.css';
@@ -11,6 +12,13 @@ function EmpleadosPanel(){
     const [selectedUser, setSelectedUser] = useState(null);
     const [mostrarAddEmpleado, setMostrarAddEmpleado] = useState(false);
 
+    const [visibleColumns, setVisibleColumns] = useState([
+        'Nombre',
+        'Apellido',
+        'Correo',
+        'Opciones'
+    ]);
+
     const URL = 'http://localhost:7777/getEmpleados'
 
     const showData = async () => {
@@ -20,55 +28,157 @@ function EmpleadosPanel(){
         setFilteredUsers(data);
     }
 
-    const columns = [
+    const allColumns = [
         {
             name: 'Nombre',
             selector: row => row.empleado_nombre,
-            sortable: true
+            sortable: true,
+            center: true,
+            id: 'Nombre',
+            //width: '150px'
         },
         {
             name: 'Apellido',
-            selector: row => row.empleado_apellido
+            selector: row => row.empleado_apellido,
+            center: true,
+            sortable: true,
+            id: 'Apellido',
+            //width: '220px'
+        },
+        {
+            name: 'Edad',
+            selector: row => row.empleado_edad,
+            center: true,
+            sortable: true,
+            id: 'Edad'
+        },
+        {
+            name: 'Genero',
+            selector: row => row.empleado_genero,
+            center: true,
+            sortable: true,
+            id: 'Genero'
         },
         {
             name: 'Correo',
-            selector: row => row.empleado_email
+            selector: row => row.empleado_email,
+            sortable: true,
+            center: true,
+            width: '280px',
+            id: 'Correo'
         },
         {
-            name: 'Estado',
-            selector: row => row.empleado_activo
+            name: 'Teléfono',
+            selector: row => row.empleado_telefono,
+            center: true,
+            id: 'Teléfono'
         },
         {
-            name: 'Acciones',
-            cell: row => <button className="editEmpleado" onClick={""}><ion-icon name="pencil-outline"></ion-icon></button>
+            name: 'RFC',
+            selector: row => row.empleado_rfc,
+            center: true,
+            id: 'RFC'
         },
         {
-            name: '',
-            cell: row => <button className="deletEmpleado" onClick={""}><ion-icon name="trash-outline"></ion-icon></button>
-        }
+            name: 'NSS',
+            selector: row => row.empleado_nss,
+            center: true,
+            id: 'NSS',
+        },
+        {
+            name: 'Opciones',
+            cell: row => (
+                <div style={{ display: "flex", gap:'10px'}}>
+                    <button
+                        className="edit-btn-button"
+                        onClick={""}
+                    >
+                        Editar
+                    </button>
+                    <button
+                        className="delete-btn-button"
+                        onClick={""}
+                    >
+                        Eliminar
+                    </button>
+                </div>
+            ),
+            center: true,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            id: 'Opciones'
+            
+        },
     ];
+
+    const columns = allColumns.filter(column => visibleColumns.includes(column.id));
+
+
+    const handleColumnToggle = (columnId) => {
+        setVisibleColumns(prevState => 
+            prevState.includes(columnId)
+                ? prevState.filter(col => col !== columnId)
+                : [...prevState, columnId] 
+        );
+    };
+
+
 
     useEffect(() => {
         showData();
     }, [users]);
 
     return(
-        <div className="empleado">
+        <div className="empleado-panel">
             {!mostrarAddEmpleado ? (
                 <>
-                    <h2>Empleados</h2>
-                    <button
-                        className="adaptive-button"
-                        onClick={() => setMostrarAddEmpleado(true)}
-                    >
-                        <ion-icon name="person-add-outline"></ion-icon>
-                        Nuevo empleado
-                    </button>
+                    <div className="header-empleados">
+                        <h2 className="titulo-dashboard-empleado">Empleados</h2>
+                        <button
+                            className="add-btn-button"
+                            onClick={() => setMostrarAddEmpleado(true)}
+                        >
+                            Nuevo empleado
+                        </button>
+                    </div>
+
+                    <div className="columnas-btn">
+                        <DropdownButton
+                            id="dropdown-basic-button"
+                            title="Columnas"
+                            variant="secondary"
+                            style={{ marginLeft: "10px" }}
+                        >
+                        {allColumns.map(col => (
+                            <Dropdown.Item key={col.id}>
+                                <label className="columnas-btn-contenido">
+                                    <input
+                                        type="checkbox"
+                                        checked={visibleColumns.includes(col.id)}
+                                        onChange={() => handleColumnToggle(col.id)}
+                                        style={{ marginRight: '5px' }}
+                                    />
+                                    {col.name}
+                                </label>
+                            </Dropdown.Item>
+                        ))}
+                        </DropdownButton>
+                    </div>
+
+                    
+
                     <DataTable
                         columns={columns}
                         data={filteredUsers}
-                        paginationPerPage={7}
+                        paginationPerPage={10}
                         pagination
+                        highlightOnHover
+                        responsive
+                        customStyles={{
+                            headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
+                            table: { style:{ border:'1.5px #070C33 solid', height: '480px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '12px'}},  
+                        }}
                     />
                 </>
             ) : (

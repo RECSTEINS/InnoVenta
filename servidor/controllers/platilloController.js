@@ -7,6 +7,67 @@ const {connection}= require ("../config/config.db");
 const { request, response } = require("..");
 
 
+const getPlatillos = (request, response) =>{
+    const query = `
+            SELECT
+                platillos.pk_platillo,
+                platillos.platillo_nombre,
+                platillos.platillo_precio,
+                platillos.platillo_disponible,
+
+                categorias.categoria_nombre,
+                productos.producto_nombre,
+                platillos_productos.fk_producto
+            FROM 
+                platillos
+            LEFT JOIN categorias ON platillos.fk_categoria = categorias.pk_categoria
+            LEFT JOIN platillos_productos ON platillos.pk_platillo = platillos_productos.fk_platillo
+            LEFT JOIN productos ON platillos_productos.fk_producto = productos.pk_productos
+                
+        `;
+        
+        connection.query(query, (error, results) => {
+            if (error) {
+                console.error("Error al obtener platillos: ", error);
+                return response.status(500).json({ error: "Error interno del servidor." });
+            }
+
+            const platillos = results.reduce((acc, row) => {
+                
+                const{
+                    pk_platillo,
+                    platillo_nombre,
+                    platillo_precio,
+                    platillo_disponible,
+                    categoria_nombre,
+                    producto_nombre,
+                    fk_producto
+                } = row;
+            
+                if (!acc[pk_platillo]) {
+                    acc[pk_platillo] = {
+                        id: pk_platillo,
+                        nombre: platillo_nombre,
+                        precio: platillo_precio,
+                        disponible: !!platillo_disponible,
+                        categoria: categoria_nombre,
+                        productos: []
+                    };
+                }
+                
+                if (fk_producto) {
+                    acc[pk_platillo].productos.push({
+                        nombre: producto_nombre
+                    });
+                }
+
+            return acc;
+        },{});
+        response.status(200).json(Object.values(platillos));
+    });
+};
+
+
 const agregarPlatillo = (request, response) =>{
     const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos} = request.body;
 
@@ -50,4 +111,4 @@ const agregarPlatillo = (request, response) =>{
 };
 
 
-module.exports = { agregarPlatillo }
+module.exports = { agregarPlatillo, getPlatillos }

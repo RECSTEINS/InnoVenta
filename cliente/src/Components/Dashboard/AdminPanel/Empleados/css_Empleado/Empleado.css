@@ -1,4 +1,35 @@
-.empleado{
-    height: 500px;
-    background-color: black;
+.empleado-panel{
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;   
+}
+
+.header-empleados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titulo-dashboard-empleado{
+    font-weight: 700;
+    font-family: 'Oswald';
+}
+
+.agregar-empleado-panel{
+    margin-top: -3.7px;
+    margin-left: -40px;
+    margin-bottom: -84px;
+}
+
+.columnas-btn{
+    margin-bottom: 3px;
+    margin-top: -5px;
+    margin-left: -9px;
+    font-family: 'Roboto';
+    color: #a30505;
+}
+
+.columnas-btn-contenido{
+    font-size: 18px;
 }

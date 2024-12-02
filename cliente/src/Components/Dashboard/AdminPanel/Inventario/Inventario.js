@@ -3,6 +3,7 @@ import './css_Inventario/Inventario.css';
 import React, { useEffect, useState } from 'react';
 import ClientAxios from '../../../../Config/axios';
 import Swal from 'sweetalert2';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 function InventarioPanel(){
     
@@ -61,7 +62,23 @@ function InventarioPanel(){
             sortable: true,
             grow: 2,
             center: true,
-            width: '291px'
+            width: '291px',
+            cell: row => (
+                <>
+                    {row.producto_nombre}{' '}
+                    {row.producto_stock <= row.producto_minimo_stock && (
+                        <i
+                            className="bi bi-emoji-dizzy-fill"
+                            style={{
+                                color: '#FFC700',
+                                marginLeft: '8px',
+                                fontSize: '18px',
+                            }}
+                            title="Stock bajo"
+                        ></i>
+                    )}
+                </>
+            ),
         },
         {
             name: 'Cantidad disponible',
@@ -130,7 +147,7 @@ function InventarioPanel(){
                                 when: row => row.producto_stock <= row.producto_minimo_stock,
                                 style:{
                                     backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                                    color: '#FF0000',
+                                    color: '#FFC700',
                                     fontWeight: 'bold'
                                 },
                             },

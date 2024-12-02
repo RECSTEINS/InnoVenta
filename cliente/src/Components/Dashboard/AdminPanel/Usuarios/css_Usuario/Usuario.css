@@ -1,0 +1,12 @@
+.usuarios-panel{
+    padding: 20px;
+    background-color: #ffffff;
+    color: black; 
+}
+
+.header-usuario{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}

@@ -31,18 +31,6 @@ function InicioAdmin(){
                 return  <div className="">
                             <img />
                         </div>;
-            case "empleados":
-                return  <div>
-                            <EmpleadosPanel/>
-                        </div>
-            case "usuarios":
-                return  <div>
-                            <UsuariosPanel/>
-                        </div>
-            case "inventario":
-                return  <div>
-                            <InventarioPanel/>
-                        </div>
             case "ordenes":
                 return  <div>
                             <OrdenesVentasPanel/>
@@ -51,13 +39,29 @@ function InicioAdmin(){
                 return  <div>
                             <PagosPanel/>
                         </div>
+            case "inventario":
+                return  <div>
+                            <InventarioPanel/>
+                        </div>
             case "platillos":
                 return  <div>
                             <PlatillosPanel/>
                         </div>
+            case "empleados":
+                return  <div>
+                            <EmpleadosPanel/>
+                        </div>
+            case "usuarios":
+                return  <div>
+                            <UsuariosPanel/>
+                        </div>
             case "reportes":
                 return  <div>
                             <ReportePanel/>
+                        </div>
+            case "roles":
+                return  <div>
+                            
                         </div>
         }
     }
@@ -78,6 +82,44 @@ function InicioAdmin(){
                                 Inicio
                             </Link>
                         </li>
+
+                        <li className={`nav-item ${activeView === "ordenes" ? "active" : ""}`}>
+                            <Link
+                                to=""
+                                className="nav-link"
+                                onClick={() => handleViewChange("ordenes")}
+                            >
+                                Ventas/Ordenes<i className="bi bi-list-check me-1 mx-4 "></i>
+                            </Link>
+                        </li>
+
+                        <li className={`nav-item ${activeView === "cobro" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("cobro")}>
+                                Cobro<i className="bi bi-cash-coin me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
+                        <li className={`nav-item ${activeView === "inventario" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("inventario")}>
+                                Inventario<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
+                        <li className={`nav-item ${activeView === "platillos" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("platillos")}>
+                                Platillos<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
                         <li className={`nav-item ${activeView === "empleados" ? "active" : ""}`}>
                             <Link
                                 to="#"
@@ -91,53 +133,25 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("usuarios")}>
-                                Usuarios  <i className="bi bi-people-fill me-4 icono-dashboard"></i>
-                            </Link>
-                        </li>
-
-                        <li className={`nav-item ${activeView === "platillos" ? "active" : ""}`}>
-                            <Link
-                                to="#"
-                                className="nav-link"
-                                onClick={() => handleViewChange("platillos")}>
-                                Platillos<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
-                            </Link>
-                        </li>
-
-                        <li className={`nav-item ${activeView === "inventario" ? "active" : ""}`}>
-                            <Link
-                                to="#"
-                                className="nav-link"
-                                onClick={() => handleViewChange("inventario")}>
-                                Inventario<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                                Usuarios  <i className="bi bi-person-video me-4 icono-dashboard"></i>
                             </Link>
                         </li>
                         
-                        <li className={`nav-item ${activeView === "ordenes" ? "active" : ""}`}>
-                            <Link
-                                to=""
-                                className="nav-link"
-                                onClick={() => handleViewChange("ordenes")}
-                            >
-                                Ventas/Ordenes<i className="bi bi-cash-coin me-1 mx-4 "></i>
-                            </Link>
-                        </li>
-
-                        <li className={`nav-item ${activeView === "cobro" ? "active" : ""}`}>
-                            <Link
-                                to="#"
-                                className="nav-link"
-                                onClick={() => handleViewChange("cobro")}>
-                                Cobro<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
-                            </Link>
-                        </li>
-
                         <li className={`nav-item ${activeView === "reportes" ? "active" : ""}`}>
                             <Link
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("reportes")}>
-                                Reportes<i className="bi bi-box-seam me-1 icono-dashboard2"></i>
+                                Reportes<i className="bi bi-clipboard-fill me-1 icono-dashboard2"></i>
+                            </Link>
+                        </li>
+
+                        <li className={`nav-item ${activeView === "roles" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link"
+                                onClick={() => handleViewChange("roles")}>
+                                Roles<i className="bi bi-person-badge-fill me-1 icono-dashboard2"></i>
                             </Link>
                         </li>
                         <li className="nav-item">

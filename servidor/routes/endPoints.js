@@ -7,7 +7,7 @@ const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, 
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
 const { getInventario, agregarProducto, eliminarProducto } =require("../controllers/inventarioController");
 const { agregarCategoria } = require("../controllers/categoriaController");
-const { agregarPlatillo } = require("../controllers/platilloController");
+const { agregarPlatillo, getPlatillos } = require("../controllers/platilloController");
 
 //Login
 router.post('/login', login);
@@ -58,5 +58,6 @@ router.post('/agregar-categoria', agregarCategoria);
 
 //Platillo
 router.post('/agregar-platillo', agregarPlatillo);
+router.get('/getPlatillos', getPlatillos);
 
 module.exports = router;

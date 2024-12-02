@@ -36,13 +36,39 @@ function UsuariosPanel(){
             sortable: true
         },
         {
-            name: 'Opciones',
-            selector: row => <button className='editUsuario' onClick={""}></button>
+            name: 'Activo',
+            selector: row => (
+                <>
+                    {row.usuario_activo == 1 && (
+                        <a>Activo</a>
+                    )}
+                </>
+            ),
+            sortable: true
         },
         {
-            name: "",
-            selector: row => <button className='deletUsuario' onClick={""}></button>
-        }
+            name: 'Opciones',
+            cell: row => (
+                <div style={{ display:'flex', gap:'10px'}}>
+                    <button
+                        className='edit-btn-button'
+                        onClick={""}
+                    >
+                        Editar
+                    </button>
+                    <button
+                        className='delete-btn-button'
+                        onClick={""}
+                    >
+                        Eliminar
+                    </button>
+                </div>
+            ),
+            center: true,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            width: '260px'
+        },
     ];
 
     useEffect(() => {
@@ -51,21 +77,30 @@ function UsuariosPanel(){
 
 
     return(
-        <div>
+        <div className='usuarios-panel'>
             {!mostrarAddUsuario ? (
                 <>
-                    <h2>Usuarios</h2>
-                    <button
-                        className=''
-                        onClick={() => setMostrarAddUsuario(true)}
-                    >
-                        Agregar usuario
-                    </button>
+                    <div className='header-usuario'>
+                        <h2 className='titulo-dashboard-panel'>Usuarios</h2>
+                        <button
+                            className='add-btn-button'
+                            onClick={() => setMostrarAddUsuario(true)}
+                        >
+                            Agregar usuario
+                        </button>
+                    </div>
                     <DataTable
                         columns={columns}
                         data={filteredUsers}
                         paginationPerPage={10}
+                        highlightOnHover
+                        responsive
                         pagination
+                        customStyles={{
+                            headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
+                            table: { style:{ border:'1.5px #070C33 solid', height: '450px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '12px'}},  
+                        }}
                     />
                 </>
             ) : (
