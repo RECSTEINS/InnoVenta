@@ -1,0 +1,44 @@
+.ordenes {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    
+}
+
+.orden-status {
+    width: 200px; /* Ancho fijo para todas las órdenes */
+  height: 120px; /* Altura fija para todas las órdenes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5dvh;
+  border: 1px solid #000;
+  border-radius: 8px;
+  overflow: hidden; /* Oculta contenido desbordado */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9; /* Fondo por defecto */
+
+
+  flex-wrap: nowrap; /* Evita que las órdenes salten a otra fila */
+  overflow: hidden; /* Oculta el scroll */
+  gap: 0px; /* Espaciado entre tarjetas */
+  transition: transform 0.3s ease-in-out; /* Suaviza el desplazamiento */
+}
+
+.orden-status.en-proceso {
+    background-color: #C2EAF1;
+}
+
+.orden-status.listo {
+    background-color: #EDE7F6;
+}
+
+.orden-status h4,
+.orden-status p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+

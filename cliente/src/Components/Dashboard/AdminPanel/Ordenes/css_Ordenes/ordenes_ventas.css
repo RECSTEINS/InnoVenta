@@ -250,3 +250,30 @@
     font-family: 'Open Sans';
     font-weight: 700;
 }
+
+.panel-ordenes-status {
+    display: flex; 
+    flex-wrap: nowrap;
+    overflow-x: auto; 
+    gap: 10px;
+    padding: 10px;
+    max-width: 100%; 
+    box-sizing: border-box; 
+    height: 150px;
+    margin-top: -25px;
+
+
+    position: relative; /* Necesario para posicionar los botones */
+    overflow: hidden; /* Ocultar contenido desbordado */
+    width: 650px;
+    margin-left: -90px;
+  }
+  
+  .panel-ordenes-status::-webkit-scrollbar {
+    height: 8px; 
+  }
+  
+.pane-ordenes-status::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}

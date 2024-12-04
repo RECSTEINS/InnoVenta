@@ -1,8 +1,12 @@
 import './css_Ordenes/ordenes_ventas.css';
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import CardPlatillo from './CardPlatillo';
-import Demon from './comida.jpg'
+import CardOrdenes from './CardOrdenes';
 
+import Demon from './comida.jpg'
+import Demo2 from './comida2.jpg'
+import Demo3 from './comida3.jpg'
+import Demo4 from './comida4.jpg'
 function OrdenesVentasPanel(){
 
     const [ordenes, setOrdenes] = useState([]);
@@ -12,6 +16,7 @@ function OrdenesVentasPanel(){
     const [cliente, setCliente] = useState('');
     const [mesa, setMesa] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Comida');
+    const ordenesRef = useRef(null);
 
     const handleCategoriaChange = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -55,7 +60,7 @@ function OrdenesVentasPanel(){
             {
                 id: 2,
                 nombre: 'Tazón de Frutas y Almendras',
-                imagen: 'ruta-imagen-2.jpg',
+                imagen: Demo2,
                 productos: [
                     { nombre_producto: 'Mango' },
                     { nombre_producto: 'Almendra' },
@@ -64,8 +69,8 @@ function OrdenesVentasPanel(){
             },
             {
                 id: 3,
-                nombre: 'Panqueques de Caramelo y Frutas',
-                imagen: Demon,
+                nombre: 'Tostada de Aguacate y Huevo',
+                imagen: Demo3,
                 productos: [
                     { nombre_producto: 'Fresa' },
                     { nombre_producto: 'Tomate' },
@@ -75,8 +80,8 @@ function OrdenesVentasPanel(){
             },
             {
                 id: 4,
-                nombre: 'Panqueques de Caramelo y Frutas',
-                imagen: Demon,
+                nombre: 'Hamburguesa Gourmet',
+                imagen: Demo4,
                 productos: [
                     { nombre_producto: 'Fresa' },
                     { nombre_producto: 'Tomate' },
@@ -96,14 +101,36 @@ function OrdenesVentasPanel(){
     }, [carrito]);
 
     const handleOrderSubmit = () => {
-        const orden = {
-            cliente,
-            mesa,
+        const nuevaOrden = {
+            numero: ordenes.length + 1, // Incrementa el número de orden.
+            mesa: mesa || 'Sin asignar', // Usa la mesa ingresada o un valor predeterminado.
+            estado: 'En proceso', // Estado inicial.
             platillos: carrito,
-            total,
+            total: total.toFixed(2),
         };
-        console.log('Orden enviada: ', orden);
+
+        setOrdenes([...ordenes, nuevaOrden]);
+        setCarrito([]);
+        setCliente('');
+        setMesa('');
     };
+
+
+
+    //Revisarlo a fondo
+    const handleScrollLeft = () => {
+        if (ordenesRef.current) {
+          ordenesRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+        }
+      };
+    
+      // Función para desplazar a la derecha
+      const handleScrollRight = () => {
+        if (ordenesRef.current) {
+          ordenesRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+        }
+      };
+
 
     return(
         <div className='row panel-ordenes-principal'>
@@ -111,20 +138,7 @@ function OrdenesVentasPanel(){
             <div className='ordenes-ventas-panel col-9'>
                 <div className='row'>
                     <div className='panel-ordenes-status col-12'>
-                        <div className='ordenes-status'>
-                            <div className="orden-status" style={{ backgroundColor: '#C2EAF1' }}>
-                                <h4>Orden:</h4>
-                                <p>En Proceso</p>
-                            </div>
-                            <div className="orden-status" style={{ backgroundColor: '#F4DFBA' }}>
-                                <h4>Orden:</h4>
-                                <p>En Proceso</p>
-                            </div>
-                            <div className="orden-status" style={{ backgroundColor: '#EDE7F6' }}>
-                                <h4>Orden:</h4>
-                                <p>Listo</p>
-                            </div>
-                        </div>
+                        <CardOrdenes ordenes={ordenes}/>
                     </div>
 
                     <div className="ordenes-contenido">
