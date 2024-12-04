@@ -13,7 +13,8 @@
     margin-left: -2px;
     background-color: #070C33;
     transform: translate(8%, 0%);
-    position: sticky;
+    position: fixed;
+    z-index: 1000;
 }
 
 .nav-link{

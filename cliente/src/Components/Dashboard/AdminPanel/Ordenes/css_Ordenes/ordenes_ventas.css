@@ -1,0 +1,252 @@
+.panel-ordenes-principal{
+    background-color: #DFD8D8;
+    margin-top: -23px;
+    width: 960px;
+}
+
+.ordenes-ventas-panel {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: #FFFBFB;
+    width: 680px;
+    margin-left: -56px;
+    margin-top: 47px;
+}
+
+.panel-ordenes-status{
+    width: 650px;
+    margin-left: -100px;
+}
+
+.ordenes-status {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.orden-status {
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 10px;
+    border: 2px black solid;
+    width:170px;
+    height: 100px;
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 650px;
+    height: 30px;
+    margin-right: 70px;
+}
+
+.categorias button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffcc00;
+    cursor: pointer;
+}
+
+.lista-platillos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-left: 10px;
+}
+
+.platillo {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.carrito {
+    background: #FFFBFB;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 55px;
+    margin-left: 10px;
+    width: 280px;
+    position: fixed;
+
+}
+
+.formulario-carrito{
+    display: flex;
+}
+
+.formulario-carrito input{
+    width: 110px;
+    gap: 10px;
+    display: flex;
+    margin-right: 10px;
+    margin-top: -8px;
+}
+
+.carrito-lista {
+    max-height: 300px;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+    padding-right: -15px;
+
+    margin-bottom: -3px;
+    margin-top: 4px;
+    padding-top: -110px;
+}
+
+
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -20px;
+    gap: 5px;
+}
+
+.carrito-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 435px;
+    width: 230px;
+    margin-left: 24px;
+}
+
+.ticket {
+    width: 224px;
+    height: 130px;
+    background-color: #FFFBFB;
+    border-radius: 20px;
+    border: none;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ticket:before,
+.ticket:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: #DFD8D8;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ticket:before {
+    top: -10px;
+    left: -12%;
+    transform: translateY(100%);
+}
+
+.ticket:after {
+    bottom: 38px;
+    left: 100%;
+    transform: translateX(-50%);
+}
+
+.ticket h4 {
+    color: #43a047; /* Verde para el total */
+    font-size: 24px;
+    margin: 0;
+}
+
+.ticket p {
+    color: #000000;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.ticket a{
+    margin-top: 7px;
+    font-size: 10px;
+    color: #747577;
+}
+
+.carrito-total h4 { 
+    color: #2D9E45;
+    font-family: 'Oswald';
+    font-weight: 300;
+}
+.carrito-item-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+}
+
+.carrito-item-name-price{
+    margin-left: 40px;
+}
+
+.carrito-item-name{
+    color: #030E1F;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.carrito-item-price{
+    color: #5FAAF6;
+    font-weight: 700;
+    font-family: 'Open Sans';
+    margin-top: -5px;
+}
+
+.carrito-options{
+    margin-top: -40px;
+    transform: translate( 60%, 0%);
+    font-size: 20px;
+    gap: 5px;
+    display: flex;
+}
+
+.carrito-btn-minus{
+    color: #FF0000;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.carrito-btn-plus{
+    color: #2D9E45;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.carrito-item-number{
+    color: #070C33;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.carrito-btn-agregar{
+    position: fixed;
+    background-color: #FFC700;
+    border: none;
+    border-radius: 40px;
+    width: 220px;
+    height: 43px;
+    margin-left: 30px;
+    margin-top: 140px;
+    color: #000000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+}
