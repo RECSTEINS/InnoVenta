@@ -19,9 +19,8 @@ function Resenas(){
     return(
         <div class="fondo-resenas">
             <h2 class="section-title-resenas">Lea las reseñas que han dejado los usuarios del sistema InnoVenta</h2>
-                <div class="row">
-        
-                <div class="col-md-4 col-12 d-none d-md-block">
+                <div class="row resenas">
+                <div class="col-md-4 col-12 d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card1} alt="Foto de Alejandra Hernandez"/>
@@ -46,7 +45,7 @@ function Resenas(){
 
                 
         
-                <div class="col-md-4  d-none d-md-block">
+                <div class="col-md-4  d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card2} alt="Foto de Raúl Gonzáles"/>
@@ -69,7 +68,7 @@ function Resenas(){
                     </div>
                 </div>
 
-                <div class="col-md-4  d-none d-md-block">
+                <div class="col-md-4  d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card3} alt="Foto de Mario y Rafael Suarez"/>
@@ -94,7 +93,7 @@ function Resenas(){
 
                 
 
-                <div class="col-md-4  d-none d-md-block">
+                <div class="col-md-4  d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card4} alt="Foto de Chris Jones"/>
@@ -117,7 +116,7 @@ function Resenas(){
                     </div>
                 </div>
         
-                <div class="col-md-4  d-none d-md-block">
+                <div class="col-md-4  d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card5} alt="Foto de Michael Williams"/>
@@ -141,7 +140,7 @@ function Resenas(){
                 </div>
 
 
-                <div class="col-md-4  d-none d-md-block">
+                <div class="col-md-4  d-none d-md-block card-resena-completa">
                     <div class="review-card">
                         <div class="ajustes-card">
                             <img src={card6} alt="Foto de Ana Martinez"/>

@@ -8,6 +8,7 @@
     padding-right: 150px;
     padding-top: 50px;
     padding-bottom: 25px;
+    height: 1160px;
 }
 
 .review-card {
@@ -15,6 +16,8 @@
     min-height: 250px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 368px;
+    width: 432px;
 }
 
 .ajustes-card{
@@ -26,12 +29,14 @@
 .card-pie-resenas{
     text-align: center;
     margin-bottom: 20px;
+    width: 432px;
+    height: 72px;
 }
 
 .review-card img {
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     margin-bottom: 15px;
 }
@@ -43,27 +48,37 @@
 
 .stars {
     color: #FFC700;
+    font-size: 40px;
 }
 .section-title-resenas {
-    font-size: 42px;
+    font-size: 66px;
     color: #070C33;
     text-align: center;
     margin-bottom: 40px;
     font-family: 'Oswald';
+    font-weight: 400;
 }
 
 .name-card{
     font-family: 'Roboto';
     color: #070C33;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 28px;
     margin-bottom: 0px;
 }
 
+.card-resena-completa:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
 .btn-mas{
-    padding-top: 6px;
+    padding-top: 13px;
     padding-bottom: -1px;
     background-color: #4FA6DB;
+    font-size: 24px;
+    font-family: 400;
+    font-family: 'Roboto';
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -72,6 +87,7 @@
     font-family: 'Roboto';
     font-weight: 400;
     padding-top: 1px;
+    cursor: pointer;
 }
 
 .star-off{
@@ -82,7 +98,13 @@
     color: #070C33;
     font-weight: 400;
     font-family: 'Roboto';
-    font-size: 15px;
+    font-size: 24px;
+}
+
+.resenas{
+    gap: 0px;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
 /*Responsivo*/

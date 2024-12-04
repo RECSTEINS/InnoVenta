@@ -10,7 +10,7 @@ function Funcionalidades(){
     return(
         <div class="fondo-funcionalidades">
             <div class="container py-md-5 py-3">
-                <div class="row mx-md-5 align-items-center"> 
+                <div class="row mx-md-3 align-items-center"> 
                     <div class="col-md-7 col-12 text-left">
                         <p class="display-4 funcionalidades-title">¿Por qué elegir <span class="highlight-text">Innoventa</span>?</p>
                         <p class="subheading ">Porque inoventa gestiona las mejores herramientas, usuarios, roles, ventas y pagos.</p>

@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 .dashboard-izquierdo{
-    width: 250px;
-    margin-left: -56px;
+    width: 360px;
     background-color: #070C33;
     position: fixed;
-    transform: translate(-184%,0%);
+    transform: translate(-210%, 0%);
 }
 
 .barra-superior-dashboard{
-    width: 971px;
+    width: 1920px;
     margin-left: -2px;
     background-color: #070C33;
-    transform: translate(8%, 0%);
+    transform: translate(0%, 0%);
     position: fixed;
     z-index: 1000;
+    height: 96px;
 }
 
 .nav-link{
@@ -22,6 +22,12 @@
     font-weight: 700;
     text-decoration: none;
     font-family: 'Open Sans';
+    font-size: 24px;
+}
+
+.nav-item{
+    width: 328px;
+    height: 72px;
 }
 
 .nav-item.active .nav-link {
@@ -38,7 +44,7 @@
 .contenido-dashboard{
     margin-left: 75px;
     background-color: white;
-    width: 972px;
+    width: 1540px;
     /*margin-bottom: -10px;
     background-size: cover;
     min-height: 93vh;*/
@@ -54,7 +60,7 @@
 }
 
 .rol-dashboard{
-    transform: translate(550%, 0%);
+    transform: translate(980%, 0%);
     font-family: 'Open Sans';
 }
 

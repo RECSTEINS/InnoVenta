@@ -10,7 +10,7 @@
 
 .funcionalidades-title{
     margin-bottom: 50px;
-    font-size: 45px;
+    font-size: 64px;
     font-weight: bold;
     color: #000;
     font-family: 'Oswald';
@@ -23,7 +23,8 @@
 
 .subheading {
     color: #05041E;
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: 400;
     font-family: 'Open Sans';
 }
 
@@ -51,7 +52,8 @@
 }
   
 .image-grid-funcionalidades img {
-    width: 160%;
+    width: 456px;
+    height: 746px;
     border-radius: 10px; 
 }
 
@@ -67,10 +69,12 @@
     background-color: #FFC60C;
     border-radius: 40px;
     font-family: 'Oswald';
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 500;
     color: #02033B;
     margin-top: 30px;
+    height: 89px;
+    width: 202px;
 }
 
 .btn-warning-funci:hover{

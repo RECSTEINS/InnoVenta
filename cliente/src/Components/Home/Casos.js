@@ -10,12 +10,12 @@ function Casos(){
         <div class="fondo-casos">
             <div class="seccion-casos py-5 ">
                 <div class="container text-center">
-                    <h2 class="caso-top-text d-none d-md-block">Innoventa Premium</h2>
+                    <p class="caso-top-text d-none d-md-block">Innoventa Premium</p>
                     <p class="titulo-seccion-caso d-none d-md-block">Restaurantes que Crecen con InnoVenta</p>
                     <p class="titulo-seccion-caso d-md-none d-md-block">Restaurantes que Crecen con <span class="caso-mobile-color">InnoVenta</span></p>
                     <p class="subtitulo-seccion-caso">¿Quieres que tu restaurante sea nuestro próximo caso de éxito?</p>
         
-                    <div class="row justify-content-center mx-5">
+                    <div class="row justify-content-center g-5">
 
                         <div class="col-md-4 mb-4">
                             <div class="card caso-card">
@@ -27,7 +27,7 @@ function Casos(){
                                     <i class="bi bi-clipboard2-data caso-icon"></i>
                                     <p class="card-text">Calificación de <strong class="caso-alert">4.8/5</strong> en</p> 
                                     <p class="card-text2">Reseñas</p>
-                                    <i href="#" class="btn btn-link caso-link">Ver Historia Completa</i>
+                                    <p class="btn btn-link caso-link">Ver Historia Completa</p>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ function Casos(){
                                     <i class="bi bi-alarm-fill caso-icon"></i>
                                     <p class="card-text">Incremento del <strong class="caso-alert">20%</strong> por</p>
                                     <p class="card-text2">Ventas Matutinas</p>
-                                    <a href="#" class="btn btn-link caso-link">Ver Historia Completa</a>
+                                    <p class="btn btn-link caso-link">Ver Historia Completa</p>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ function Casos(){
                                     <i class="bi bi-exclamation-circle-fill caso-icon"></i>
                                     <p class="card-text"><strong class="caso-alert">20%</strong> menos en gastos</p>
                                     <p class="card-text2">operativos</p>
-                                    <a href="#" class="btn btn-link caso-link">Ver Historia Completa</a>
+                                    <p class="btn btn-link caso-link">Ver Historia Completa</p>
                                 </div>
                             </div>
                         </div>

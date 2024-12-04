@@ -4,12 +4,12 @@ import './css/Planes.css';
 
 function Planes(){
     return(
-        <div class="fondo-planes">
-            <div class="container py-md-5 py-2 text-center">
+        <div class=" fondo-planes">
+            <div class="container py-md-5 py-2 text-center prueba-plan">
                 <h1 class="plan-title">Elige el plan perfecto para ti</h1>
                 <p class="text-center plan-subtitle">Empieza con total tranquilidad. Si cambias de idea, tenemos garantía de reembolso por 30 días.</p>
                 
-                <div class="row justify-content-center mx-md-5 g-1">
+                <div class="row justify-content-center  g-1 ">
                     <div class="col-md-4 mb-4 col-12 card-basic justify-content-center">
                         <div class="card shadow pricing-card basic-plan-card-completa">
                             
@@ -71,9 +71,9 @@ function Planes(){
 
                             <ul class="feature-list">
                                 <li class="plan-list d-flex"><div class="col-10">Incluye todas las<br/>funcionalidades de <strong class="alert-text-caso">Premiun</strong></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
-                                <li class="plan-list d-flex"><div class="col-10">Personalización de diseño<br/><p class="plan-list-subtext">Adaptación de colores, logos y temas para reflejar la<br/>imagen de tú restaurante</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
+                                <li class="plan-list d-flex"><div class="col-10">Personalización de diseño<br/><p class="plan-list-subtext">Adaptación de colores, logos y temas para reflejar la imagen de tú restaurante</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 <li class="plan-list d-flex"><div class="col-10">Integración avanzada<br/><p class="plan-list-subtext">Opciones de Integración con otros sistemas de ventas o inventario</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
-                                <li class="plan-list d-flex"><div class="col-10">Soporte exclusivo<br/><p class="plan-list-subtext">Atención personalizada para implementar<br/>funciones adicionales</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
+                                <li class="plan-list d-flex"><div class="col-10">Soporte exclusivo<br/><p class="plan-list-subtext">Atención personalizada para implementarfunciones adicionales</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 <div>
                                     <a href="#" class="btn custom-btn">Membresía</a>
                                 </div>

@@ -7,7 +7,7 @@ function Demo(){
     return(
     <div class="fondo-demo">
         <div class="container ">
-            <div class="row align-items-center section-container mx-md-5">
+            <div class="row align-items-center section-container mx-md-3">
                 <div class="col-md-7 col-12 demo-text">
                     <h2 class="section-title">Innoventa Premium</h2>
                     <p class="section-text">

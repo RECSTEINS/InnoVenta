@@ -18,7 +18,7 @@ function Presentacion(){
     return(
         <div class="presentacion-fondo">
             <div class="container">
-                <div class="row align-items-center mx-md-5">        
+                <div class="row align-items-center mx-md-3">        
                     <div class="col-md-7 col-12 text-left">
                         <p class="display-4 presentacion-title prueba ">Gestiona tu negocio como<br/>un profesional.</p>
                         <p class="presentacion-text  d-none d-md-block">InnoVenta: Gestión que se adapta, resultados que<br/>crecen.</p>

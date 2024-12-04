@@ -16,7 +16,9 @@
   color: #ffffff;
   text-decoration: none;
   font-family: 'Roboto';
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 24px;
+  
 }
 
 .footer-link:hover {
@@ -24,7 +26,7 @@
 }
 
 .social-icon {
-  font-size: 30px;
+  font-size: 64px;
 }
 
 .footer .form-control {
@@ -48,8 +50,11 @@
 .btn-warning-footer{
   background-color: #FFC700;
   border-radius: 40px;
+
   margin-top: 20px;
-  width: 150px;
+  width: 189px;
+  height: 48px;
+  font-size: 24px;
   font-family: 'Roboto';
   font-weight: 700;
   color: #000000;
@@ -57,8 +62,30 @@
 
 .footer-subtext{
   text-align: justify;
-  padding-right: 90px;
+  padding-right: 80px;
   font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.footer-text{
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 400;
+  padding-right: 140px;
+  text-align: justify;
+}
+
+.footer-izq, .footer-cen{
+  font-size: 32px;
+  font-family: 'Roboto';
+  font-weight: 700px;
+}
+
+.footer-der{
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 400;
 }
 
 /*Responsivo*/

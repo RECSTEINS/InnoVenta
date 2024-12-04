@@ -4,6 +4,7 @@ header{
   align-items: center;
   background-color: #050038;
   justify-content: space-between;
+  height: 97px;
   padding: 8px 150px; /*Aqui modificar despues del padding del ancho (252px): alto, ancho*/
 }
 
@@ -26,7 +27,7 @@ header{
   text-decoration: none;
   text-decoration-color: #050038;
   font-family: "Open Sans";
-  font-size: 18px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -36,7 +37,7 @@ header{
   text-decoration: none;
   color: #ffffff;
   font-family: "Open Sans";
-  font-size: 18px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -49,16 +50,17 @@ header{
 
 
 .fondo-boton{
-  background-color: #FFC700;
+  background-color: #FFC60C;
   border-radius: 40px;
-  width: 160px;
-  height: 40px;
+  width: 179px;
+  height: 56px;
+  margin-right: 25px;
 }
 
 .letra-boton{
   color: #02033B;
   font-family: "Open Sans";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
