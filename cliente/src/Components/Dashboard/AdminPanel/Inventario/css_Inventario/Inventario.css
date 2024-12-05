@@ -1,8 +1,10 @@
 .inventario-panel {
-    padding: 20px;
+    padding: 30px;
+    padding-left: 54px;
     padding-top: 45px;
     background-color: #FFFF;
     color: black;   
+    overflow-x: hidden; /* Oculta el scroll horizontal */
 }
 
 .header-inventario {
@@ -15,18 +17,22 @@
 .titulo-dashboard-panel{
     font-weight: 700;
     font-family: 'Oswald';
+    font-size: 40px;
+    color: #000;
 }
 
 .add-btn-button{
     background-color: #4FA6DB;
     border: none;
-    color: black;
-    padding: 10px 20px;
+    color: white;
+    padding: 5px 20px;
     border-radius: 8px;
     cursor: pointer;
-    width: 200px;
+    width: 320px;
+    height: 48px;
     font-family: 'Roboto';
     font-weight: 700;
+    font-size: 24px;
 }
 
 .edit-btn-button{
@@ -36,7 +42,8 @@
     padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
-    width: 90px;
+    width: 160px;
+    height: 48px;
     font-weight:400;
     font-family: 'Roboto';
 }
@@ -48,7 +55,8 @@
     padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
-    width: 90px;
+    width: 160px;
+    height: 48px;
     font-family: 'Roboto';
     font-weight: 400;
 }

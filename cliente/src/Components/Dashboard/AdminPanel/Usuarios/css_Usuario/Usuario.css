@@ -1,8 +1,10 @@
 .usuarios-panel{
-    padding: 20px;
+    padding: 30px;
+    padding-left: 54px;
     padding-top: 45px;
-    background-color: #ffffff;
-    color: black; 
+    background-color: #FFFF;
+    color: black;   
+    overflow-x: hidden; /* Oculta el scroll horizontal */
 }
 
 .header-usuario{

@@ -1,8 +1,10 @@
 .platillos-panel{
-    margin-top: 35px;
-    padding: 20px;
+    padding: 30px;
+    padding-left: 54px;
+    padding-top: 45px;
     background-color: #FFFF;
     color: black;   
+    overflow-x: hidden; /* Oculta el scroll horizontal */
 }
 
 .header-platillo{

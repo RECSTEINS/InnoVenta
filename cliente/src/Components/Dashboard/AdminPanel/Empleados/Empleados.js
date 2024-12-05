@@ -163,21 +163,22 @@ function EmpleadosPanel(){
             {!mostrarAddEmpleado ? (
                 <>
                     <div className="header-empleados">
-                        <h2 className="titulo-dashboard-empleado">Empleados</h2>
+                        <p className="titulo-dashboard-empleado">Lista de empleados</p>
                         <button
                             className="add-btn-button"
                             onClick={() => setMostrarAddEmpleado(true)}
                         >
-                            Nuevo empleado
+                            Agregar nuevo empleado
                         </button>
                     </div>
 
                     <div className="columnas-btn">
                         <DropdownButton
                             id="dropdown-basic-button"
-                            title="Columnas"
+                            title="Seleccionar columnas"
                             variant="secondary"
-                            style={{ marginLeft: "10px" }}
+                            className="columnas-btns"
+                            style={{ marginLeft: "10px"}}
                         >
                         {allColumns.map(col => (
                             <Dropdown.Item key={col.id}>
@@ -206,8 +207,9 @@ function EmpleadosPanel(){
                         responsive
                         customStyles={{
                             headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '480px', borderRadius: '20px', backgroundColor: '#070C33'}},
-                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '12px'}},  
+                            table: { style:{ border:'1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            headCells: {style:{backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}},  
+                            rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}  
                         }}
                     />
                 </>

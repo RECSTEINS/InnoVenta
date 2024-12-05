@@ -54,7 +54,7 @@ function InventarioPanel(){
             name: 'ID',
             selector: row => row.pk_productos,
             sortable: true,
-            width: '60px',
+            width:'90px',
         },
         {
             name:'Nombre del producto',
@@ -62,7 +62,7 @@ function InventarioPanel(){
             sortable: true,
             grow: 2,
             center: true,
-            width: '291px',
+            width:'400px',
             cell: row => (
                 <>
                     {row.producto_nombre}{' '}
@@ -87,13 +87,13 @@ function InventarioPanel(){
             selector: row => row.producto_stock,
             sortable: true,
             center: true,
-            width: '156px'
+            width:'275px',
         },
         {
             name: 'Stock mínimo',
             selector: row => row.producto_minimo_stock,
             center: true,
-            width: '107px'
+            width: '181px',
         },
         {
             name: 'Opciones',
@@ -116,7 +116,7 @@ function InventarioPanel(){
             center: true,
             ignoreRowClick: true,
             allowOverflow: true,
-            width: '260px'
+            
             //button: true,
         },
     ]
@@ -130,12 +130,12 @@ function InventarioPanel(){
             {!mostrarAddProducto ? (
                 <>
                     <div className='header-inventario'>
-                        <h2 className='titulo-dashboard-panel'>Inventario de productos</h2>
+                        <p className='titulo-dashboard-panel'>Inventario de productos</p>
                         <button
                             className='add-btn-button'
                             onClick={() => setMostrarAddProducto(true)}
                         >
-                            Agregar producto
+                            Agregar nuevo producto
                         </button>
                     </div>
                     <DataTable
@@ -156,8 +156,9 @@ function InventarioPanel(){
                         ]}
                         customStyles={{
                             headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '450px', borderRadius: '20px', backgroundColor: '#070C33'}},
-                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '12px'}},  
+                            table: { style:{ border:'1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}},
+                            rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}  
                         }}
                     />
                 </>

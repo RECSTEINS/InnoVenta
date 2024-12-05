@@ -1,8 +1,10 @@
 .empleado-panel{
-    padding: 20px;
+    padding: 30px;
+    padding-left: 54px;
     padding-top: 45px;
-    background-color: #ffffff;
+    background-color: #FFFF;
     color: black;   
+    overflow-x: hidden; /* Oculta el scroll horizontal */
 }
 
 .header-empleados {
@@ -10,11 +12,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    
 }
 
 .titulo-dashboard-empleado{
     font-weight: 700;
     font-family: 'Oswald';
+    font-size: 40px;
+    color: #000;
 }
 
 .agregar-empleado-panel{
@@ -33,4 +38,11 @@
 
 .columnas-btn-contenido{
     font-size: 18px;
+}
+
+.columnas-btns{
+    width: 320px;
+    height: 48px;
+    font-family: 'Roboto';
+    font-weight: 700;
 }

@@ -23,17 +23,19 @@ function PlatillosPanel(){
         {
             name:'ID',
             selector: row => row.id,
+            width:'90px',
         },
         {
             name:'Nombre del platillo',
             selector: row => row.nombre,
             center: true,
-            width: '225px'
+            width: '400px'
         },
         {
             name:'Precio',
             selector: row => row.precio,
-            width: '70px'
+            width: '150px',
+            center: true
         },
         {
             name: 'Productos',
@@ -62,7 +64,7 @@ function PlatillosPanel(){
             center: true,
             ignoreRowClick: true,
             allowOverflow: true,
-            width: '260px'
+            
         },
     ]
 
@@ -91,8 +93,9 @@ function PlatillosPanel(){
                         responsive
                         customStyles={{
                             headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '450px', borderRadius: '20px', backgroundColor: '#070C33'}},
-                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '12px'}},  
+                            table: { style:{ border:'1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}},
+                            rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}
                         }}
                     />
                 </>
