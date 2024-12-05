@@ -70,13 +70,23 @@
 
   .fondo-demo {
     background-color: #070C33;
-    height: 630px;
+    height: 800px;
+  }
+
+  .section-container {
+    background-color: #050038; 
+    padding: 15px;
+    padding-top: 1rem;
+  }
+    
+
+  .demo-text{
+    padding-top: 0px;
   }
   
   .section-title {
-    font-size: 40px; 
-    font-weight: bold;
-    text-align: center;
+    font-size: 48px;
+    font-weight: 500;
     color: #FFC700;
     font-family: 'Oswald';
   }
@@ -84,18 +94,24 @@
   .section-text {
     color: #EDECF4;
     margin-bottom: 20px;
-    font-size:12px;
-    text-align: justify;
-    padding: 15px;
+    font-size:24px;
+    text-align:left;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-weight: 400;
     font-family: 'Open Sans';
   }
   
   .btn-demo {
+    width: 160px;
+    height: 32px;
     background-color: #BDE5F9;
-    color: black;
+    color: #070C33;
+    font-size: 16px;
     border-radius: 20px;
-    padding: 0.5rem 1.5rem;
-    font-weight: bold;
+    padding: 0.2rem 0.2rem;
+    font-weight: 600;
     margin-left: 70px;
     margin-right: 50px;
   }
@@ -105,5 +121,6 @@
     height: 287px;
     border-radius: 10px;
     object-fit: cover;
+    transform: translate(10%, 10%);
   }
 }

@@ -23,11 +23,10 @@ function App() {
         <Funcionalidades/>
         <Demo/>
         <Planes/>
-        <Formulario/>
+        {/*<Formulario/>*/}
         <Elite/>
         <Casos/>
-        <Resenas/>
-        <Footer/>
+        
     </div>
   );
 }

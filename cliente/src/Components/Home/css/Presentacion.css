@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 .presentacion-fondo {
   background-color: rgba(240, 240, 240, 1);
@@ -102,6 +103,7 @@
 @media (max-width: 432px) {
   .presentacion-fondo {
     padding: 30px 15px;
+    height: 756px;
   }
 
   .presentacion-title {
@@ -110,15 +112,16 @@
     font-size: 32px;
     font-weight: 500;
     text-align: center;
+    color: #FFC700;
   }
 
   .presentacion-text {
-    margin-top: 20px;
-    font-size: 17px;
+    margin-top: 30px;
+    font-size: 16px;
     margin-left: 25px;
     font-weight: 800;
     font-family: 'Open Sans';
-    transform: translate(0%,120%);
+    transform: translate(5%,170%);
   }
 
   .presentacion-subtext1 {
@@ -130,11 +133,6 @@
     font-weight: 400;
   }
 
-  .image-grid img {
-    max-width: 200px;
-    height: auto;
-  }
-
   button {
     margin-top: -15px;
     margin-left: 100px;
@@ -143,21 +141,31 @@
     align-items: center;
   }
 
+  .btn-warnings{
+    width: 152px;
+    height: 50px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Inter';
+    transform: translate(0%, 80%);
+  }
+
   .presentacion-imagen-1-mobile{
-    height: 130px; 
+    height: 159px; 
     width: 181px;
     transform: translate(0%, 100%);
   }
   
   .presentacion-imagen-2-mobile {
-    transform: translate(0%, 20%);
-    height: 130px;
+    transform: translate(0%, 50%);
+    height: 159px; 
     width: 181px;
   }
   
   .presentacion-imagen-3-mobile {
-    transform: translate(109%, 15%);
-    height: 130px;
+    transform: translate(109%, 55%);
+    height: 159px; 
     width: 181px;
   }
 }

@@ -152,5 +152,20 @@
     .btn-warning-caso {
         margin-left: 0px;
     }
+
+    .card-title-caso{
+        font-size: 16px;
+    }
     
+    .btn-warning-caso{
+        width: 229px;
+        height: 40px;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: 'Open Sans';
+    }
+
+    .fondo-casos{
+        width: 432px;
+    }
 }

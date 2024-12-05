@@ -69,7 +69,14 @@ header{
 }
 
 @media screen and (max-width: 500px) {
+  header{
+    height: 119px;
+    width: 432px;
+  }
 
+  .logo{
+    margin-left: -120px;
+  }
   
   .abrir-menu, .cerrar-menu{
     display: block;
@@ -83,10 +90,6 @@ header{
   .abrir-menu{
     cursor: pointer;
     z-index: 1000;
-  }
-
-  header{
-    padding: 8px 16px;
   }
 
   .nav-1{

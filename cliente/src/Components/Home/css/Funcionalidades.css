@@ -87,31 +87,40 @@
 @media (max-width: 500px) {
 
     .fondo-funcionalidades{
-        height: 690px;
+        height: 873px;
     }
 
     .funcionalidades-title {
-        font-size: 25px;
+        font-size: 32px;
+        font-weight: 500;
         font-family: 'Oswald';
     }
     
     .subheading {
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 400;
+        font-family: 'Open Sans';
     }
     
     .boton-comenzar {
-        justify-content: center;
         margin: 1rem auto;
         margin-left: 70px;
         margin-top: 15px;
+        width: 145px;
+        height: 41px;
+        color: #02033B;
+        font-size: 24px;
+        font-weight: 500;
+        font-family: 'Oswald';
+        padding: 0px, 0px;
     }
 
     .funcionalidades-imagen-1-mobile {
         height: 325px;
         width: 287px;
+        max-height: 325px;
+        max-width: 287px;
         align-items: center;
-        margin-left: 25px;
-        margin-top: 30px;
+        margin-top: 20px;
       }
 }

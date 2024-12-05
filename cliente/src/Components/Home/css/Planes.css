@@ -287,25 +287,24 @@
 @media (max-width: 450px) {
     .fondo-planes{
         background-color: rgba(240, 240, 240, 1);
-        height: 2023px;
+        height: 2631px;
     }
 
     .plan-title{
-        font-size: 30px;
-        font-weight: bold;
+        font-size: 32px;
+        font-weight: 500;
         color: #050038;
         font-family: 'Oswald';
     }
     
     .plan-subtitle{
-        font-size: 12px;
+        font-size: 15px;
         color: #05041E;
         margin-top: 20px;
-        margin-left: 15px;
-        margin-right: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
         margin-bottom: -45px;        
         font-family: 'Open Sans';
-        text-align: center;
     }
 
     .price-section-basic {
@@ -327,5 +326,9 @@
 
     .card-elite{
         margin-top: -100px;
+    }
+
+    .pricing-card{
+        margin-left: -4px;
     }
 }
