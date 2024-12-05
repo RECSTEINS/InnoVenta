@@ -5,8 +5,8 @@ const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../c
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
 const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, agregarEmpleado} = require("../controllers/empleadoController");
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
-const { getInventario, agregarProducto, eliminarProducto } =require("../controllers/inventarioController");
-const { agregarCategoria } = require("../controllers/categoriaController");
+const { getInventario, agregarProducto, eliminarProducto, getProductos } =require("../controllers/inventarioController");
+const { agregarCategoria, getCategorias } = require("../controllers/categoriaController");
 const { agregarPlatillo, getPlatillos } = require("../controllers/platilloController");
 
 //Login
@@ -48,12 +48,14 @@ router.delete('/delRestaurante/:id', delRestaurante);
 
 //Inventario
 router.get('/getInventario', getInventario);
+router.get('/get-productos-nombre', getProductos);
 router.post('/agregar-producto', agregarProducto);
 router.delete('/eliminar-producto/:id', eliminarProducto);
 
 
 //Categoria
 router.post('/agregar-categoria', agregarCategoria);
+router.get('/getCategorias', getCategorias);
 
 
 //Platillo

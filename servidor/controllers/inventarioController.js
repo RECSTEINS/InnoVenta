@@ -15,6 +15,15 @@ const getInventario = (request, response) => {
     })
 };
 
+const getProductos = (request, response) => {
+    connection.query("SELECT pk_productos, producto_nombre FROM productos",
+        (error, results)=>{
+            if(error)
+                throw error;
+            response.status(200).json(results);
+        }
+    )
+}
 
 const agregarProducto = (request, response) =>{
     const {nombre, stock, stock_minimo, fecha_actualizado} = request.body;
@@ -50,4 +59,4 @@ const eliminarProducto = (request, response)=>{
     });
 }
 
-module.exports = {getInventario, agregarProducto, eliminarProducto}
+module.exports = {getInventario, agregarProducto, eliminarProducto, getProductos}

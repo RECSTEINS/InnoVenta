@@ -28,4 +28,17 @@ const agregarCategoria = (request, response) =>{
     )
 };
 
-module.exports = {agregarCategoria}
+const getCategorias = (request, response) =>{
+    const query = 'SELECT pk_categoria, categoria_nombre FROM categorias';
+
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Error al obtener categorías:', error);
+            return response.status(500).json({ error: 'Error interno del servidor.' });
+        }
+
+        response.status(200).json(results);
+    });
+}
+
+module.exports = {agregarCategoria, getCategorias}

@@ -1,6 +1,7 @@
 import DataTable from 'react-data-table-component';
 import './css_Platillos/platillo.css'
 import React, { useEffect, useState } from 'react';
+import AgregarPlatillo from './AgregarPlatillo';
 
 function PlatillosPanel(){
     
@@ -101,7 +102,7 @@ function PlatillosPanel(){
                 </>
             ) : (
                 <div className='agregar-platillo-panel'>
-
+                    <AgregarPlatillo onRegresar={() => setMostrarAddPlatillo(false)}/>
                 </div>
             )}
         </div>
