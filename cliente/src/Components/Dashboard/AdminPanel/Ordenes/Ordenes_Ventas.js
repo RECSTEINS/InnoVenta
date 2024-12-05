@@ -1,5 +1,5 @@
 import './css_Ordenes/ordenes_ventas.css';
-import React, { useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState} from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
 
@@ -16,7 +16,6 @@ function OrdenesVentasPanel(){
     const [cliente, setCliente] = useState('');
     const [mesa, setMesa] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Comida');
-    const ordenesRef = useRef(null);
 
     const handleCategoriaChange = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -115,38 +114,23 @@ function OrdenesVentasPanel(){
         setMesa('');
     };
 
-
-
-    //Revisarlo a fondo
-    const handleScrollLeft = () => {
-        if (ordenesRef.current) {
-          ordenesRef.current.scrollBy({ left: -200, behavior: 'smooth' });
-        }
-      };
     
-      // Función para desplazar a la derecha
-      const handleScrollRight = () => {
-        if (ordenesRef.current) {
-          ordenesRef.current.scrollBy({ left: 200, behavior: 'smooth' });
-        }
-      };
-
 
     return(
         <div className='row panel-ordenes-principal'>
-
+            
             <div className='ordenes-ventas-panel col-9'>
                 <div className='row'>
-                    <div className='panel-ordenes-status col-12'>
-                        <CardOrdenes ordenes={ordenes}/>
+                    <div className='panel-ordenes-statu col-12'>
+                        <CardOrdenes ordenes={ordenes} className="ordemes-scrollable"/>
                     </div>
 
                     <div className="ordenes-contenido">
                         {/* Categorías */}
                         <div className="categorias">
-                            <button onClick={() => handleCategoriaChange('Comida')}>Comida</button>
-                            <button onClick={() => handleCategoriaChange('Bebida')}>Bebida</button>
-                            <button onClick={() => handleCategoriaChange('Postres')}>Postres</button>
+                            <button onClick={() => handleCategoriaChange('Comida')}>Comida<i class="bi bi-piggy-bank-fill icono-categoria"></i></button>
+                            <button onClick={() => handleCategoriaChange('Bebida')}>Bebida<i class="bi bi-cup-straw icono-categoria"></i></button>
+                            <button onClick={() => handleCategoriaChange('Postres')}>Postres<i class="bi bi-cake2-fill icono-categoria"></i></button>
                         </div>
 
                         {/* Lista de platillos */}
@@ -206,7 +190,7 @@ function OrdenesVentasPanel(){
                     <div className="ticket">
                         <a>ㅤ</a>
                         <br/>
-                        <a>- - - - - - - - - - - - - - - - - - - - - - - - - - -</a>
+                        <a>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</a>
                         <p>Total:</p>
                         <h4>${total.toFixed(2)}</h4>
                     </div>

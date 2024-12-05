@@ -1,84 +1,93 @@
 .panel-ordenes-principal{
     background-color: #DFD8D8;
     margin-top: -23px;
-    width: 960px;
+    width: 1530px;
+    height: auto;
+    padding-left: 54px;
 }
 
 .ordenes-ventas-panel {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 3fr 1fr;
-    gap: 20px;
+    gap: 60px;
     padding: 20px;
     background-color: #FFFBFB;
-    width: 680px;
-    margin-left: -56px;
-    margin-top: 47px;
-}
-
-.panel-ordenes-status{
-    width: 650px;
+    width: 1048px;
+    height: auto;
     margin-left: -100px;
+    overflow: hidden;
+    padding-right: 30px;
 }
 
-.ordenes-status {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.orden-status {
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1;
-    margin: 0 10px;
-    border: 2px black solid;
-    width:170px;
-    height: 100px;
+.panel-ordenes-statu{
+    background-color: #FFFBFB;
+    width: 1000px;
+    height: 136px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
 }
 
 .categorias {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    width: 650px;
+    width: 1000px;
     height: 30px;
     margin-right: 70px;
 }
 
 .categorias button {
-    padding: 10px 20px;
+    padding: 5px 0px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #ffcc00;
     cursor: pointer;
+    width: 200px;
+    height: 32px;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 20px;
+    text-align: start;
+    padding-left: 16px;
+    color: #030E1F;
 }
 
 .lista-platillos {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 35px;
     margin-left: 10px;
+    width: 1000px;
 }
 
-.platillo {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.icono-categoria{
+    margin-left: 50px;
+    font-size: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 .carrito {
     background: #FFFBFB;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin-top: 55px;
-    margin-left: 10px;
-    width: 280px;
+    margin-top: 35px;
+    margin-left: 30px;
+    width: 368px;
     position: fixed;
-
+    height: 570px;
 }
 
 .formulario-carrito{
@@ -94,8 +103,8 @@
 }
 
 .carrito-lista {
-    max-height: 300px;
-    height: 300px;
+    max-height: 500px;
+    height: 570px;
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -112,8 +121,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: -20px;
-    gap: 5px;
+    gap: 15px;
 }
 
 .carrito-total {
@@ -121,16 +129,17 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-top: 435px;
-    width: 230px;
+    margin-top: 630px;
+    width: 367px;
+    height: 224px;
     margin-left: 24px;
 }
 
 .ticket {
-    width: 224px;
-    height: 130px;
+    width: 367px;
+    height: 200px;
     background-color: #FFFBFB;
-    border-radius: 20px;
+    border-radius: 40px;
     border: none;
     position: fixed;
     display: flex;
@@ -143,42 +152,43 @@
 .ticket:before,
 .ticket:after {
     content: '';
-    width: 50px;
-    height: 50px;
+    width: 85px;
+    height: 85px;
     background-color: #DFD8D8;
     border-radius: 50%;
     position: absolute;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
 
 .ticket:before {
-    top: -10px;
-    left: -12%;
+    top: -25px;
+    left: -10%;
     transform: translateY(100%);
 }
 
 .ticket:after {
-    bottom: 38px;
+    bottom: 50px;
     left: 100%;
     transform: translateX(-50%);
 }
 
 .ticket h4 {
-    color: #43a047; /* Verde para el total */
-    font-size: 24px;
+    color: #2D9E45; /* Verde para el total */
+    font-size: 40px;
     margin: 0;
+    font-family: 'Oswald';
+    font-weight: 300;
 }
 
 .ticket p {
     color: #000000;
-    font-size: 15px;
+    font-size: 24px;
     margin: 0;
     font-weight: 400;
     font-family: 'Open Sans';
 }
 
 .ticket a{
-    margin-top: 7px;
+    margin-top: 20px;
     font-size: 10px;
     color: #747577;
 }
@@ -189,8 +199,8 @@
     font-weight: 300;
 }
 .carrito-item-img{
-    width: 80px;
-    height: 80px;
+    width: 112px;
+    height: 112px;
     border-radius: 16px;
 }
 
@@ -200,21 +210,23 @@
 
 .carrito-item-name{
     color: #030E1F;
-    font-size: 14px;
+    font-size: 20px;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .carrito-item-price{
-    color: #5FAAF6;
+    color: #1E4A77;
     font-weight: 700;
     font-family: 'Open Sans';
     margin-top: -5px;
+    font-size: 24px;
 }
 
 .carrito-options{
-    margin-top: -40px;
+    margin-top: -60px;
     transform: translate( 60%, 0%);
-    font-size: 20px;
+    font-size: 32px;
     gap: 5px;
     display: flex;
 }
@@ -242,38 +254,11 @@
     background-color: #FFC700;
     border: none;
     border-radius: 40px;
-    width: 220px;
+    width: 275px;
     height: 43px;
-    margin-left: 30px;
-    margin-top: 140px;
+    margin-left: 80px;
+    margin-top: 0px;
     color: #000000;
     font-family: 'Open Sans';
     font-weight: 700;
-}
-
-.panel-ordenes-status {
-    display: flex; 
-    flex-wrap: nowrap;
-    overflow-x: auto; 
-    gap: 10px;
-    padding: 10px;
-    max-width: 100%; 
-    box-sizing: border-box; 
-    height: 150px;
-    margin-top: -25px;
-
-
-    position: relative; /* Necesario para posicionar los botones */
-    overflow: hidden; /* Ocultar contenido desbordado */
-    width: 650px;
-    margin-left: -90px;
-  }
-  
-  .panel-ordenes-status::-webkit-scrollbar {
-    height: 8px; 
-  }
-  
-.pane-ordenes-status::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 4px;
 }

@@ -1,44 +1,134 @@
-.ordenes {
+.ordenes-2 {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-
-    
+    gap: 10px;
 }
 
-.orden-status {
-    width: 200px; /* Ancho fijo para todas las órdenes */
-  height: 120px; /* Altura fija para todas las órdenes */
+.orden-status-2 {
+   width: 250px;
+  height: 96px; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 5dvh;
+  margin: 5px;
   border: 1px solid #000;
   border-radius: 8px;
-  overflow: hidden; /* Oculta contenido desbordado */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9; /* Fondo por defecto */
-
-
-  flex-wrap: nowrap; /* Evita que las órdenes salten a otra fila */
-  overflow: hidden; /* Oculta el scroll */
-  gap: 0px; /* Espaciado entre tarjetas */
-  transition: transform 0.3s ease-in-out; /* Suaviza el desplazamiento */
+  background-color: #f9f9f9; 
 }
 
-.orden-status.en-proceso {
+.orden-status-2.en-proceso {
     background-color: #C2EAF1;
 }
 
-.orden-status.listo {
+.orden-status-2.listo {
     background-color: #EDE7F6;
 }
 
-.orden-status h4,
-.orden-status p {
-  margin: 5px 0;
+.orden-info-inferior{
+  width: 150px;
+  margin-left: 120px;
+  margin-top: 10px;
+}
+
+.orden-name{
+  font-weight: 300;
+  font-family: 'Oswald';
+  font-size: 20px;
+  margin-left: -150px; 
+}
+
+.orden-table{
+  font-weight: 300;
+  font-family: 'Open Sans';
+  margin-left: -150px;
   text-align: center;
 }
 
+.orden-state{
+  width: 90px;
+}
 
+.btn-state-orden{
+  width: 111px;
+  border: none;
+  height: 28px;
+  padding: 5px 8px; 
+  margin-right: 20px;
+  border-radius: 40px;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ordenes-scrollable {
+  display: flex;
+  gap: 16px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 1px 0;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.orden-status-2 {
+  flex: 0 0 auto;
+  background: #f3f3f3;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 150px;
+  text-align: center;
+}
+
+.slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.panel-ordenes-statu {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    color: #FFC700;
+    font-size: 45px;
+    opacity: 0%;
+    visibility: hidden;
+    transition: 0.5s ease;
+}
+
+.slider-container:hover .slider-button{
+  visibility: visible;
+  opacity: 100%;
+  transition: 0.5s ease;
+}
+
+.slider-button.left {
+    left: -0px; /* Ajusta según tu diseño */
+
+}
+
+.slider-button.right {
+    right: -0px; /* Ajusta según tu diseño */
+}
