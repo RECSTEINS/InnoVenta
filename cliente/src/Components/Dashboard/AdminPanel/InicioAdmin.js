@@ -12,6 +12,8 @@ import PlatillosPanel from "./Platillos/Platillo.js";
 import OrdenesVentasPanel from "./Ordenes/Ordenes_Ventas.js";
 import ReportePanel from "./Reports/Reporte.js";
 
+import Graficas from "./graficas.js";
+
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
     const [activeView, setActiveView] = useState("");
@@ -61,7 +63,7 @@ function InicioAdmin(){
                         </div>
             case "roles":
                 return  <div>
-                            
+                            <Graficas/>
                         </div>
         }
     }

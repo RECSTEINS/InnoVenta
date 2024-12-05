@@ -19,11 +19,11 @@ const getInventario = (request, response) => {
 const agregarProducto = (request, response) =>{
     const {nombre, stock, stock_minimo, fecha_actualizado} = request.body;
 
-    //const fechaActualizadaFormateada = new Date(fecha_actualizado).toISOString().slice(0, 19).replace('T',' ');
+    const fechaActualizadaFormateada = new Date(fecha_actualizado).toISOString().slice(0, 19).replace('T',' ');
 
     connection.query(
         "INSERT INTO productos(producto_nombre, producto_stock, producto_minimo_stock, producto_fecha_actualizacion) VALUES (?, ?, ?, ?)",
-        [nombre, stock, stock_minimo, fecha_actualizado],
+        [nombre, stock, stock_minimo, fechaActualizadaFormateada],
         (error, results) => {
             if(error){
                 console.error("Error al agregar el producto: ", error);

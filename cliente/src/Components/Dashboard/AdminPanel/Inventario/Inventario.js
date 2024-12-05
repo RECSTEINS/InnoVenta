@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ClientAxios from '../../../../Config/axios';
 import Swal from 'sweetalert2';
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import AgregarProducto from './AgregarProducto';
 
 function InventarioPanel(){
     
@@ -164,7 +165,7 @@ function InventarioPanel(){
                 </>
             ): (
                 <div className='agregar-producto-panel'>
-
+                    <AgregarProducto onRegresar={() => setMostrarAddProducto(false)}/>
                 </div>
             )}
         </div>

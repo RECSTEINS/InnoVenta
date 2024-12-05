@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./css_Empleado/AgregarEmpleado.css";
 import { Link } from "react-router-dom";
-
+ 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../Auth/firebaseConfig";
 
@@ -59,7 +59,7 @@ function AgregarEmpleado({ onRegresar }){
             });
     
             const result = await response.json();
-            if (response.status === 201) {
+            if (response.status === 200) {
                 alert("Empleado agregado correctamente.");
             } else {
                 alert("Error al agregar empleado: " + result.message);

@@ -20,7 +20,7 @@ const CardOrdenes = ({ ordenes }) => {
                     <p></p>
                 ) : (
                     ordenes.map((orden, index) => (
-                        <div key={index} className={`orden-status-2 ${orden.estado.toLowerCase()}`}>
+                        <div key={index} className={`orden-status-2 ${orden.colorClase}`}>
                             <p className='orden-name'>Orden: {orden.numero}</p>
                             <div className='row orden-info-inferior'>
                                 <p className='orden-table col-'>Mesa: {orden.mesa}</p>

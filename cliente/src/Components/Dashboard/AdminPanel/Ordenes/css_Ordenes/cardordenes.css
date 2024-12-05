@@ -132,3 +132,27 @@
 .slider-button.right {
     right: -0px; /* Ajusta según tu diseño */
 }
+
+.color-1 {
+  background-color: #C1EAE4; /* Azul */
+}
+
+.color-1 button{
+  background-color: #95C6BF;
+}
+
+.color-2 {
+  background-color: #FFE2DE; /* Rosa */
+}
+
+.color-2 button{
+  background-color: #F1A483;
+}
+
+.color-3 {
+  background-color: #E8D4ED; /* Morado */
+}
+
+.color-3 button{
+  background-color: #CBA7D4;
+}

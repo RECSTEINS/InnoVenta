@@ -17,6 +17,9 @@ function OrdenesVentasPanel(){
     const [mesa, setMesa] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Comida');
 
+    const colores = ["color-1", "color-2", "color-3"];
+
+
     const handleCategoriaChange = (categoria) => {
         setCategoriaSeleccionada(categoria);
     };
@@ -100,12 +103,14 @@ function OrdenesVentasPanel(){
     }, [carrito]);
 
     const handleOrderSubmit = () => {
+        const nuevoIndiceColor = ordenes.length % colores.length;
         const nuevaOrden = {
             numero: ordenes.length + 1, // Incrementa el número de orden.
             mesa: mesa || 'Sin asignar', // Usa la mesa ingresada o un valor predeterminado.
             estado: 'En proceso', // Estado inicial.
             platillos: carrito,
             total: total.toFixed(2),
+            colorClase: colores[nuevoIndiceColor],
         };
 
         setOrdenes([...ordenes, nuevaOrden]);
