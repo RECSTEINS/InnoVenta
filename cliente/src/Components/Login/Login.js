@@ -4,6 +4,7 @@ import './Login.css';
 import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin";
 import NavBar from '../Home/Navbar';
 import Footer from '../Home/Footer';
+import Logo from './logo-login.png';
 
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -73,20 +74,30 @@ function Login(){
         <>
             <NavBar/>
             {loginSuccessful ? <DashboardAdmin/> :
-                <main class="caja-principal">
-                    <div class="caja-informativa">
-                        <h1>Bienvenido</h1>
-                        <form onSubmit={handleSubmit}>
+                <main class="row g-0">
+                    
+                    <div class="col-7 caja-informativa">
+                        <p class="login-title">Bienvenido</p>
+                        <form onSubmit={handleSubmit} >
                             <div class="">
-                                <label for="usuario" class="">Usuario:</label><br/>
-                                <input type='text' class="input-style inputs-letra" id="usuario" placeholder='Usuario' onChange={(event) => setNombre(event.target.value)}/>
+                                <label for="usuario" class="form-label mt-3">Usuario:</label><br/>
+                                <input type='text' class="input-style-login inputs-letra" id="usuario" placeholder='Usuario' onChange={(event) => setNombre(event.target.value)}/>
                             </div>
                             <div class="caja-inputs">
-                                <label for="password" class="">Contrseña:</label><br/>
-                                <input type="password" class="input-boton caja-boton boton-letra" id="password" placeholder='******' onChange={(event) => setPassword(event.target.value)}/>
+                                <label for="password" class="form-label">Contraseña:</label><br/>
+                                <input type="password" class="input-style-login caja-boton boton-letra" id="password" placeholder='******' onChange={(event) => setPassword(event.target.value)}/>
+                                <br/>
+                                <a class="recover-pass-login">Recuperar contraseña</a>
                             </div>
                             <button type='submit' class="input-boton caja-boton boton-letra">Ingresar</button>
                         </form>
+                    </div>
+                    <div class="col-5 caja-decorativa">
+                        <img src={Logo} class="logo-login"/>
+                    </div>
+                    <div class="rectangulo-login2">
+                    </div>
+                    <div class="rectangulo-login">
                     </div>
                 </main>
             }

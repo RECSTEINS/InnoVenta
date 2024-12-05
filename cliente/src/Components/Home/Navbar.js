@@ -4,6 +4,7 @@ import { Button } from 'bootstrap';
 import Logo from '../../Assets/Img_Home/Logo.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Logo2 from '../Login/logo-login.png'
 
 const NavBar = () =>{
 
@@ -21,7 +22,7 @@ const NavBar = () =>{
  
     return(
         <header>
-            <img className="logo" src={Logo} alt="InnoVenta Logo" />
+            <img className="logo" src={Logo2} alt="InnoVenta Logo" />
             <button id="abrir" className="abrir-menu" onClick={handleOpenMenu}>
                 <i className="bi bi-list"></i>
             </button>
