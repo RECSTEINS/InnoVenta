@@ -14,7 +14,7 @@ const getPlatillos = (request, response) =>{
                 platillos.platillo_nombre,
                 platillos.platillo_precio,
                 platillos.platillo_disponible,
-
+                platillos.platillo_img,
                 categorias.categoria_nombre,
                 productos.producto_nombre,
                 platillos_productos.fk_producto
@@ -39,6 +39,7 @@ const getPlatillos = (request, response) =>{
                     platillo_nombre,
                     platillo_precio,
                     platillo_disponible,
+                    platillo_img,
                     categoria_nombre,
                     producto_nombre,
                     fk_producto
@@ -50,6 +51,7 @@ const getPlatillos = (request, response) =>{
                         nombre: platillo_nombre,
                         precio: platillo_precio,
                         disponible: !!platillo_disponible,
+                        img: platillo_img,
                         categoria: categoria_nombre,
                         productos: []
                     };
@@ -71,7 +73,7 @@ const getPlatillos = (request, response) =>{
 const agregarPlatillo = (request, response) => {
     const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos } = request.body;
 
-    // Validar que se agreguen productos al platillo
+    
     if (!Array.isArray(productos) || productos.length === 0) {
         return response.status(400).json({ error: "Debe agregar al menos un producto para el platillo." });
     }
@@ -80,7 +82,7 @@ const agregarPlatillo = (request, response) => {
         return response.status(400).json({ error: "La imagen debe ser una URL válida del servidor." });
       }
 
-    // Validar que los campos obligatorios estén presentes
+    
     if (!nombre || !precio || !img || !fkcategoria || !fkrestaurante) {
         return response.status(400).json({ error: "Todos los campos obligatorios deben estar presentes." });
     }
@@ -90,7 +92,7 @@ const agregarPlatillo = (request, response) => {
         VALUES (?, ?, ?, ?, ?, ?)
     `;
 
-    // Inserta el platillo en la base de datos
+    
     connection.query(
         insertarPlatilloQuery,
         [nombre, precio, disponible, img, fkcategoria, fkrestaurante],
@@ -100,9 +102,9 @@ const agregarPlatillo = (request, response) => {
                 return response.status(500).json({ error: "Error interno del servidor al agregar el platillo." });
             }
 
-            const platilloId = results.insertId; // Obtener el ID del platillo recién creado
+            const platilloId = results.insertId;
 
-            // Preparar las relaciones con los productos
+            
             const relaciones = productos.map(producto => [platilloId, producto.id, producto.cantidad]);
 
             const insertarRelacionQuery = `
@@ -110,14 +112,14 @@ const agregarPlatillo = (request, response) => {
                 VALUES ?
             `;
 
-            // Inserta las relaciones entre platillo y productos
+
             connection.query(insertarRelacionQuery, [relaciones], (errorRelacion) => {
                 if (errorRelacion) {
                     console.error("Error al agregar relación platillo-producto: ", errorRelacion);
                     return response.status(500).json({ error: "Error interno del servidor al agregar relaciones." });
                 }
 
-                // Responder con éxito
+                
                 response.status(200).json({ message: "Platillo agregado correctamente con sus productos." });
             });
         }

@@ -66,8 +66,9 @@
 }
 
 .platillo-opciones{
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
+    position: sticky;
     gap: 20px;
 }
 

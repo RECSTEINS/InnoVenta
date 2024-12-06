@@ -2,11 +2,9 @@ import './css_Ordenes/ordenes_ventas.css';
 import React, { useEffect, useState} from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
+import axios from 'axios';
 
-import Demon from './comida.jpg'
-import Demo2 from './comida2.jpg'
-import Demo3 from './comida3.jpg'
-import Demo4 from './comida4.jpg'
+
 function OrdenesVentasPanel(){
 
     const [ordenes, setOrdenes] = useState([]);
@@ -47,67 +45,36 @@ function OrdenesVentasPanel(){
     };
 
     useEffect(() => {
-        const datosPlatillos = [
-            {
-                id: 1,
-                nombre: 'Panqueques de Caramelo y Frutas',
-                imagen: Demon,
-                productos: [
-                    { nombre_producto: 'Fresa' },
-                    { nombre_producto: 'Tomate' },
-                    { nombre_producto: 'Cebolla' },
-                ],
-                precio: 250.0,
-            },
-            {
-                id: 2,
-                nombre: 'Tazón de Frutas y Almendras',
-                imagen: Demo2,
-                productos: [
-                    { nombre_producto: 'Mango' },
-                    { nombre_producto: 'Almendra' },
-                ],
-                precio: 204.1,
-            },
-            {
-                id: 3,
-                nombre: 'Tostada de Aguacate y Huevo',
-                imagen: Demo3,
-                productos: [
-                    { nombre_producto: 'Fresa' },
-                    { nombre_producto: 'Tomate' },
-                    { nombre_producto: 'Cebolla' },
-                ],
-                precio: 250.0,
-            },
-            {
-                id: 4,
-                nombre: 'Hamburguesa Gourmet',
-                imagen: Demo4,
-                productos: [
-                    { nombre_producto: 'Fresa' },
-                    { nombre_producto: 'Tomate' },
-                    { nombre_producto: 'Cebolla' },
-                ],
-                precio: 250.0,
+        const fetchPlatillos = async () => {
+            try {
+                const response = await axios.get('http://localhost:7777/getPlatillos');
+                
+                const datos = response.data.map((platillo) => ({
+                    ...platillo,
+                    imagen: `http://localhost:7777${platillo.img}`, 
+                }));
+                setPlatillos(datos);
+            } catch (error) {
+                console.error('Error al obtener los platillos', error);
             }
-            // Más platillos...
-        ];
-        setPlatillos(datosPlatillos);
+        };
+        fetchPlatillos();
     }, []);
-
 
     useEffect(() => {
         const nuevoTotal = carrito.reduce((acum, item) => acum + item.precio * item.cantidad, 0);
         setTotal(nuevoTotal);
     }, [carrito]);
 
+
+
+    //CREAR ORDEN, RECUERDA EDITARLO
     const handleOrderSubmit = () => {
         const nuevoIndiceColor = ordenes.length % colores.length;
         const nuevaOrden = {
-            numero: ordenes.length + 1, // Incrementa el número de orden.
-            mesa: mesa || 'Sin asignar', // Usa la mesa ingresada o un valor predeterminado.
-            estado: 'En proceso', // Estado inicial.
+            numero: ordenes.length + 1, 
+            mesa: mesa || 'X', 
+            estado: 'En proceso', 
             platillos: carrito,
             total: total.toFixed(2),
             colorClase: colores[nuevoIndiceColor],
@@ -140,7 +107,6 @@ function OrdenesVentasPanel(){
 
                         {/* Lista de platillos */}
                         <div className="lista-platillos">
-                            {/* Aquí iteraremos los platillos según la categoría seleccionada */}
                             {platillos.map((platillo) =>(
                                 <CardPlatillo
                                     key={platillo.id}
