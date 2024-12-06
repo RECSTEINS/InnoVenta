@@ -118,5 +118,11 @@
     .btn-warning-footer{
       margin-left: 0px;
     }
+
+    .footer{
+      margin-right: 5px;
+      background-color: #050038;
+      width: 431px;
+    }
 }
 

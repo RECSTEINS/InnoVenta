@@ -15,7 +15,7 @@ function Casos(){
                     <p class="titulo-seccion-caso d-md-none d-md-block">Restaurantes que Crecen con <span class="caso-mobile-color">InnoVenta</span></p>
                     <p class="subtitulo-seccion-caso">¿Quieres que tu restaurante sea nuestro próximo caso de éxito?</p>
         
-                    <div class="row justify-content-center g-5">
+                    <div class="row justify-content-center ">
 
                         <div class="col-md-4 mb-4">
                             <div class="card caso-card">

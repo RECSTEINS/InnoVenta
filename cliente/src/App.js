@@ -11,13 +11,12 @@ import Resenas from "./Components/Home/Resenas";
 import Elite from "./Components/Home/Elite";
 import Formulario from "./Components/Home/Formulario";
 import { Form } from "react-bootstrap"; 
-
-
+import './App.css';
 import RecoverPassword from "./Components/Login/RecoverPassword";
 
 function App() {
   return (
-    <div>
+    <div className="prueba-app">
         <NavBar/>
         <Presentacion/>
         <Funcionalidades/>
@@ -26,7 +25,8 @@ function App() {
         {/*<Formulario/>*/}
         <Elite/>
         <Casos/>
-        
+        <Resenas/>
+        <Footer/>
     </div>
   );
 }
