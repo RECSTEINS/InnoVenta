@@ -68,29 +68,41 @@ const getPlatillos = (request, response) =>{
 };
 
 
-const agregarPlatillo = (request, response) =>{
-    const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos} = request.body;
+const agregarPlatillo = (request, response) => {
+    const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos } = request.body;
 
-    if(!Array.isArray(productos) || productos.length === 0){
-        return response.status(400).json({ error:"Debe agregar al menos un producto para el platillo."});
+    // Validar que se agreguen productos al platillo
+    if (!Array.isArray(productos) || productos.length === 0) {
+        return response.status(400).json({ error: "Debe agregar al menos un producto para el platillo." });
+    }
+
+    if (!img.startsWith("/uploads/")) {
+        return response.status(400).json({ error: "La imagen debe ser una URL válida del servidor." });
+      }
+
+    // Validar que los campos obligatorios estén presentes
+    if (!nombre || !precio || !img || !fkcategoria || !fkrestaurante) {
+        return response.status(400).json({ error: "Todos los campos obligatorios deben estar presentes." });
     }
 
     const insertarPlatilloQuery = `
         INSERT INTO platillos (platillo_nombre, platillo_precio, platillo_disponible, platillo_img, fk_categoria, fk_restaurante)
-        VALUES(?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
 
+    // Inserta el platillo en la base de datos
     connection.query(
         insertarPlatilloQuery,
         [nombre, precio, disponible, img, fkcategoria, fkrestaurante],
         (error, results) => {
-            if(error){
+            if (error) {
                 console.error("Error al agregar platillo: ", error);
-                response.status(500).json({ error: "Error interno del servidor."});
+                return response.status(500).json({ error: "Error interno del servidor al agregar el platillo." });
             }
 
-            const platilloId = results.insertId;
+            const platilloId = results.insertId; // Obtener el ID del platillo recién creado
 
+            // Preparar las relaciones con los productos
             const relaciones = productos.map(producto => [platilloId, producto.id, producto.cantidad]);
 
             const insertarRelacionQuery = `
@@ -98,18 +110,19 @@ const agregarPlatillo = (request, response) =>{
                 VALUES ?
             `;
 
+            // Inserta las relaciones entre platillo y productos
             connection.query(insertarRelacionQuery, [relaciones], (errorRelacion) => {
-                if(errorRelacion){
+                if (errorRelacion) {
                     console.error("Error al agregar relación platillo-producto: ", errorRelacion);
-                    return response.status(500).json({ error: "Error interno del servidor al agregar relaciones."});
+                    return response.status(500).json({ error: "Error interno del servidor al agregar relaciones." });
                 }
 
-                response.status(200).json({ message: "Platillo agregado correctamente con sus producto."});
+                // Responder con éxito
+                response.status(200).json({ message: "Platillo agregado correctamente con sus productos." });
             });
         }
-    )
+    );
 };
-
 
 
 module.exports = { agregarPlatillo, getPlatillos }

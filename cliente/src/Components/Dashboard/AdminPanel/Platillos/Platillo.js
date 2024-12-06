@@ -43,6 +43,7 @@ function PlatillosPanel(){
             selector: row =>
                 Array.isArray(row.productos) ? row.productos.map(producto => producto.nombre_producto).join(', ') : 'Sin productos',
             center: true,
+            width:'400px',
         },
         {
             name: 'Opciones',
@@ -65,6 +66,7 @@ function PlatillosPanel(){
             center: true,
             ignoreRowClick: true,
             allowOverflow: true,
+            
             
         },
     ]
