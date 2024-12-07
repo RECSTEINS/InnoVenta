@@ -24,11 +24,13 @@
     text-decoration: none;
     font-family: 'Open Sans';
     font-size: 24px;
+    text-align: left;
 }
 
 .nav-item{
     width: 328px;
     height: 72px;
+
 }
 
 .nav-item.active .nav-link {
@@ -68,11 +70,24 @@
 
 .cerrar-sesion-dashboard{
     margin-top: 120px;
+    margin-left: 45px;
+}
+
+.dashboard-inicio{
+    margin-left: 40px;
 }
 
 .icono-dash{
     font-size: 30px;
     padding-right: 20px;
+}
+
+.icono-ventas{
+    margin-left: 40px;
+}
+
+.icono-otros{
+    margin-left: -25px;
 }
 
 .contenido-dashboard{

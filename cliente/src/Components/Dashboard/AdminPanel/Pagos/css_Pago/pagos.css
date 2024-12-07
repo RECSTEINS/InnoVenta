@@ -363,3 +363,13 @@
     padding: 0 2px;
     border-radius: 3px;
 }
+
+.metodo-seleccionado {
+  background-color: #FFC700; 
+  color: #030E1F;
+  font-weight: 400;
+}
+
+.btn-opcion-pago {
+  transition: background-color 0.3s, border 0.3s; /* Animación suave */
+}

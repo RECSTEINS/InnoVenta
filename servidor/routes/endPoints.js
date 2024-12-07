@@ -9,6 +9,7 @@ const { getInventario, agregarProducto, eliminarProducto, getProductos } =requir
 const { agregarCategoria, getCategorias } = require("../controllers/categoriaController");
 const { agregarPlatillo, getPlatillos } = require("../controllers/platilloController");
 const { CrearPedido, getPedidosEnProceso, updatePedidoEstado, getPedidosListo } = require("../controllers/pedidoController")
+const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
 
 //Login
@@ -74,5 +75,10 @@ router.post("/crear-pedido", CrearPedido);
 router.get('/getPedidosEnProceso', getPedidosEnProceso);
 router.put('/pedidos/:id/estado', updatePedidoEstado)
 router.get('/getPedidosListo', getPedidosListo);
+
+
+//Pagos
+router.post('/realizar-pago', procesarPago);
+
 
 module.exports = router;

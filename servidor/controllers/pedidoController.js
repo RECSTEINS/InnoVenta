@@ -113,6 +113,7 @@ const getPedidosEnProceso = (req, res) => {
             p.pedido_monto AS monto, 
             p.pedido_cliente AS cliente,
             m.mesa_numero AS numeroMesa,
+            pl.pk_platillo AS pkplatillo,
             pl.platillo_nombre AS platilloNombre, 
             pp.pedido_platillo_cantidad AS cantidad, 
             pl.platillo_precio AS precio

@@ -79,7 +79,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "inicio" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link dashboard-inicio"
                                 onClick={() => handleViewChange("inicio")}>
                                 Inicio
                             </Link>
@@ -88,17 +88,17 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "ordenes" ? "active" : ""}`}>
                             <Link
                                 to=""
-                                className="nav-link"
+                                className="nav-link  icono-ventas"
                                 onClick={() => handleViewChange("ordenes")}
                             >
-                                <i className="bi bi-list-check icono-dash mt-5"></i>Ventas/Ordenes
+                                <i className="bi bi-list-check icono-dash me-1 mt-5"></i>Ventas/Ordenes
                             </Link>
                         </li>
 
                         <li className={`nav-item ${activeView === "cobro" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("cobro")}>
                                 <i className="bi bi-cash-coin me-1 icono-dashboard2 icono-dash"></i>Cobro
                             </Link>
@@ -107,7 +107,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "inventario" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("inventario")}>
                                 <i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>Inventario
                             </Link>
@@ -116,7 +116,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "platillos" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("platillos")}>
                                 <i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>Platillos
                             </Link>
@@ -125,7 +125,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "empleados" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("empleados")}>
                                <i className="bi bi-people-fill me-4 icono-dashboard icono-dash"></i> Empleados
                             </Link>
@@ -133,7 +133,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "usuarios" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("usuarios")}>
                                <i className="bi bi-person-video me-4 icono-dashboard icono-dash"></i> Usuarios
                             </Link>
@@ -142,7 +142,7 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "reportes" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("reportes")}>
                                <i className="bi bi-clipboard-fill me-1 icono-dashboard2 icono-dash"></i> Reportes
                             </Link>
@@ -151,12 +151,12 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "roles" ? "active" : ""}`}>
                             <Link
                                 to="#"
-                                className="nav-link"
+                                className="nav-link icono-otros"
                                 onClick={() => handleViewChange("roles")}>
                                <i className="bi bi-person-badge-fill  icono-dashboard2 icono-dash"></i> Roles
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item ">
                             <Link to="/login" className="nav-link cerrar-sesion-dashboard">
                             <i className="bi bi-box-arrow-right   icono-dash"></i> Cerrar sesión
                             </Link>

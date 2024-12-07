@@ -1,9 +1,9 @@
 import './css_Pago/pagos.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png';
 import axios from 'axios';
+import html2pdf from 'html2pdf.js';
 import CardOrdenes from '../Ordenes/CardOrdenes';
-
 function PagosPanel() {
 
     const [ordenesListas, setOrdenesListas] = useState([]);
@@ -12,41 +12,91 @@ function PagosPanel() {
     const [cambio, setCambio] = useState(0);
     const [cursorPos, setCursorPos] = useState(null);
 
+    const [ventaSeleccionada, setVentaSeleccionada] = useState(null);
+    
+    const [metodoPagoSeleccionado, setMetodoPagoSeleccionado] = useState("");
+
     useEffect(() => {
-        const fetchOrdenesListas = async () => {
-            try {
-                const response = await axios.get('http://localhost:7777/getPedidosListo');
-                const datos = response.data.map((orden) => ({
-                    numero: orden.id,
-                    mesa: orden.numeroMesa,
-                    estado: orden.estado,
-                    colorClase: orden.colorClase,
-                    platillos: orden.platillos || [],
-                    total: orden.monto || 0,
-                    cliente: orden.cliente,
-                }));
-                setOrdenesListas(datos);
-            } catch (error) {
-                console.error('Error al obtener las órdenes "LISTO":', error);
-            }
+        if (ordenSeleccionada) {
+            const totalSinIVA = parseFloat(ordenSeleccionada.total).toFixed(2);
+            const iva = (totalSinIVA * 0.16).toFixed(2);
+            const montoTotal = (parseFloat(totalSinIVA) + parseFloat(iva)).toFixed(2);
+    
+            actualizarRecibo({
+                tipoPago: metodoPagoSeleccionado || "N/A",
+                montoSinIVA: totalSinIVA,
+                iva: iva,
+                montoTotal: montoTotal,
+            });
+        }
+    }, [metodoPagoSeleccionado, ordenSeleccionada]);
+
+
+    const reciboRef = useRef();
+
+    const handleImprimir = () => {
+        const element = reciboRef.current;
+        
+        const options = {
+            margin: [5, 10, 5, 10],
+            filename: 'recibo.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'px', format: [400, 1000], orientation: 'portrait' },
         };
 
+        html2pdf().set(options).from(element).save();
+    };
+
+
+
+    const fetchOrdenesListas = async () => {
+        try {
+            const response = await axios.get('http://localhost:7777/getPedidosListo');
+            const datos = response.data.map((orden) => ({
+                numero: orden.id,
+                mesa: orden.numeroMesa,
+                estado: orden.estado,
+                colorClase: orden.colorClase,
+                platillos: orden.platillos || [],
+                total: orden.monto || 0,
+                cliente: orden.cliente,
+            }));
+            setOrdenesListas(datos);
+        } catch (error) {
+            console.error('Error al obtener las órdenes "LISTO":', error);
+        }
+    };
+
+    useEffect(() => {
         fetchOrdenesListas();
     }, []);
 
     const handleShow = (orden) => {
-        setOrdenSeleccionada(orden);
+        setOrdenSeleccionada({ ...orden, pk_pedido: orden.numero });
+        setVentaSeleccionada({ id: orden.idPlatillo });
         setPago("0.00");
         setCambio(0);
         setCursorPos(null);
+    
+        const totalSinIVA = parseFloat(orden.total).toFixed(2);
+        const iva = (totalSinIVA * 0.16).toFixed(2);
+        const montoTotal = (parseFloat(totalSinIVA) + parseFloat(iva)).toFixed(2);
+    
+        actualizarRecibo({
+            tipoPago: metodoPagoSeleccionado || "N/A",
+            montoSinIVA: totalSinIVA,
+            iva: iva,
+            montoTotal: montoTotal,
+        });
     };
 
     const handleTeclado = (tecla) => {
         if (typeof tecla === "number") {
-            // Si la tecla es un número, se trata de un pago rápido
+            
             setPago((prevPago) => {
-                const prevPagoNum = parseFloat(prevPago) || 0; // Convertir el valor actual a número
-                return (prevPagoNum + tecla).toFixed(2); // Sumar el nuevo monto y mantener dos decimales
+                const prevPagoNum = parseFloat(prevPago) || 0; 
+                return (prevPagoNum + tecla).toFixed(2); 
             });
         } else if (tecla === "borrarTodo") {
             setPago("0.00");
@@ -68,40 +118,34 @@ function PagosPanel() {
             );
         } else if (tecla === ".") {
             if (!pago.includes(".")) {
-                if (cursorPos !== null) {
-                    // Insertar el punto en la posición del cursor si no existe
-                    const newPago =
-                        pago.slice(0, cursorPos) + tecla + pago.slice(cursorPos);
-                    setPago(newPago);
-                    setCursorPos(cursorPos + 1);
-                } else {
-                    setPago((prevPago) => `${prevPago}.`);
-                    setCursorPos(pago.length + 1);
-                }
+                setPago((prevPago) => `${prevPago}.`);
+                setCursorPos(pago.length + 1);
             }
         } else {
             let newPago = pago;
             if (cursorPos !== null) {
-                // Insertar en la posición del cursor
+               
                 newPago =
-                    pago.slice(0, cursorPos) + tecla + pago.slice(cursorPos);
+                    pago.slice(0, cursorPos) +
+                    tecla +
+                    pago.slice(cursorPos);
                 setCursorPos((prev) => prev + 1);
             } else {
-                // Agregar al final
                 newPago = pago === "0.00" ? tecla : `${pago}${tecla}`;
             }
             setPago(newPago);
         }
     };
-    
+
+    const montoConIva = ordenSeleccionada ? (parseFloat(ordenSeleccionada.total) * 1.16).toFixed(2) : "0.00";
 
     useEffect(() => {
         if (ordenSeleccionada) {
-            const total = parseFloat(ordenSeleccionada.total) || 0;
+            const totalConIva = parseFloat(montoConIva);
             const pagoNumerico = parseFloat(pago) || 0;
-            setCambio(pagoNumerico - total);
+            setCambio((pagoNumerico - totalConIva).toFixed(2));
         }
-    }, [pago, ordenSeleccionada]);
+    }, [pago, ordenSeleccionada, montoConIva]);
 
     const renderPagoHighlight = () => {
         const beforeCursor = cursorPos !== null ? pago.slice(0, cursorPos) : pago;
@@ -115,6 +159,55 @@ function PagosPanel() {
                 <span>{afterCursor}</span>
             </span>
         );
+    };
+
+    const handleProcesarPago = async () => {
+        if (!ventaSeleccionada || !metodoPagoSeleccionado) {
+            alert("Selecciona un pedido y un método de pago.");
+            return;
+        }
+    
+        const payload = {
+            tipo: metodoPagoSeleccionado.toUpperCase(),
+            pk_pedido: ordenSeleccionada.pk_pedido,
+        };
+    
+        console.log("Payload enviado:", payload);
+    
+        try {
+            const response = await axios.post('http://localhost:7777/realizar-pago', payload);
+    
+            if (response.status === 200) {
+                alert(`Pago registrado: $${response.data.montoConIVA}`);
+                console.log("Pago exitoso:", response.data);
+    
+                
+                await fetchOrdenesListas(); 
+                setOrdenSeleccionada(null);
+                setPago("0.00");
+                setCambio(0);
+                setMetodoPagoSeleccionado("");
+            }
+        } catch (error) {
+            console.error("Error al procesar el pago:", error);
+            alert("Error al registrar el pago.");
+        }
+    };
+
+    const [recibo, setRecibo] = useState({
+        tipoPago: "",
+        montoSinIVA: 0,
+        iva: 0,
+        montoTotal: 0
+    });
+    
+    const actualizarRecibo = ({ tipoPago, montoSinIVA, iva, montoTotal }) => {
+        setRecibo({
+            tipoPago,
+            montoSinIVA,
+            iva,
+            montoTotal
+        });
     };
 
     return (
@@ -136,17 +229,40 @@ function PagosPanel() {
                 </div>
 
                 <div className="pagos-opciones">
-                    <button className="btn-opcion-pago">Efectivo</button>
-                    <button className="btn-opcion-pago">Tarjeta</button>
-                    <button className="btn-opcion-pago">Vales</button>
+                    {["Efectivo"].map((metodo) => (
+                        <button
+                            key={metodo}
+                            className={`btn-opcion-pago ${metodoPagoSeleccionado === metodo ? "metodo-seleccionado" : ""}`}
+                            onClick={() => setMetodoPagoSeleccionado(metodo)}
+                        >
+                            {metodo}
+                        </button>
+                    ))}
+                    {["Tarjeta"].map((metodo) => (
+                        <button
+                            key={metodo}
+                            className={`btn-opcion-pago ${metodoPagoSeleccionado === metodo ? "metodo-seleccionado" : ""}`}
+                            onClick={() => setMetodoPagoSeleccionado(metodo)}
+                        >
+                            {metodo}
+                        </button>
+                    ))}
+                    {["Vales"].map((metodo) => (
+                        <button
+                            key={metodo}
+                            className={`btn-opcion-pago ${metodoPagoSeleccionado === metodo ? "metodo-seleccionado" : ""}`}
+                            onClick={() => setMetodoPagoSeleccionado(metodo)}
+                        >
+                            {metodo}
+                        </button>
+                    ))}
+                   
                 </div>
 
                 <div className="pagos-totales">
                     <div className="totales-item">
                         <p className="totales-item-encabezados">Total:</p>
-                        <p className="totales-item-total">
-                            ${ordenSeleccionada?.total?.toFixed(2) || "0.00"}
-                        </p>
+                        <p className="totales-item-total">${montoConIva}</p>
                     </div>
                     <div className="totales-item">
                         <p className="totales-item-encabezados">Pago:</p>
@@ -154,15 +270,14 @@ function PagosPanel() {
                     </div>
                     <div className="totales-item">
                         <p className="totales-item-encabezados">Cambio:</p>
-                        <p className="totales-item-pago-cambio">${cambio.toFixed(2)}</p>
+                        <p className="totales-item-pago-cambio">${cambio}</p>
                     </div>
                 </div>
 
                 <div className="pagos-rapidos">
-                    <button onClick={() => handleTeclado(20)}>+20</button>
-                    <button onClick={() => handleTeclado(50)}>+50</button>
-                    <button onClick={() => handleTeclado(100)}>+100</button>
-                    <button onClick={() => handleTeclado(500)}>+500</button>
+                    {[20, 50, 100, 500].map((amount) => (
+                        <button key={amount} onClick={() => handleTeclado(amount)}>+{amount}</button>
+                    ))}
                 </div>
 
                 <div className="pagos-teclado">
@@ -218,7 +333,22 @@ function PagosPanel() {
                         </button>
                     ))
                     }
-                    <button className="teclado-btn-total">Total<br/>(Enter)</button>
+                    <button 
+                        className="teclado-btn-total" 
+                        onClick={() => {
+                            if (!metodoPagoSeleccionado) {
+                                alert("Por favor, selecciona un método de pago.");
+                                return;
+                            }
+                            if (parseFloat(pago) < parseFloat(montoConIva)) {
+                                alert("El monto pagado no cubre el total.");
+                                return;
+                            }
+                            handleProcesarPago();
+                        }} 
+                    >
+                        Total<br/>(Enter)
+                    </button>
                     {["0","00","000"].map((tecla) => (
                         <button
                             key={tecla}
@@ -233,7 +363,7 @@ function PagosPanel() {
                     
                 </div>
             </div>
-            <div className="pagos-recibo">
+            <div ref={reciboRef}  className="pagos-recibo">
                 <div className="recibo-header">
                     <img src={Logo} className="recibo-logo" alt="Logo" />
                     <p className="recibo-slogan">“Gestión que se adapta, resultados que crecen”.</p>
@@ -259,10 +389,16 @@ function PagosPanel() {
                     </table>
                 </div>
                 <div className="recibo-total">
-                    <p>${ordenSeleccionada?.total?.toFixed(2) || "0.00"}</p>
+                    <p>Total: ${montoConIva}</p>
+                </div>
+                <div className="resumen-pago">
+                    <p>Importe Total: ${recibo.montoTotal}</p>
+                    <p>Tasa: 16%</p>
+                    <p>IVA: ${recibo.iva}</p>
+                    <p>Tipo de Pago: {recibo.tipoPago}</p>
                 </div>
             </div>
-            <button className="btn-imprimir">Imprimir</button>
+            <button className="btn-imprimir" onClick={handleImprimir}>Imprimir</button>
         </div>
     );
 }
