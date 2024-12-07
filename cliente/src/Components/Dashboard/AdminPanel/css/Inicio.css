@@ -77,8 +77,9 @@
 .contenido-dashboard{
     margin-left: 60px;
     background-color: rgb(255, 255, 255);
-    width: 1540px;
+    width: 1545px;
     margin-top: 70px;
     height: auto;
     overflow-x: hidden; /* Oculta el scroll horizontal */
+    
 }

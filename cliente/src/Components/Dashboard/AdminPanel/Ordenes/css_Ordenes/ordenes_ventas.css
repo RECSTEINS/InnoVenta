@@ -2,8 +2,9 @@
     background-color: #DFD8D8;
     margin-top: -23px;
     width: 1530px;
-    height: auto;
+    height: 900px;
     padding-left: 54px;
+    overflow-y: hidden;
 }
 
 .ordenes-ventas-panel {

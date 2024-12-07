@@ -8,7 +8,7 @@ const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, d
 const { getInventario, agregarProducto, eliminarProducto, getProductos } =require("../controllers/inventarioController");
 const { agregarCategoria, getCategorias } = require("../controllers/categoriaController");
 const { agregarPlatillo, getPlatillos } = require("../controllers/platilloController");
-
+const { CrearPedido, getPedidosEnProceso } = require("../controllers/pedidoController")
 const { upload, uploadImage } = require("../controllers/imagenController");
 
 //Login
@@ -68,5 +68,9 @@ router.get('/getPlatillos', getPlatillos);
 //imagenes
 router.post("/upload-image", upload.single("image"), uploadImage);
 
+
+//Pedidos
+router.post("/crear-pedido", CrearPedido);
+router.get('/getPedidosEnProceso', getPedidosEnProceso);
 
 module.exports = router;

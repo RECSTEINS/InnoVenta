@@ -67,23 +67,68 @@ function OrdenesVentasPanel(){
     }, [carrito]);
 
 
+    //OBTENER PEDIDOS EN PROCESO
+    useEffect(() => {
+        const fetchOrdenesEnProceso = async () => {
+            try {
+                const response = await axios.get('http://localhost:7777/getPedidosEnProceso');
+                const datos = response.data.map((orden) => ({
+                    numero: orden.id, // Asignar ID como número de orden
+                    mesa: orden.numeroMesa,
+                    estado: orden.estado,
+                    colorClase: orden.colorClase, // Asegurarte de que esto venga del backend
+                }));
+                setOrdenes(datos);
+            } catch (error) {
+                console.error('Error al obtener las órdenes:', error);
+            }
+        };
+    
+        fetchOrdenesEnProceso();
+    }, []);
 
-    //CREAR ORDEN, RECUERDA EDITARLO
-    const handleOrderSubmit = () => {
+    //CREAR ORDEN
+    const handleOrderSubmit = async () => {
+        if(!cliente || !mesa || carrito.length === 0){
+            alert("Todos los campos son obligatorios y el carrito no puede estar vacío.");
+            return;
+        }
+
         const nuevoIndiceColor = ordenes.length % colores.length;
-        const nuevaOrden = {
-            numero: ordenes.length + 1, 
-            mesa: mesa || 'X', 
-            estado: 'En proceso', 
+
+        const nuevoOrden ={
+            numero: ordenes.length + 1,
+            mesa: mesa,
+            estado: 'En proceso',
             platillos: carrito,
             total: total.toFixed(2),
             colorClase: colores[nuevoIndiceColor],
         };
 
-        setOrdenes([...ordenes, nuevaOrden]);
-        setCarrito([]);
-        setCliente('');
-        setMesa('');
+        const pedidoData = {
+            cliente,
+            mesa,
+            total,
+            carrito,
+            usuarioId: 1,
+        }
+
+        try{
+            const response = await axios.post('http://localhost:7777/crear-pedido', pedidoData);
+
+            if(response.status === 200){
+                alert("Pedido creado correctamente.");
+                setOrdenes([...ordenes, nuevoOrden]);
+                setCarrito([]);
+                setCliente('');
+                setMesa('');
+            }else{
+                alert("Hubo un problema al crear el pedido. Intenta nuevamente.");
+            }
+        }catch(error){
+            console.error("Error al enviar el pedido al servidor: ", error);
+            alert("No se pudo crear el pedido. :(");
+        }
     };
 
     
@@ -128,12 +173,14 @@ function OrdenesVentasPanel(){
                             placeholder='Cliente'
                             value={cliente}
                             onChange={(e) => setCliente(e.target.value)}
+                            required
                         />
                         <input
                             type='text'
                             placeholder='N# Mesa'
                             value={mesa}
                             onChange={(e) => setMesa(e.target.value)}
+                            required
                         />
                     </div>
 

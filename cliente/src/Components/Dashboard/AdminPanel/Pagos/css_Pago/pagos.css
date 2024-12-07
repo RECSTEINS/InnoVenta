@@ -1,0 +1,331 @@
+.pagos-container {
+    display: flex;
+    gap: 2rem;
+    height: 913px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #DFD8D8;
+    margin-top: -30px;
+    width: 1560px;
+    margin-right: -100px;
+}
+  
+  .pagos-calculadora {
+    flex: 2;
+    display: flex;
+    gap: 2.5rem;
+    background-color: #ffffff;
+    width: 1048px;
+    padding: 7rem;
+    border-radius: 0px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+    display: flex;
+    flex-direction: column;
+    height: 950px;
+    margin-top: -30px;
+    margin-left: -5px;
+  }
+  
+  .pagos-recibo {
+    flex: 1;
+    background-color: #f9f9f9;
+    margin-right: 60px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 366px;
+    height: 753px;
+    margin-top: 50px;
+  }
+  
+  .recibo-logo{
+    height: 96px;
+  }
+
+  .recibo-slogan{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    color: #44464A;
+  }
+
+  .pagos-caja{
+    font-family: 'Oswald';
+    font-size: 40px;
+    font-weight: 300;
+    transform: translate(-50% , -70%);
+  }
+
+  .recibo-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .recibo-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  .recibo-tabla th,
+  .recibo-tabla td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .recibo-total {
+    text-align: center;
+    color: #070C33;
+    font-size: 48px;
+    font-weight: 300;
+    font-family: 'Oswald';
+    margin-bottom: 1rem;
+    margin-top: 30px;
+  }
+  
+  .btn-imprimir {
+    width: 275px;
+    height: 43px;
+    border-radius: 40px;
+    padding: 5px;
+    background-color: #FFC700;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-left: 40px;
+  }
+  
+  .btn-imprimir:hover {
+    background-color: #ff8c00;
+  }
+
+  /* Encabezado */
+  .pagos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .pagos-header h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .btn-gerenciales {
+    background-color: #AB0A0A;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 168px;
+    height: 72px;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    transform: translate(0% ,-50%);
+  }
+  
+  .btn-gerenciales:hover {
+    background-color: #c9302c;
+  }
+  
+  /* Opciones de pago */
+  .pagos-opciones {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn-opcion {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+
+  .btn-opcion-pago{
+    width: 152px;
+    height: 72px;
+    background-color: #E1E4F8;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    margin-right: 30px;
+    transform: translate(100% ,10%);
+  }
+
+  .btn-opcion:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .btn-opcion.activo {
+    background-color: #ffc107;
+    border-color: #ffa000;
+    color: #333;
+  }
+  
+  /* Totales */
+  .pagos-totales {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .totales-item {
+    flex: 1;
+  }
+  
+  .totales-item-encabezados{
+    margin: 0;
+    font-size: 20px;
+    color: #000000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+  }
+  
+  .totales-item h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .totales-item-total{
+    color: #103819;
+    font-family: 'Oswald';
+    font-size: 56px;
+    font-weight: 300;
+  }
+
+  .totales-item-pago-cambio{
+    color: #030E1F;
+    font-family: 'Oswald';
+    font-size: 56px;
+    font-weight: 300;
+  }
+  
+  /* Botones rápidos */
+  .pagos-rapidos {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .pagos-rapidos button {
+    flex: 1;
+    margin: 0 0.5rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #5FAAF6;
+    color: #000000;
+    font-size: 32px;
+    font-weight: 600;
+    font-family: 'Oswald';
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 160px;
+    height: 72px;
+    margin-top: -40px;
+  }
+  
+  .pagos-rapidos button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Teclado Numérico */
+  .pagos-teclado {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .teclado-btn {
+    padding: 5px;
+    border: none;
+    background-color: #E1E4F8;
+    font-size: 32px;
+    font-weight: 600;
+    font-family: 'Open Sans';
+    color: #000000;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 131px;
+    height: 72px;
+    border-radius: 40px;
+  }
+  
+  .teclado-btn:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .teclado-btn.borrar {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .teclado-btn.borrar:hover {
+    background-color: #c9302c;
+  }
+
+  .pagos-teclado {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+    gap: 1rem;
+  }
+  
+ 
+  
+  
+  .teclado-btn-subtotal {
+    background-color: #c8e6c9; /* Verde claro */
+    color: #000000;
+    grid-column: span 1;
+    background-color: #95C6BF;
+    width: 120px;
+    height: 70px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Open Sans';
+    text-align: center;
+    margin-top: -83px;
+  }
+
+  .ceros{
+    margin-top: -83px;
+    transform: translate(0%, -10%);
+  }
+  
+  .teclado-btn-total {
+    background-color: #95C6BF; /* Verde azulado */
+    color: #000000;
+    border: none;
+    width: 120px;
+    height: 156px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .teclado-btn.total:hover {
+    background-color: #4db6ac;
+  }

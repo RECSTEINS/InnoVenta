@@ -37,5 +37,3 @@ const CardOrdenes = ({ ordenes }) => {
 };
 
 export default CardOrdenes;
-
-<i class="bi bi-arrow-left-circle-fill"></i>
