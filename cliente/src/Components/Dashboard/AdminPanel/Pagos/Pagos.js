@@ -1,11 +1,25 @@
 import './css_Pago/pagos.css'
 import React, { useEffect, useState } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png'
-
+import axios from 'axios';
 import './css_Pago/pagos.css'
+import CardOrdenes from '../Ordenes/CardOrdenes';
+
 
 function PagosPanel(){
     
+    const [ordenesListas, setOrdenesListas] = useState([]);
+
+    const [showModal, setShowModal] = useState(false);
+    const [ordenSeleccionada, setOrdenSeleccionada] = useState(null);
+
+    const handleClose = () => setShowModal(false);
+    const handleShow = (orden) => {
+        setOrdenSeleccionada(orden);
+        setShowModal(true);
+    };
+
+
     const [total, setTotal] = useState(594.4);
     const [pago, setPago] = useState(0);
     const [cambio, setCambio] = useState(0);
@@ -16,6 +30,28 @@ function PagosPanel(){
         { nombre: "Hamburguesa Clásica con Papas", cantidad: 1, precio: 200.3 },
     ];
 
+
+    useEffect(() => {
+        const fetchOrdenesListas = async () => {
+            try {
+                const response = await axios.get('http://localhost:7777/getPedidosListo');
+                const datos = response.data.map((orden) => ({
+                    numero: orden.id,
+                    mesa: orden.numeroMesa,
+                    estado: orden.estado,
+                    colorClase: orden.colorClase, 
+                    platillos: orden.platillos || [], 
+                    total: orden.monto || 0,
+                    cliente: orden.cliente,
+                }));
+                setOrdenesListas(datos);
+            } catch (error) {
+                console.error('Error al obtener las órdenes "LISTO":', error);
+            }
+        };
+    
+        fetchOrdenesListas();
+    }, []);
   
     const handlePago = (monto) => {
         const nuevoPago = pago + monto;
@@ -25,11 +61,17 @@ function PagosPanel(){
 
     return(
         <div className="pagos-container">
-            {/* Sección izquierda: Calculadora y opciones */}
+
             <div className="pagos-calculadora">
-                {/* Encabezado con Opciones */}
+                
                 <div className="pagos-header">
                     <p className='pagos-caja'>Caja: 2</p>
+                    <div className="pagos-panel">
+                        <div className="panel-ordenes-listo-pago">
+                            <h4>Órdenes Listas</h4>
+                            <CardOrdenes ordenes={ordenesListas} onShowDetalle={handleShow} className="ordenes-scrollable" />
+                        </div>
+                    </div>
                     <button className="btn-gerenciales">Opciones Gerenciales</button>
                 </div>
 

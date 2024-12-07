@@ -10,7 +10,24 @@
     width: 1560px;
     margin-right: -100px;
 }
-  
+
+.pagos-panel{
+  background-color: #ffffff;
+  margin-top: -50px;
+  width: 710px;
+  transform: translate(0%, 10%);
+}
+
+.panael-ordenes-listo-pago{
+  background-color: #550e0e;
+    height: 136px;
+    margin-top: 0px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+
   .pagos-calculadora {
     flex: 2;
     display: flex;
@@ -53,7 +70,7 @@
     font-family: 'Oswald';
     font-size: 40px;
     font-weight: 300;
-    transform: translate(-50% , -70%);
+    transform: translate(-60% , -50%);
   }
 
   .recibo-header {
@@ -111,12 +128,6 @@
     align-items: center;
   }
   
-  .pagos-header h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
   .btn-gerenciales {
     background-color: #AB0A0A;
     color: white;
@@ -130,7 +141,7 @@
     font-size: 20px;
     font-weight: 600;
     border-radius: 8px;
-    transform: translate(0% ,-50%);
+    transform: translate(30% ,-90%);
   }
   
   .btn-gerenciales:hover {
@@ -166,7 +177,7 @@
     font-family: 'Open Sans';
     font-weight: 400;
     margin-right: 30px;
-    transform: translate(100% ,10%);
+    transform: translate(100% ,-10%);
   }
 
   .btn-opcion:hover {
@@ -189,6 +200,7 @@
   
   .totales-item {
     flex: 1;
+    transform: translate(0%, -15%);
   }
   
   .totales-item-encabezados{
@@ -240,7 +252,8 @@
     transition: all 0.3s ease;
     width: 160px;
     height: 72px;
-    margin-top: -40px;
+    margin-top: -70px;
+    
   }
   
   .pagos-rapidos button:hover {
@@ -252,6 +265,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    margin-top: -10px;
   }
   
   .teclado-btn {

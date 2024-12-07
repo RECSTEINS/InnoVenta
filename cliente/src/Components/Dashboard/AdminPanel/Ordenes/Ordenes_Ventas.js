@@ -3,7 +3,8 @@ import React, { useEffect, useState} from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
 import axios from 'axios';
-
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function OrdenesVentasPanel(){
 
@@ -14,8 +15,19 @@ function OrdenesVentasPanel(){
     const [cliente, setCliente] = useState('');
     const [mesa, setMesa] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Comida');
-
+    
     const colores = ["color-1", "color-2", "color-3"];
+
+    //MODAL, NO OLVIDAR
+    const [showModal, setShowModal] = useState(false);
+    const [ordenSeleccionada, setOrdenSeleccionada] = useState(null);
+
+    const handleClose = () => setShowModal(false);
+    const handleShow = (orden) => {
+        setOrdenSeleccionada(orden);
+        setShowModal(true);
+    };
+
 
 
     const handleCategoriaChange = (categoria) => {
@@ -73,10 +85,13 @@ function OrdenesVentasPanel(){
             try {
                 const response = await axios.get('http://localhost:7777/getPedidosEnProceso');
                 const datos = response.data.map((orden) => ({
-                    numero: orden.id, // Asignar ID como número de orden
+                    numero: orden.id,
                     mesa: orden.numeroMesa,
                     estado: orden.estado,
-                    colorClase: orden.colorClase, // Asegurarte de que esto venga del backend
+                    colorClase: orden.colorClase, 
+                    platillos: orden.platillos || [], 
+                    total: orden.monto || 0,
+                    clientet: orden.cliente,
                 }));
                 setOrdenes(datos);
             } catch (error) {
@@ -131,7 +146,50 @@ function OrdenesVentasPanel(){
         }
     };
 
+
+    const fetchOrdenesEnProceso = async () => {
+        try {
+            const response = await axios.get('http://localhost:7777/getPedidosEnProceso');
+            const datos = response.data.map((orden) => ({
+                numero: orden.id,
+                mesa: orden.numeroMesa,
+                estado: orden.estado,
+                colorClase: orden.colorClase,
+                platillos: orden.platillos || [],
+                total: orden.monto || 0,
+                clientet: orden.cliente,
+            }));
+            setOrdenes(datos);
+        } catch (error) {
+            console.error('Error al obtener las órdenes:', error);
+        }
+    };
+
+    const handleChangeEstado = async (idPedido, nuevoEstado) => {
+        try {
+            // Verifica que los datos sean correctos antes de enviar la solicitud
+            console.log('ID Pedido:', idPedido);
+            console.log('Nuevo Estado:', nuevoEstado);
     
+            const url = `http://localhost:7777/pedidos/${idPedido}/estado`;
+    
+            // Realiza la solicitud PUT para actualizar el estado del pedido
+            const response = await axios.put(url, { estado: nuevoEstado });
+            
+            // Verifica si la respuesta es exitosa
+            if (response.status === 200) {
+                alert('Estado del pedido actualizado correctamente.');
+    
+                await fetchOrdenesEnProceso();
+            } else {
+                alert('Error al actualizar el estado del pedido.');
+            }
+        } catch (error) {
+            // Maneja cualquier error en la solicitud
+            console.error('Error al actualizar el estado del pedido:', error);
+            alert('No se pudo actualizar el estado del pedido.');
+        }
+    };
 
     return(
         <div className='row panel-ordenes-principal'>
@@ -139,7 +197,7 @@ function OrdenesVentasPanel(){
             <div className='ordenes-ventas-panel col-9'>
                 <div className='row'>
                     <div className='panel-ordenes-statu col-12'>
-                        <CardOrdenes ordenes={ordenes} className="ordemes-scrollable"/>
+                        <CardOrdenes ordenes={ordenes} onShowDetalle={handleShow} className="ordemes-scrollable"/>
                     </div>
 
                     <div className="ordenes-contenido">
@@ -218,7 +276,51 @@ function OrdenesVentasPanel(){
                 <div>
                     <button className='carrito-btn-agregar' onClick={handleOrderSubmit}>Continuar</button>
                 </div>
-            </div>  
+            </div> 
+
+
+            {/*MODAL, AQUI YA LO USAMOS*/}
+            <Modal show={showModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Detalles del Pedido</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {ordenSeleccionada ? (
+                        <div>
+                            <p><strong>Orden N°: </strong>{ordenSeleccionada.numero}</p>
+                            <p><strong>Mesa: </strong>{ordenSeleccionada.mesa}</p>
+                            <p><strong>Cliente: </strong>{ordenSeleccionada.clientet}</p>
+                            <p><strong>Estado: </strong>{ordenSeleccionada.estado}</p>
+                            <p><strong>Total: </strong>${ordenSeleccionada.total}</p>
+                            <p><strong>Platillos:</strong></p>
+                            <ul>
+                                {ordenSeleccionada.platillos.map((platillo, index) =>(
+                                    <li key={index}>
+                                        {platillo.nombre} - Cantidad: {platillo.cantidad}
+                                    </li>
+                                ))}
+                            </ul>
+                            <p><strong>Cambiar estado: </strong></p>
+                            <select
+                                value={ordenSeleccionada.estado}
+                                onChange={(e) => handleChangeEstado(ordenSeleccionada.numero ,e.target.value)}
+                                className="form-select"
+                            >
+                                <option value="EN PROCESO">EN PROCESO</option>
+                                <option value="LISTO">LISTO</option>
+                                <option value="CANCELADO">CANCELADO</option>
+                            </select>
+                        </div>
+                    ) : (
+                        <p>No hay información disponible</p>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant='secondary' onClick={handleClose}>
+                        Cerrar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
         
     )

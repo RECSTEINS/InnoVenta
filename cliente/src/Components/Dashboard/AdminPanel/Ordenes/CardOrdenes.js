@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './css_Ordenes/cardordenes.css';
 
-const CardOrdenes = ({ ordenes }) => {
+const CardOrdenes = ({ ordenes, onShowDetalle }) => {
     const scrollRef = useRef(null);
 
     const scrollLeft = () => {
@@ -24,7 +24,12 @@ const CardOrdenes = ({ ordenes }) => {
                             <p className='orden-name'>Orden: {orden.numero}</p>
                             <div className='row orden-info-inferior'>
                                 <p className='orden-table col-'>Mesa: {orden.mesa}</p>
-                                <button className='btn-state-orden'><p className='orden-state col-12'>{orden.estado}</p></button>
+                                <button 
+                                    className='btn-state-orden'
+                                    onClick={() => onShowDetalle(orden)}
+                                >
+                                    <p className='orden-state col-12'>{orden.estado}</p>
+                                </button>
                             </div>
                         </div>
                     ))
