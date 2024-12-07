@@ -14,8 +14,9 @@
 .pagos-panel{
   background-color: #ffffff;
   margin-top: -50px;
-  width: 710px;
-  transform: translate(0%, 10%);
+  width: 680px;
+  margin-left: 20px;
+  transform: translate(-5%, 10%);
 }
 
 .panael-ordenes-listo-pago{
@@ -70,7 +71,8 @@
     font-family: 'Oswald';
     font-size: 40px;
     font-weight: 300;
-    transform: translate(-60% , -50%);
+    display: flex;
+    transform: translate(-80% , -80%);
   }
 
   .recibo-header {
@@ -113,8 +115,9 @@
     font-family: 'Open Sans';
     font-weight: 700;
     font-size: 20px;
-    margin-top: 25px;
-    margin-left: 40px;
+    margin-top: 830px;
+    margin-left: 1150px;
+    position: fixed;
   }
   
   .btn-imprimir:hover {
@@ -125,7 +128,9 @@
   .pagos-header {
     display: flex;
     justify-content: space-between;
+    width: 965px;
     align-items: center;
+    margin-top: 20px
   }
   
   .btn-gerenciales {
@@ -141,7 +146,7 @@
     font-size: 20px;
     font-weight: 600;
     border-radius: 8px;
-    transform: translate(30% ,-90%);
+    transform: translate(-15% ,-75%);
   }
   
   .btn-gerenciales:hover {
@@ -343,3 +348,18 @@
   .teclado-btn.total:hover {
     background-color: #4db6ac;
   }
+
+  .pago-highlight {
+    display: flex;
+    font-size: 56px;
+    font-family: 'Oswald';
+    font-weight: 300;
+    margin-left: 90px;
+}
+
+.pago-highlight .active-char {
+    background-color: yellow;
+    color: black;
+    padding: 0 2px;
+    border-radius: 3px;
+}

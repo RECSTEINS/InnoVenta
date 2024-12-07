@@ -91,7 +91,7 @@ function InicioAdmin(){
                                 className="nav-link"
                                 onClick={() => handleViewChange("ordenes")}
                             >
-                                Ventas/Ordenes<i className="bi bi-list-check me-1 mx-4 icono-dash "></i>
+                                <i className="bi bi-list-check icono-dash mt-5"></i>Ventas/Ordenes
                             </Link>
                         </li>
 
@@ -100,7 +100,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("cobro")}>
-                                Cobro<i className="bi bi-cash-coin me-1 icono-dashboard2 icono-dash"></i>
+                                <i className="bi bi-cash-coin me-1 icono-dashboard2 icono-dash"></i>Cobro
                             </Link>
                         </li>
 
@@ -109,7 +109,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("inventario")}>
-                                Inventario<i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>
+                                <i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>Inventario
                             </Link>
                         </li>
 
@@ -118,7 +118,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("platillos")}>
-                                Platillos<i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>
+                                <i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>Platillos
                             </Link>
                         </li>
 
@@ -127,7 +127,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("empleados")}>
-                                Empleados  <i className="bi bi-people-fill me-4 icono-dashboard icono-dash"></i>
+                               <i className="bi bi-people-fill me-4 icono-dashboard icono-dash"></i> Empleados
                             </Link>
                         </li>
                         <li className={`nav-item ${activeView === "usuarios" ? "active" : ""}`}>
@@ -135,7 +135,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("usuarios")}>
-                                Usuarios  <i className="bi bi-person-video me-4 icono-dashboard icono-dash"></i>
+                               <i className="bi bi-person-video me-4 icono-dashboard icono-dash"></i> Usuarios
                             </Link>
                         </li>
                         
@@ -144,7 +144,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("reportes")}>
-                                Reportes<i className="bi bi-clipboard-fill me-1 icono-dashboard2 icono-dash"></i>
+                               <i className="bi bi-clipboard-fill me-1 icono-dashboard2 icono-dash"></i> Reportes
                             </Link>
                         </li>
 
@@ -153,12 +153,12 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link"
                                 onClick={() => handleViewChange("roles")}>
-                                Roles<i className="bi bi-person-badge-fill me-1 icono-dashboard2 icono-dash"></i>
+                               <i className="bi bi-person-badge-fill  icono-dashboard2 icono-dash"></i> Roles
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/login" className="nav-link cerrar-sesion-dashboard">
-                                Cerrar sesión<i className="bi bi-box-arrow-right me-4 mx-5  icono-dash"></i>
+                            <i className="bi bi-box-arrow-right   icono-dash"></i> Cerrar sesión
                             </Link>
                         </li>
                     </ul>
