@@ -48,6 +48,7 @@ const updateRoles = (request, response) => {
     );
 }
 
+
 const postRoles = (request, response) => {
     const { id, nombre, descripcion, action } = request.body;
 
@@ -56,21 +57,27 @@ const postRoles = (request, response) => {
             "INSERT INTO roles (rol_nombre, rol_descripcion) VALUES (?, ?)",
             [nombre, descripcion],
             (error, results) => {
-                if (error)
-                    throw error;
-                response.status(201).json({ "Rol añadido correctamente": results.affectedRows });
+                if (error) {
+                    console.error("Error al insertar rol:", error);
+                    return response.status(500).json({ message: "Error al insertar el rol." });
+                }
+                response.status(201).json({ message: "Rol añadido correctamente", affectedRows: results.affectedRows });
             }
         );
-    }else if (action === "update") {
+    } else if (action === "update") {
         connection.query(
             "UPDATE roles SET rol_nombre = ?, rol_descripcion = ? WHERE pk_rol = ?",
             [nombre, descripcion, id],
             (error, results) => {
-                if (error)
-                    throw error;
-                response.status(201).json({ "Rol actualizado correctamente": results.affectedRows });
+                if (error) {
+                    console.error("Error al actualizar rol:", error);
+                    return response.status(500).json({ message: "Error al actualizar el rol." });
+                }
+                response.status(200).json({ message: "Rol actualizado correctamente", affectedRows: results.affectedRows });
             }
         );
+    } else {
+        response.status(400).json({ message: "Acción no reconocida." });
     }
 };
 

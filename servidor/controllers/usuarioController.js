@@ -61,6 +61,8 @@ const updateUsuario = (request, response) => {
     const id = request.params.id;
     const { nombre, password, img, activo, fkrol} = request.body;
 
+
+
     connection.query(
         "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_img = ?, usuario_activo = ?, fk_rol = ? WHERE pk_usuario = ?",
         [nombre, password, img, activo, fkrol, id],
@@ -78,33 +80,53 @@ const updateUsuario = (request, response) => {
         }
     );
 }
-
 const postUsuario = (request, response) => {
     const { id, nombre, password, img, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol, action } = request.body;
+
+    // Verifica que los valores necesarios están presentes
+    if (!nombre || !password || !fkempleado || !fkrestaurante || !fkrol) {
+        return response.status(400).json({ message: "Faltan datos obligatorios" });
+    }
+
+    console.log("Datos recibidos:", {
+        id,
+        nombre,
+        password,
+        img,
+        fecha_creacion,
+        activo,
+        fkrestaurante,
+        fkempleado,
+        fkrol,
+        action
+    });
 
     if (action === "insert") {
         connection.query(
             "INSERT INTO usuarios (usuario_nombre, usuario_password, usuario_img, usuario_fecha_creacion, usuario_activo, fk_restaurante, fk_empleado, fk_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
             [nombre, password, img, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol],
             (error, results) => {
-                if (error)
+                if (error) {
+                    console.error("Error al insertar usuario:", error);
                     throw error;
-                response.status(201).json({ "Usuario añadido correctamente": results.affectedRows });
+                }
+                response.status(200).json({ "Usuario añadido correctamente": results.affectedRows });
             }
         );
-    }else if (action === "update") {
+    } else if (action === "update") {
         connection.query(
             "UPDATE usuarios SET usuario_nombre = ?, usuario_password = ?, usuario_img = ?, usuario_activo =?, fk_rol = ? WHERE pk_usuario = ?",
             [nombre, password, img, activo, fkrol, id],
             (error, results) => {
-                if (error)
+                if (error) {
+                    console.error("Error al actualizar usuario:", error);
                     throw error;
-                response.status(201).json({ "Usuario actualizado correctamente": results.affectedRows });
+                }
+                response.status(200).json({ "Usuario actualizado correctamente": results.affectedRows });
             }
         );
     }
 };
-
 const delUsuario = (request, response)=>{
     const id =request.params.id;
     connection.query("DELETE FROM usuarios WHERE pk_usuario = ?",[id],

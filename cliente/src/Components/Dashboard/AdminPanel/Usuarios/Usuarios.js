@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './css_Usuario/Usuario.css';
 import AgregarUsuario from './AgregarUsuario';
-
+import ClientAxios from "../../../../Config/axios";
 import DataTable from 'react-data-table-component';
+import Swal from "sweetalert2";
 
 function UsuariosPanel(){
 
@@ -18,6 +19,35 @@ function UsuariosPanel(){
         setUsers(data);
         setFilteredUsers(data);
     }
+
+    const deletEmpleado = async (id) => {
+        try {
+            await ClientAxios.delete(`/delUsuario/${id}`);
+            const updateEmpleados = users.filter((row) => row.pk_usuario !== id);
+            setUsers(updateEmpleados);
+            setFilteredUsers(updateEmpleados);
+        } catch (error) {
+            console.error("Error al eliminar el Usuario: ", error);
+            alert("Error al eliminar el Usuario");
+        }
+    };
+
+    const mostrarAlerta = (id) => {
+        Swal.fire({
+            title: "Advertencia",
+            text: "¿Está seguro que desea eliminar este usuario?",
+            icon: "warning",
+            confirmButtonText: "Aceptar",
+            showCancelButton: true,
+            cancelButtonColor: "Red",
+            cancelButtonText: "Cancelar",
+        }).then((response) => {
+            if (response.isConfirmed) {
+                deletEmpleado(id);
+                Swal.fire("Éxito", "El usuario se eliminó correctamente.", "success");
+            }
+        });
+    };
 
     const columns = [
         {
@@ -58,7 +88,7 @@ function UsuariosPanel(){
                     </button>
                     <button
                         className='delete-btn-button'
-                        onClick={""}
+                        onClick={() => mostrarAlerta(row.pk_usuario)}
                     >
                         Eliminar
                     </button>

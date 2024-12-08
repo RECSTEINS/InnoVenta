@@ -1,0 +1,292 @@
+
+
+.panel{
+    width: 1112px;
+    height: 1292px;
+    background-color: #ffffff;
+    padding: 192px 224px;
+    margin-top: 10px;
+}
+
+.formulario{
+    background-color: #070C33;
+    width: 920px;
+    display: flex;
+    height: 1280px;
+    padding: 56px 96px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    flex: 1 0 0;
+    border: none;
+    border-radius: 24px;
+}
+
+.caja-informacion{
+    width: 856px;
+    height: 800px;
+    padding: 0px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.margen-horizontal{
+    margin-right: 32px;
+}
+
+.margen-vertical{
+    margin-bottom: 32px;
+}
+
+.margen-entre-medianas{
+    margin-bottom: 8px;
+}
+
+.separacion-cajaI-cajaB{
+    margin-bottom: 120px;
+}
+
+.caja-titulo{
+    width: 816px;
+    height: 72px;
+}
+
+.titulo{
+    color: #FFF;
+    text-align: center;
+    font-family: Oswald;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.caja-instrucciones{
+    width: 816px;
+    height: 72px;
+}
+
+.subtitulo{
+    color: #FFF;
+    text-align: center;
+    font-family: Oswald;
+    font-size: 32px;
+    font-style: normal;
+}
+
+.caja-medianos{
+    display: flex;
+}
+
+.caja-grandes{
+    display: flex;
+}
+
+.caja-descripcion{
+    display: block;
+}
+
+.contenedor-select{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 392px;
+    height: 56px;
+}
+
+.caja-select{
+    border-radius: 16px;
+    border: none;
+    appearance: none;
+    padding: 16px 16px;
+    width: 392px;
+    color: #070C33;
+    background-color: #D9D9D9;
+    font-size: 24px;
+}
+
+.caja-select option{
+    color: #070C33;
+    width: 392px;
+}
+
+.cajita-select{
+    width: 392px;
+}
+
+.contenedor-select .contenedor-icono{
+    width: 80px;
+    height: 56px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC700;
+    border-radius: 0px 16px 16px 0px;
+    border: none;
+}
+
+.contenedor-icono i{
+    font-size: 40px;
+    color: white;
+    padding: auto;
+}
+
+.estilo-input{
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.input-chico{
+
+}
+
+.input-mediano{
+    width: 360px;
+    height: 24px;
+    padding: 16px 16px;
+}
+
+.input-grande{
+    width: 504px;
+    height: 24px;
+    padding: 16px 16px;
+}
+
+.input-descripcion{
+    width: 784px;
+    height: 88px;
+    padding: 16px 16px;
+}
+
+.input-mediano:hover{
+    cursor: pointer;
+    background-color: #44464a;
+    color: #ffffff;
+}
+
+.input-grande:hover{
+    cursor: pointer;
+    background-color: #44464a;
+    color: #ffffff;
+}
+
+.input-descripcion:hover{
+    cursor: pointer;
+    background-color: #44464a;
+    color: #ffffff;
+}
+
+.input-texto{
+    font-family: 'open sans', sans-serif;
+    font-size: 24px;
+    color: #070C33;
+}
+
+.input-contraseña{
+
+}
+
+.icono-ver-contrasena{
+    cursor: pointer;
+    font-size: 32px;
+    
+    margin: auto;
+}
+
+.input-select{
+    appearance: none;
+}
+
+.estilo-label{
+    color: #FFF;
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.label-chico{
+
+}
+
+.label-mediano{
+    width: 392px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.label-grande{
+    display: flex;
+    width: 280px;
+    height: 56px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.label-descripcion{
+    width: 816px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.caja-botones{
+    width: 752px;
+    height: 64px;
+    display: flex;
+    padding: 20px 84px;
+}
+
+.caja-boton{
+    width: 280px;
+    height: 64px;
+}
+
+.boton-regresar{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #FFC700;
+    background-color: #070C33;
+    color: #fff;
+    border-radius: 40px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.boton-ingresar{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #FFC700;
+    background-color: #FFC700;
+    color: #070C33;
+    border-radius: 40px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.separacion-botones{
+    margin-right: 192px;
+}
+
+.boton-ingresar:hover{
+    background-color: #fff;
+    color: #070C33;
+}
+
+.boton-regresar:hover{
+    background-color: #fff;
+    color: #070C33;
+}
+
+.estilo-icono{
+    font-weight: bold;
+}

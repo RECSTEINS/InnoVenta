@@ -12,6 +12,7 @@ import PagosPanel from "./Pagos/Pagos.js";
 import PlatillosPanel from "./Platillos/Platillo.js";
 import OrdenesVentasPanel from "./Ordenes/Ordenes_Ventas.js";
 import ReportePanel from "./Reports/Reporte.js";
+import RolesPanel from "./Roles/roles.js";
 
 import Graficas from "./graficas.js";
 
@@ -64,7 +65,7 @@ function InicioAdmin(){
                         </div>
             case "roles":
                 return  <div>
-                            <Graficas/>
+                            <RolesPanel/>
                         </div>
         }
     }
