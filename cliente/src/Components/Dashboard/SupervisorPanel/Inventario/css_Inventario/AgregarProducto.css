@@ -1,0 +1,164 @@
+.panel{
+    width: 1612px;
+    height: 770px;
+    background-color: #ffffff;
+    padding: 192px 224px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.formulario {
+    background-color: #070C33;
+    width: 920px;
+    display: flex;
+    height: 750px;
+    padding: 56px 96px;
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
+    border: none;
+    margin-left: -100px;
+    margin-top: -180px;
+    border-radius: 24px; /* Añade el border-radius */
+    overflow: hidden; /* Opcional, para manejar contenido que sobresale */
+}
+
+.caja-informacion{
+    width: 856px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.margen-horizontal{
+    margin-right: 32px;
+}
+
+.margen-vertical{
+    margin-bottom: 32px;
+}
+
+.margen-entre-medianas{
+    margin-bottom: 8px;
+}
+
+.caja-titulo{
+    width: 816px;
+    height: 72px;
+}
+
+.separacion-cajaI-cajaB{
+    margin-bottom: 120px;
+}
+
+.Titulo{
+    color: #FFF;
+    text-align: center;
+    font-family: Oswald;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.caja-medianos{
+    display: flex;
+}
+
+.caja-grandes{
+    display: flex;
+}
+
+.estilo-input{
+    border-radius: 16px;
+    background: #D9D9D9;
+    border: none;
+}
+
+.input-chico{
+
+}
+
+.input-mediano{
+    width: 392px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.input-grande{
+    width: 620px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.estilo-label{
+    color: #FFF;
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.label-mediano{
+    width: 392px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.label-grande{
+    display: flex;
+    width: 280px;
+    height: 56px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+    margin-right: -90px;
+}
+
+.caja-botones{
+    width: 752px;
+    height: 64px;
+    display: flex;
+    padding: 20px 84px;
+    transform: translateY(-120%);
+}
+
+.caja-boton{
+    width: 280px;
+    height: 64px;
+}
+
+.boton-regresar{
+    width: 228px;
+    height: 100%;
+    border: 1px solid #FFC700;
+    background-color: #070C33;
+    color: #fff;
+    border-radius: 40px;
+    font-family: 'Open Sans';
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.boton-ingresar{
+    width: 266px;
+    height: 64px;
+    border: 1px solid #FFC700;
+    background-color: #FFC700;
+    color: #070C33;
+    border-radius: 40px;
+    font-family: 'Open Sans';
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.separacion-botones{
+    margin-right: 112px;
+}

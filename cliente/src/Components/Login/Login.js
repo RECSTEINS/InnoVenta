@@ -34,8 +34,8 @@ function Login(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try{
+    
+        try {
             const response = await fetch('http://localhost:7777/login', {
                 method: 'POST',
                 headers: {
@@ -46,28 +46,30 @@ function Login(){
                     password: password
                 }) 
             });
-
+    
             const result = await response.json();
-
-            if (response.status === 200){
-                setLoginSuccessful(true);
-
-                showData();
-
-                //const userRol = result.rol;
-
-                goTo('/dashboardAdmin');
-            }
-            else{
-                setLoginSuccessful(false);
+    
+            if (response.status === 200) {
+                
+                const userRol = result.rol;
+    
+                if (userRol === 'Administrador') {
+                    goTo('/dashboardAdmin');
+                } else if (userRol === 'Supervisor') {
+                    goTo('/dashboardSupervisor');
+                }else if(userRol === 'Cajero'){
+                    goTo('/dashboardCajero');
+                }else if(userRol === 'Mesero'){
+                    goTo('/dashboardMesero');
+                }
+            } else {
                 console.error(result.message);
                 alert(result.message);
             }
-        } catch(error){
-            console.error("Error al iniciar sesión: ", error)
+        } catch (error) {
+            console.error("Error al iniciar sesión: ", error);
         }
     };
-
 
     return(
         

@@ -4,14 +4,13 @@ import './index.css';
 import App from './App';
 import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import Presentacion from './Components/Home/Presentacion';
-import Funcionalidades from './Components/Home/Funcionalidades';
 import Login from "./Components/Login/Login";
 
-
+import DashboardSupervisor from "./Components/Dashboard/SupervisorPanel/InicioSupervisor";
 import DashboardAdmin from "./Components/Dashboard/AdminPanel/InicioAdmin";
+import DashboardCajero from "./Components/Dashboard/CajeroPanel/InicioCajero";
+import DashboardMesero from "./Components/Dashboard/MeseroPanel/InicioMesero";
 import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados/Empleados";
-import AgregarEmpleado from './Components/Dashboard/AdminPanel/Empleados/AgregarEmpleado';
 import RecoverPassword from './Components/Login/RecoverPassword';
 
 const router = createBrowserRouter([
@@ -37,6 +36,18 @@ const router = createBrowserRouter([
     path: "/empleados",
     element:<EmpleadosPanel/>
   },
+  {
+    path:"/dashboardSupervisor",
+    element:<DashboardSupervisor/>
+  },
+  {
+    path:"/dashboardCajero",
+    element:<DashboardCajero/>
+  },
+  {
+    path:"/dashboardMesero",
+    element:<DashboardMesero/>
+  }
   
 ])
 

@@ -1,18 +1,18 @@
 
 
-.panel{
+.panel-agregar-usuario{
     width: 1112px;
-    height: 1292px;
+    height: 1192px;
     background-color: #ffffff;
     padding: 192px 224px;
     margin-top: 10px;
 }
 
-.formulario{
+.formulario-agregar-usuario{
     background-color: #070C33;
-    width: 920px;
+    width: 1110px;
     display: flex;
-    height: 1280px;
+    height: 1080px;
     padding: 56px 96px;
     flex-direction: column;
     justify-content: center;
@@ -21,8 +21,8 @@
     flex: 1 0 0;
     border: none;
     border-radius: 24px;
+    margin-top: -200px;
 }
-
 .caja-informacion{
     width: 856px;
     height: 800px;
@@ -222,7 +222,7 @@
     flex-shrink: 0;
 }
 
-.label-grande{
+.label-grande-agregar-usuario{
     display: flex;
     width: 280px;
     height: 56px;

@@ -1,0 +1,66 @@
+.inventario-panel {
+    padding: 30px;
+    padding-left: 54px;
+    padding-top: 45px;
+    background-color: #FFFF;
+    color: black;   
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+}
+
+.header-inventario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titulo-dashboard-panel{
+    font-weight: 700;
+    font-family: 'Oswald';
+    font-size: 40px;
+    color: #000;
+}
+
+.add-btn-button{
+    background-color: #4FA6DB;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 320px;
+    height: 48px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.edit-btn-button{
+    background-color: #42DC8E;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 160px;
+    height: 48px;
+    font-weight:400;
+    font-family: 'Roboto';
+}
+
+.delete-btn-button{
+    background-color: #FF5252;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 160px;
+    height: 48px;
+    font-family: 'Roboto';
+    font-weight: 400;
+}
+
+.btn-agregar:hover, .btn-edit:hover, .btn-delete:hover {
+    opacity: 0.9;
+}

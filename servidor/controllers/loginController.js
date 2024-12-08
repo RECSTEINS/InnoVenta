@@ -5,10 +5,12 @@ module.exports.login = (req, res) => {
     const consult = `
         SELECT 
             usuarios.usuario_password,
-            empleados.empleado_email
+            empleados.empleado_email,
+            roles.rol_nombre AS rol
         FROM 
             usuarios
-        LEFT JOIN empleados ON  usuarios.fk_empleado = empleados.pk_empleado
+        LEFT JOIN empleados ON usuarios.fk_empleado = empleados.pk_empleado
+        LEFT JOIN roles ON usuarios.fk_rol = roles.pk_rol
         WHERE usuarios.usuario_password = ? AND empleados.empleado_email = ?
     ;` 
     try {
@@ -20,11 +22,10 @@ module.exports.login = (req, res) => {
             }
             
             if (result.length > 0) {
-                const { email, password } = result[0];
+                const { rol } = result[0];
                 res.status(200).send({
                     message: 'Inicio de sesión exitoso.',
-                    email: email,
-                    password: password
+                    rol: rol 
                 });
             } else {
                 res.status(401).send({ message: 'Usuario no encontrado o contraseña incorrecta.' });

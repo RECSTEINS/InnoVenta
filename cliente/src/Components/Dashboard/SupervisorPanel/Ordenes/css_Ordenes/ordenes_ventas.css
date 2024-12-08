@@ -1,0 +1,365 @@
+.panel-ordenes-principal{
+    background-color: #DFD8D8;
+    margin-top: -23px;
+    width: 1530px;
+    height: auto;
+    padding-left: 54px;
+    overflow-y: hidden;
+}
+
+.ordenes-contenido{
+    margin-top: 15px;
+}
+
+.ordenes-ventas-panel {
+    display: flex;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 60px;
+    padding: 20px;
+    background-color: #FFFBFB;
+    width: 1048px;
+    height: auto;
+    margin-left: -100px;
+    overflow: hidden;
+    padding-right: 30px;
+    margin-top: -10px;
+}
+
+.panel-ordenes-statu{
+    background-color: #FFFBFB;
+    width: 1000px;
+    height: 136px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 70px;
+
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    width: 1000px;
+    height: 30px;
+    margin-right: 70px;
+    position: sticky;
+}
+
+.categorias button {
+    padding: 5px 0px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffcc00;
+    cursor: pointer;
+    width: 200px;
+    height: 32px;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 20px;
+    text-align: start;
+    padding-left: 16px;
+    color: #030E1F;
+}
+
+.lista-platillos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-left: 10px;
+    width: 1000px;
+}
+
+.icono-categoria{
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carrito {
+    background: #FFFBFB;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    margin-left: 30px;
+    width: 368px;
+    position: fixed;
+    height: 570px;
+}
+
+.formulario-carrito{
+    display: flex;
+}
+
+.formulario-carrito input{
+    width: 110px;
+    gap: 10px;
+    display: flex;
+    margin-right: 10px;
+    margin-top: -8px;
+}
+
+.carrito-lista {
+    max-height: 500px;
+    height: 570px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+    padding-right: -15px;
+
+    margin-bottom: -3px;
+    margin-top: 4px;
+    padding-top: -110px;
+}
+
+
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.carrito-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 630px;
+    width: 367px;
+    height: 224px;
+    margin-left: 24px;
+}
+
+.ticket {
+    width: 367px;
+    height: 200px;
+    background-color: #FFFBFB;
+    border-radius: 40px;
+    border: none;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ticket:before,
+.ticket:after {
+    content: '';
+    width: 85px;
+    height: 85px;
+    background-color: #DFD8D8;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.ticket:before {
+    top: -25px;
+    left: -10%;
+    transform: translateY(100%);
+}
+
+.ticket:after {
+    bottom: 50px;
+    left: 100%;
+    transform: translateX(-50%);
+}
+
+.ticket h4 {
+    color: #2D9E45; /* Verde para el total */
+    font-size: 40px;
+    margin: 0;
+    font-family: 'Oswald';
+    font-weight: 300;
+}
+
+.ticket p {
+    color: #000000;
+    font-size: 24px;
+    margin: 0;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.ticket a{
+    margin-top: 20px;
+    font-size: 10px;
+    color: #747577;
+}
+
+.carrito-total h4 { 
+    color: #2D9E45;
+    font-family: 'Oswald';
+    font-weight: 300;
+}
+.carrito-item-img{
+    width: 112px;
+    height: 112px;
+    border-radius: 16px;
+}
+
+.carrito-item-name-price{
+    margin-left: 40px;
+}
+
+.carrito-item-name{
+    color: #030E1F;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.carrito-item-price{
+    color: #1E4A77;
+    font-weight: 700;
+    font-family: 'Open Sans';
+    margin-top: -5px;
+    font-size: 24px;
+}
+
+.carrito-options{
+    margin-top: -60px;
+    transform: translate( 60%, 0%);
+    font-size: 32px;
+    gap: 5px;
+    display: flex;
+}
+
+.carrito-btn-minus{
+    color: #FF0000;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.carrito-btn-plus{
+    color: #2D9E45;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.carrito-item-number{
+    color: #070C33;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.carrito-btn-agregar{
+    position: fixed;
+    background-color: #FFC700;
+    border: none;
+    border-radius: 40px;
+    width: 275px;
+    height: 43px;
+    margin-left: 80px;
+    margin-top: 0px;
+    color: #000000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+}
+
+.custom-modal-header {
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+}
+
+.custom-modal-header .bi {
+    margin-right: 10px;
+}
+
+.custom-modal-body {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.platillos-lista {
+    list-style: none;
+    padding-left: 0;
+}
+
+.platillo-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.platillo-item .cantidad {
+    font-weight: bold;
+}
+
+.estado-proceso {
+    color: orange;
+    font-weight: bold;
+}
+
+.estado-listo {
+    color: green;
+    font-weight: bold;
+}
+
+.estado-cancelado {
+    color: red;
+    font-weight: bold;
+}
+
+.estado-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.custom-modal-footer {
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.btn-close-modal {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-close-modal:hover {
+    background-color: #d32f2f;
+}
+
+
+.barra-busqueda {
+    margin-bottom: 20px;
+    text-align: center;
+    z-index:10000000;
+    position:fixed;
+    height: 20px;
+    transform: translate(0% , -200%);
+}
+
+.input-busqueda {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: -20px;
+}

@@ -45,8 +45,7 @@ function AgregarUsuario({ onRegresar }){
     
         // Validar campos requeridos
         if (!formData.fkempleado || !formData.fkrestaurante || !formData.fkrol) {
-            alert("Por favor, selecciona todas las opciones obligatorias.");
-            return;
+            formData.fkrestaurante = 1;
         }
     
         const nuevoUsuario = {
@@ -89,7 +88,7 @@ function AgregarUsuario({ onRegresar }){
                         <h2 class="subtitulo">Ingrese los datos solicitados:</h2>
                     </div>
                     <div class="caja-grandes margen-vertical">
-                        <div class="label-grande">
+                        <div class="label-grande-agregar-usuario">
                             <label for="NombreProducto" class="estilo-label">Nombre de usuario:</label>
                         </div>
                         <input 
@@ -102,7 +101,7 @@ function AgregarUsuario({ onRegresar }){
                             required/>
                     </div>
                     <div class="caja-grandes margen-vertical">
-                        <div class="label-grande">
+                        <div class="label-grande-agregar-usuario">
                             <label for="contraseña" class="estilo-label">Contraseña:</label>
                         </div>
                         <input 
