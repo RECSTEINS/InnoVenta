@@ -1,0 +1,63 @@
+.container-reportes{
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.titulo-reporte{
+  font-size: 40px;
+  font-weight: 400;
+  font-family: 'Oswald';
+  color: #212529;
+}
+  
+.table-reporte thead {
+  background-color: #f8f9fa;
+}
+  
+.table-reporte thead th {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+  
+.label-reporte{
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.btn-success-reporte{
+  background-color: #198754;
+  color: #ffffff;
+  width: 150px;
+  height: 38px;
+  align-items: end;
+  margin-left: 1105px;
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.btn-exportar{
+  margin-left: 950px;
+}
+
+.btn-danger{
+  margin-left: 5px;
+  background-color: #AB0A0A;
+  border-radius: 6px;
+}
+
+.btn-success-reporte-2{
+  background-color: #198754;
+  color: #ffffff;
+  width: 150px;
+  height: 38px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.prueba-reportes{
+  width: 10000px;
+  height: auto;
+}

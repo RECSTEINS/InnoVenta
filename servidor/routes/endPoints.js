@@ -11,6 +11,8 @@ const { agregarPlatillo, getPlatillos } = require("../controllers/platilloContro
 const { CrearPedido, getPedidosEnProceso, updatePedidoEstado, getPedidosListo } = require("../controllers/pedidoController")
 const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
+const { getReportes, getProductosBajoStock, getPlatillosMasVendidos } = require("../controllers/reporteController");
+
 
 //Login
 router.post('/login', login);
@@ -80,5 +82,10 @@ router.get('/getPedidosListo', getPedidosListo);
 //Pagos
 router.post('/realizar-pago', procesarPago);
 
+
+//Reportes
+router.post('/get-reportes', getReportes);
+router.get('/productos-bajo-stock', getProductosBajoStock);
+router.get('/platillos-mas-vendidos', getPlatillosMasVendidos);
 
 module.exports = router;
