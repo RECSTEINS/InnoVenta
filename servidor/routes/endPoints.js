@@ -7,7 +7,7 @@ const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, 
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
 const { getInventario, agregarProducto, eliminarProducto, getProductos } =require("../controllers/inventarioController");
 const { agregarCategoria, getCategorias } = require("../controllers/categoriaController");
-const { agregarPlatillo, getPlatillos } = require("../controllers/platilloController");
+const { agregarPlatillo, getPlatillos, eliminarPlatillo } = require("../controllers/platilloController");
 const { CrearPedido, getPedidosEnProceso, updatePedidoEstado, getPedidosListo } = require("../controllers/pedidoController")
 const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
@@ -66,6 +66,7 @@ router.get('/getCategorias', getCategorias);
 //Platillo
 router.post('/agregar-platillo', agregarPlatillo);
 router.get('/getPlatillos', getPlatillos);
+router.delete('/eliminar-platillo/:id', eliminarPlatillo);
 
 
 //imagenes

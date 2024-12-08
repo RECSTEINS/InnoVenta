@@ -126,5 +126,29 @@ const agregarPlatillo = (request, response) => {
     );
 };
 
+const eliminarPlatillo = (req, res) => {
+    const { id } = req.params;
 
-module.exports = { agregarPlatillo, getPlatillos }
+    const deleteQueryPedidosPlatillos = 'DELETE FROM pedidos_platillos WHERE fk_platillo = ?';
+    const deleteQueryPlatillo = 'DELETE FROM platillos WHERE pk_platillo = ?';
+
+   
+    connection.query(deleteQueryPedidosPlatillos, [id], (error) => {
+        if (error) {
+            console.error("Error al eliminar relaciones en pedidos_platillos:", error);
+            return res.status(500).json({ error: "Error interno al eliminar relaciones." });
+        }
+
+       
+        connection.query(deleteQueryPlatillo, [id], (error) => {
+            if (error) {
+                console.error("Error al eliminar platillo:", error);
+                return res.status(500).json({ error: "Error interno al eliminar el platillo." });
+            }
+
+            res.status(200).json({ message: "Platillo eliminado correctamente." });
+        });
+    });
+};
+
+module.exports = { agregarPlatillo, getPlatillos, eliminarPlatillo }

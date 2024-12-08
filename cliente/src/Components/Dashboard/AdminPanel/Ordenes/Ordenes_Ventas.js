@@ -5,9 +5,11 @@ import CardOrdenes from './CardOrdenes';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert2';
 
 function OrdenesVentasPanel(){
 
+    const [busqueda, setBusqueda] = useState('');
     const [ordenes, setOrdenes] = useState([]);
     const [carrito, setCarrito] = useState([]);
     const [total, setTotal] = useState(0);
@@ -28,7 +30,9 @@ function OrdenesVentasPanel(){
         setShowModal(true);
     };
 
-
+    const platillosFiltrados = platillos
+    .filter(platillo => platillo.categoria === categoriaSeleccionada)
+    .filter(platillo => platillo.nombre.toLowerCase().includes(busqueda.toLowerCase()));
 
     const handleCategoriaChange = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -105,7 +109,11 @@ function OrdenesVentasPanel(){
     //CREAR ORDEN
     const handleOrderSubmit = async () => {
         if(!cliente || !mesa || carrito.length === 0){
-            alert("Todos los campos son obligatorios y el carrito no puede estar vacío.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos obligatorios',
+                text: 'Todos los campos son obligatorios y el carrito no puede estar vacío.',
+            });
             return;
         }
 
@@ -132,7 +140,13 @@ function OrdenesVentasPanel(){
             const response = await axios.post('http://localhost:7777/crear-pedido', pedidoData);
 
             if(response.status === 200){
-                alert("Pedido creado correctamente.");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Pedido creado',
+                    text: 'El pedido fue creado correctamente.',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
                 setOrdenes([...ordenes, nuevoOrden]);
                 setCarrito([]);
                 setCliente('');
@@ -142,7 +156,11 @@ function OrdenesVentasPanel(){
             }
         }catch(error){
             console.error("Error al enviar el pedido al servidor: ", error);
-            alert("No se pudo crear el pedido. :(");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el pedido',
+                text: 'No se pudo crear el pedido. Revise que el stock sea lo suficientemente alto',
+            });
         }
     };
 
@@ -178,16 +196,30 @@ function OrdenesVentasPanel(){
             
             // Verifica si la respuesta es exitosa
             if (response.status === 200) {
-                alert('Estado del pedido actualizado correctamente.');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Estado actualizado',
+                    text: 'El estado del pedido fue actualizado correctamente.',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
     
                 await fetchOrdenesEnProceso();
             } else {
-                alert('Error al actualizar el estado del pedido.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al actualizar el estado del pedido.',
+                });
             }
         } catch (error) {
             // Maneja cualquier error en la solicitud
             console.error('Error al actualizar el estado del pedido:', error);
-            alert('No se pudo actualizar el estado del pedido.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo actualizar el estado del pedido.',
+            });
         }
     };
 
@@ -195,22 +227,33 @@ function OrdenesVentasPanel(){
         <div className='row panel-ordenes-principal'>
             
             <div className='ordenes-ventas-panel col-9'>
+
                 <div className='row'>
+                <div className="barra-busqueda">
+    <input
+        type="text"
+        placeholder="Buscar platillo..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+        className="input-busqueda"
+    />
+</div>
                     <div className='panel-ordenes-statu col-12'>
                         <CardOrdenes ordenes={ordenes} onShowDetalle={handleShow} className="ordemes-scrollable"/>
                     </div>
 
-                    <div className="ordenes-contenido">
-                        {/* Categorías */}
-                        <div className="categorias">
+                    <div className="categorias">
                             <button onClick={() => handleCategoriaChange('Comida')}>Comida<i class="bi bi-piggy-bank-fill icono-categoria"></i></button>
                             <button onClick={() => handleCategoriaChange('Bebida')}>Bebida<i class="bi bi-cup-straw icono-categoria"></i></button>
                             <button onClick={() => handleCategoriaChange('Postres')}>Postres<i class="bi bi-cake2-fill icono-categoria"></i></button>
-                        </div>
+                    </div>
+
+                    <div className="ordenes-contenido">
+                        {/* Categorías */}
 
                         {/* Lista de platillos */}
                         <div className="lista-platillos">
-                            {platillos.map((platillo) =>(
+                            {platillosFiltrados.map((platillo) =>(
                                 <CardPlatillo
                                     key={platillo.id}
                                     platillo={platillo}
@@ -280,47 +323,51 @@ function OrdenesVentasPanel(){
 
 
             {/*MODAL, AQUI YA LO USAMOS*/}
-            <Modal show={showModal} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Detalles del Pedido</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {ordenSeleccionada ? (
-                        <div>
-                            <p><strong>Orden N°: </strong>{ordenSeleccionada.numero}</p>
-                            <p><strong>Mesa: </strong>{ordenSeleccionada.mesa}</p>
-                            <p><strong>Cliente: </strong>{ordenSeleccionada.clientet}</p>
-                            <p><strong>Estado: </strong>{ordenSeleccionada.estado}</p>
-                            <p><strong>Total: </strong>${ordenSeleccionada.total}</p>
-                            <p><strong>Platillos:</strong></p>
-                            <ul>
-                                {ordenSeleccionada.platillos.map((platillo, index) =>(
-                                    <li key={index}>
-                                        {platillo.nombre} - Cantidad: {platillo.cantidad}
-                                    </li>
-                                ))}
-                            </ul>
-                            <p><strong>Cambiar estado: </strong></p>
-                            <select
-                                value={ordenSeleccionada.estado}
-                                onChange={(e) => handleChangeEstado(ordenSeleccionada.numero ,e.target.value)}
-                                className="form-select"
-                            >
-                                <option value="EN PROCESO">EN PROCESO</option>
-                                <option value="LISTO">LISTO</option>
-                                <option value="CANCELADO">CANCELADO</option>
-                            </select>
-                        </div>
-                    ) : (
-                        <p>No hay información disponible</p>
-                    )}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant='secondary' onClick={handleClose}>
-                        Cerrar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <Modal show={showModal} onHide={handleClose} centered className="custom-modal">
+            <Modal.Header closeButton className="custom-modal-header">
+                <Modal.Title>
+                    <i className="bi bi-receipt-cutoff"></i> Detalles del Pedido
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="custom-modal-body">
+                {ordenSeleccionada ? (
+                    <div>
+                        <p><strong>Orden N°:</strong> {ordenSeleccionada.numero}</p>
+                        <p><strong>Mesa:</strong> {ordenSeleccionada.mesa}</p>
+                        <p><strong>Cliente:</strong> {ordenSeleccionada.cliente}</p>
+                        <p><strong>Estado:</strong> <span className={`estado-${ordenSeleccionada.estado.toLowerCase()}`}>{ordenSeleccionada.estado}</span></p>
+                        <p><strong>Total:</strong> <span className="text-success">${ordenSeleccionada.total}</span></p>
+                        <hr />
+                        <p><strong>Platillos:</strong></p>
+                        <ul className="platillos-lista">
+                            {ordenSeleccionada.platillos.map((platillo, index) => (
+                                <li key={index} className="platillo-item">
+                                    {platillo.nombre} - <span className="cantidad">Cantidad: {platillo.cantidad}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <hr />
+                        <p><strong>Cambiar Estado:</strong></p>
+                        <select
+                            value={ordenSeleccionada.estado}
+                            onChange={(e) => handleChangeEstado(ordenSeleccionada.numero, e.target.value)}
+                            className="form-select estado-select"
+                        >
+                            <option value="EN PROCESO">EN PROCESO</option>
+                            <option value="LISTO">LISTO</option>
+                            <option value="CANCELADO">CANCELADO</option>
+                        </select>
+                    </div>
+                ) : (
+                    <p className="text-muted">No hay información disponible</p>
+                )}
+            </Modal.Body>
+            <Modal.Footer className="custom-modal-footer">
+                <Button variant="secondary" onClick={handleClose} className="btn-close-modal">
+                    Cerrar
+                </Button>
+            </Modal.Footer>
+        </Modal>
         </div>
         
     )

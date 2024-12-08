@@ -2,6 +2,8 @@ import DataTable from 'react-data-table-component';
 import './css_Platillos/platillo.css'
 import React, { useEffect, useState } from 'react';
 import AgregarPlatillo from './AgregarPlatillo';
+import ClientAxios from '../../../../Config/axios';
+import Swal from 'sweetalert2';
 
 function PlatillosPanel(){
     
@@ -18,6 +20,42 @@ function PlatillosPanel(){
         console.log("Datos recibidos: ", data);
         setPlatillos(data);
         setFilteredPlatillos(data);
+    }
+
+    
+
+    const deletePlatillo = async (id) => {
+        try {
+            if (!id) {
+                console.error("El ID es undefined");
+                return;
+            }
+            await ClientAxios.delete(`http://localhost:7777/eliminar-platillo/${id}`);
+            const updateProducts = platillos.filter(row => row.id !== id); // Filtrar por `id`
+            setPlatillos(updateProducts);
+            setFilteredPlatillos(updateProducts);
+            Swal.fire('Éxito', 'El platillo se eliminó correctamente.', 'success');
+        } catch (error) {
+            console.error("Error al eliminar el producto:", error);
+            Swal.fire('Error', 'No se pudo eliminar el platillo.', 'error');
+        }
+    };
+
+    const mostrarAlerta = (id) =>{
+        Swal.fire({
+            title: 'Advertencia',
+            text: '¿Está seguro que desea eliminar este platillo?',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: true,
+            cancelButtonColor: "Red",
+            cancelButtonText: "Cancelar" 
+        }).then(response => {
+            if(response.isConfirmed){
+                deletePlatillo(id);
+                Swal.fire('Éxito', 'El platillo se eliminó correctamente.', 'success');
+            }
+        });
     }
 
     const columns = [
@@ -51,13 +89,13 @@ function PlatillosPanel(){
                 <div style={{ display:'flex', gap:'10px'}}>
                     <button
                         className='edit-btn-button'
-                        onClick={""}
+                        onClick={() => console.log('Editar clickeado', row.id)}
                     >
                         Editar
                     </button>
                     <button
                         className='delete-btn-button'
-                        onClick={""}
+                        onClick={() => mostrarAlerta(row.id)}
                     >
                         Eliminar
                     </button>

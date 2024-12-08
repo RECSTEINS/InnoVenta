@@ -8,7 +8,7 @@
 }
 
 .ordenes-contenido{
-    margin-top: 150px;
+    margin-top: 15px;
 }
 
 .ordenes-ventas-panel {
@@ -22,6 +22,7 @@
     margin-left: -100px;
     overflow: hidden;
     padding-right: 30px;
+    margin-top: -10px;
 }
 
 .panel-ordenes-statu{
@@ -32,16 +33,18 @@
     position: relative;
     overflow: hidden;
     margin-right: 70px;
+
 }
 
 .categorias {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    margin-top: -160px;
+    margin-top: 0px;
     width: 1000px;
     height: 30px;
     margin-right: 70px;
+    position: sticky;
 }
 
 .categorias button {
@@ -270,3 +273,93 @@
     font-weight: 700;
 }
 
+.custom-modal-header {
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+}
+
+.custom-modal-header .bi {
+    margin-right: 10px;
+}
+
+.custom-modal-body {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.platillos-lista {
+    list-style: none;
+    padding-left: 0;
+}
+
+.platillo-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.platillo-item .cantidad {
+    font-weight: bold;
+}
+
+.estado-proceso {
+    color: orange;
+    font-weight: bold;
+}
+
+.estado-listo {
+    color: green;
+    font-weight: bold;
+}
+
+.estado-cancelado {
+    color: red;
+    font-weight: bold;
+}
+
+.estado-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.custom-modal-footer {
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.btn-close-modal {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-close-modal:hover {
+    background-color: #d32f2f;
+}
+
+
+.barra-busqueda {
+    margin-bottom: 20px;
+    text-align: center;
+    z-index:10000000;
+    position:fixed;
+    height: 20px;
+    transform: translate(0% , -200%);
+}
+
+.input-busqueda {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: -20px;
+}

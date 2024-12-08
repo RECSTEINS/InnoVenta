@@ -19,15 +19,22 @@
   transform: translate(-5%, 10%);
 }
 
-.panael-ordenes-listo-pago{
-  background-color: #550e0e;
-    height: 136px;
+.panel-ordenes-listo-pago{
+  background-color: #FFFFFf;
+    height: 110px;
     margin-top: 0px;
     position: relative;
     overflow: hidden;
     margin-right: 50px;
+    margin-top: -50px;
+    margin-left: -300px;
 }
 
+.pagos-linea{
+  margin-top: -80px;
+  height: 5px;
+  transform: translate(0%, -1700%);
+}
 
   .pagos-calculadora {
     flex: 2;
@@ -54,6 +61,10 @@
     width: 366px;
     height: 753px;
     margin-top: 50px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+    max-height: 753px;
   }
   
   .recibo-logo{
@@ -72,7 +83,7 @@
     font-size: 40px;
     font-weight: 300;
     display: flex;
-    transform: translate(-80% , -80%);
+    transform: translate(-20% , -130%);
   }
 
   .recibo-header {
@@ -86,11 +97,24 @@
     margin-bottom: 1rem;
   }
   
-  .recibo-tabla th,
-  .recibo-tabla td {
-    border: 1px solid #ddd;
-    padding: 0.5rem;
+  .recibo-tabla th{
     text-align: left;
+    padding: 0.5rem;
+    font-size: 14px;
+    color: #000000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+  }
+
+  .recibo-tabla-cantidad{
+    text-align: right;
+  }
+
+
+  .recibo-tabla td {
+    
+    padding: 0.5rem;
+    
   }
   
   .recibo-total {
@@ -102,7 +126,69 @@
     margin-bottom: 1rem;
     margin-top: 30px;
   }
+
+.resumen-pago{
+
+  margin-left: 100px;
+  position: fixed;
+  margin-top: 0px;
+}
+
+.resumen-total{
+  font-size: 12px;
+  color: #030E1F;
+  font-family: 'Oswald';
+  font-weight: 300;
+}
+
+.resumen-total-numero{
+  text-decoration: none;
+  color: #030E1F;
+  cursor: none;
+  text-align: end;
+  align-items: end;
+  margin-left: 110px;
+}
+
+.resumen-total-numero-2{
+  text-decoration: none;
+  color: #030E1F;
+  cursor: none;
+  text-align: end;
+  align-items: end;
+  margin-left: 160px;
+}
+
+.resumen-total-numero-3{
+  text-decoration: none;
+  color: #030E1F;
+  cursor: none;
+  text-align: end;
+  align-items: end;
+  margin-left: 125px;
+}
+
+.resumen-total-numero-4{
+  text-decoration: none;
+  color: #030E1F;
+  cursor: none;
+  text-align: end;
+  align-items: end;
+  margin-left: 160px;
+}
+
+.resumen-linea{
+  color: #747577;
+}
+
+.resumen-gracias{
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 25px;
+}
   
+
   .btn-imprimir {
     width: 275px;
     height: 43px;
@@ -130,12 +216,12 @@
     justify-content: space-between;
     width: 965px;
     align-items: center;
-    margin-top: 20px
+    margin-top: 10px
   }
   
   .btn-gerenciales {
-    background-color: #AB0A0A;
-    color: white;
+    background-color: #CA2020;
+    color: #000000;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
@@ -146,11 +232,20 @@
     font-size: 20px;
     font-weight: 600;
     border-radius: 8px;
-    transform: translate(-15% ,-75%);
+    transform: translate(285% ,-75%);
   }
   
   .btn-gerenciales:hover {
     background-color: #c9302c;
+  }
+
+  .panel-ordenes-title{
+    font-family: 'Oswald';
+    font-size: 32px;
+    font-weight: 300;
+    margin-top: -20px;
+    margin-left: 80px;
+    color: #212529;
   }
   
   /* Opciones de pago */
@@ -240,6 +335,7 @@
   .pagos-rapidos {
     display: flex;
     justify-content: space-between;
+    margin-top: -35px;
   }
   
   .pagos-rapidos button {

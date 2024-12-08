@@ -3,7 +3,8 @@ import "./css/Inicio.css";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import EmpleadosPanel from "./Empleados/Empleados";
 import UsuariosPanel from "./Usuarios/Usuarios";
 import InventarioPanel from "./Inventario/Inventario.js";
@@ -88,10 +89,10 @@ function InicioAdmin(){
                         <li className={`nav-item ${activeView === "ordenes" ? "active" : ""}`}>
                             <Link
                                 to=""
-                                className="nav-link  icono-ventas"
+                                className="nav-link  "
                                 onClick={() => handleViewChange("ordenes")}
                             >
-                                <i className="bi bi-list-check icono-dash me-1 mt-5"></i>Ventas/Ordenes
+                                <i className="bi bi-list-check icono-dash-ordenes me-1 mt-5"></i>Ordenes
                             </Link>
                         </li>
 
@@ -100,7 +101,7 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link icono-otros"
                                 onClick={() => handleViewChange("cobro")}>
-                                <i className="bi bi-cash-coin me-1 icono-dashboard2 icono-dash"></i>Cobro
+                                <i className="bi bi-cash-coin me-1 icono-dashboard2 icono-dash"></i>Pago/Cobro
                             </Link>
                         </li>
 
@@ -118,27 +119,20 @@ function InicioAdmin(){
                                 to="#"
                                 className="nav-link icono-otros"
                                 onClick={() => handleViewChange("platillos")}>
-                                <i className="bi bi-box-seam me-1 icono-dashboard2 icono-dash"></i>Platillos
+                                    
+                                    <FontAwesomeIcon icon={faUtensils} className="icono-ventas"/>Platillos
                             </Link>
                         </li>
 
-                        <li className={`nav-item ${activeView === "empleados" ? "active" : ""}`}>
-                            <Link
-                                to="#"
-                                className="nav-link icono-otros"
-                                onClick={() => handleViewChange("empleados")}>
-                               <i className="bi bi-people-fill me-4 icono-dashboard icono-dash"></i> Empleados
-                            </Link>
-                        </li>
                         <li className={`nav-item ${activeView === "usuarios" ? "active" : ""}`}>
                             <Link
                                 to="#"
                                 className="nav-link icono-otros"
                                 onClick={() => handleViewChange("usuarios")}>
-                               <i className="bi bi-person-video me-4 icono-dashboard icono-dash"></i> Usuarios
+                               <i className="bi bi-person-video me-4 icono-dashboard icono-dash-20"></i> Usuarios
                             </Link>
                         </li>
-                        
+
                         <li className={`nav-item ${activeView === "reportes" ? "active" : ""}`}>
                             <Link
                                 to="#"
@@ -147,7 +141,6 @@ function InicioAdmin(){
                                <i className="bi bi-clipboard-fill me-1 icono-dashboard2 icono-dash"></i> Reportes
                             </Link>
                         </li>
-
                         <li className={`nav-item ${activeView === "roles" ? "active" : ""}`}>
                             <Link
                                 to="#"
@@ -156,6 +149,16 @@ function InicioAdmin(){
                                <i className="bi bi-person-badge-fill  icono-dashboard2 icono-dash"></i> Roles
                             </Link>
                         </li>
+
+                        <li className={`nav-item ${activeView === "empleados" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link icono-otros"
+                                onClick={() => handleViewChange("empleados")}>
+                               <i className="bi bi-people-fill me-4 icono-dashboard icono-dash-20"></i> Empleados
+                            </Link>
+                        </li>
+                        
                         <li className="nav-item ">
                             <Link to="/login" className="nav-link cerrar-sesion-dashboard">
                             <i className="bi bi-box-arrow-right   icono-dash"></i> Cerrar sesión

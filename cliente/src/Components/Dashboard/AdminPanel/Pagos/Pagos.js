@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png';
 import axios from 'axios';
 import html2pdf from 'html2pdf.js';
+import Swal from 'sweetalert2';
+
 import CardOrdenes from '../Ordenes/CardOrdenes';
 function PagosPanel() {
 
@@ -65,6 +67,11 @@ function PagosPanel() {
             setOrdenesListas(datos);
         } catch (error) {
             console.error('Error al obtener las órdenes "LISTO":', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudieron cargar las órdenes listas.',
+            });
         }
     };
 
@@ -163,7 +170,11 @@ function PagosPanel() {
 
     const handleProcesarPago = async () => {
         if (!ventaSeleccionada || !metodoPagoSeleccionado) {
-            alert("Selecciona un pedido y un método de pago.");
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Atención!',
+                text: 'Selecciona un pedido y un método de pago.',
+            });
             return;
         }
     
@@ -178,7 +189,11 @@ function PagosPanel() {
             const response = await axios.post('http://localhost:7777/realizar-pago', payload);
     
             if (response.status === 200) {
-                alert(`Pago registrado: $${response.data.montoConIVA}`);
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Pago registrado!',
+                    text: `El monto pagado es de $${response.data.montoConIVA}.`,
+                });
                 console.log("Pago exitoso:", response.data);
     
                 
@@ -190,7 +205,11 @@ function PagosPanel() {
             }
         } catch (error) {
             console.error("Error al procesar el pago:", error);
-            alert("Error al registrar el pago.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al registrar el pago.',
+            });
         }
     };
 
@@ -216,8 +235,9 @@ function PagosPanel() {
                 <div className="pagos-header">
                     <p className="pagos-caja">Caja: 2</p>
                     <div className="pagos-panel">
+                    <p className='panel-ordenes-title'>Órdenes Listas</p>
+                    <button className="btn-gerenciales">Opciones Gerenciales</button>
                         <div className="panel-ordenes-listo-pago">
-                            <h4>Órdenes Listas</h4>
                             <CardOrdenes
                                 ordenes={ordenesListas}
                                 onShowDetalle={handleShow}
@@ -225,7 +245,6 @@ function PagosPanel() {
                             />
                         </div>
                     </div>
-                    <button className="btn-gerenciales">Opciones Gerenciales</button>
                 </div>
 
                 <div className="pagos-opciones">
@@ -272,6 +291,9 @@ function PagosPanel() {
                         <p className="totales-item-encabezados">Cambio:</p>
                         <p className="totales-item-pago-cambio">${cambio}</p>
                     </div>
+                </div>
+                <div>
+                    <p className='pagos-linea'>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</p>
                 </div>
 
                 <div className="pagos-rapidos">
@@ -337,11 +359,19 @@ function PagosPanel() {
                         className="teclado-btn-total" 
                         onClick={() => {
                             if (!metodoPagoSeleccionado) {
-                                alert("Por favor, selecciona un método de pago.");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Método de Pago',
+                                    text: 'Por favor, selecciona un método de pago.',
+                                });
                                 return;
                             }
                             if (parseFloat(pago) < parseFloat(montoConIva)) {
-                                alert("El monto pagado no cubre el total.");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Monto insuficiente',
+                                    text: 'El monto pagado no cubre el total requerido.',
+                                });
                                 return;
                             }
                             handleProcesarPago();
@@ -381,7 +411,7 @@ function PagosPanel() {
                             {ordenSeleccionada?.platillos.map((platillo, index) => (
                                 <tr key={index}>
                                     <td>{platillo.nombre}</td>
-                                    <td>{platillo.cantidad}</td>
+                                    <td className='recibo-tabla-cantidad'>{platillo.cantidad}</td>
                                     <td>${platillo.precio.toFixed(2)}</td>
                                 </tr>
                             ))}
@@ -389,13 +419,16 @@ function PagosPanel() {
                     </table>
                 </div>
                 <div className="recibo-total">
-                    <p>Total: ${montoConIva}</p>
+                    <p>${montoConIva}</p>
                 </div>
                 <div className="resumen-pago">
-                    <p>Importe Total: ${recibo.montoTotal}</p>
-                    <p>Tasa: 16%</p>
-                    <p>IVA: ${recibo.iva}</p>
-                    <p>Tipo de Pago: {recibo.tipoPago}</p>
+                    <p className='resumen-linea'>- - - - - - - - - - - - - - - - - - - -</p>
+                    <p className='resumen-total'>Importe Total: <a className='resumen-total-numero'>${recibo.montoTotal}</a></p>
+                    <p className='resumen-total'>Tasa: <a className='resumen-total-numero-2'>16%</a></p>
+                    <p className='resumen-total'>IVA: <a className='resumen-total-numero-4'>${recibo.iva}</a></p>
+                    <p className='resumen-total'>Tipo de Pago: <a className='resumen-total-numero-3'>{recibo.tipoPago}</a></p>
+                    <p>- - - - - - - - - - - - - - - - - - - -</p>
+                    <p className='resumen-gracias'>¡Gracias por su compra!</p>
                 </div>
             </div>
             <button className="btn-imprimir" onClick={handleImprimir}>Imprimir</button>

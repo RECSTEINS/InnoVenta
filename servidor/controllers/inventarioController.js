@@ -52,10 +52,10 @@ const agregarProducto = (request, response) =>{
 const eliminarProducto = (request, response)=>{
     const id = request.params.id;
     connection.query("DELETE FROM productos WHERE pk_productos = ?",[id],
-    (error, resulst) =>{
+    (error, results) =>{
         if(error)
             throw error;
-        response.status(201).json({"Producto eliminado":resulst.affectedRows});
+        response.status(201).json({"Producto eliminado":results.affectedRows});
     });
 }
 
