@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Open+Sans:wght@400;700&display=swap');
+
+.sales-section {
+  background-color: rgba(237, 236, 244, 1);
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  overflow: hidden;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 73px 252px;
+}
+
+.header-content {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 960px;
+  margin: 0;
+}
+
+.main-title {
+  color: rgba(5, 0, 56, 1);
+  font-family: 'Oswald', sans-serif; /* Fuente Oswald */
+  font-weight: 500; /* Medium */
+  font-size: 64px; /* Tamaño 64px */
+  line-height: 1.2;
+  margin: 0;
+}
+
+.subtitle {
+  color: rgba(5, 4, 30, 1);
+  margin-top: 16px;
+  font-family: 'Open Sans', sans-serif; /* Fuente Open Sans */
+  font-weight: 400; /* Regular */
+  font-size: 20px; /* Tamaño 20px */
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hero-image {
+  aspect-ratio: 1.9;
+  object-fit: contain;
+  object-position: center;
+  width: 869px;
+  border-radius: 24px;
+  align-self: stretch;
+  min-width: 240px;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.features-container {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  color: rgba(33, 37, 41, 1);
+  justify-content: center;
+  flex-grow: 1;
+  width: 301px;
+  margin: 0;
+  padding: 16px;
+  font: 400 24px 'Open Sans', sans-serif;
+}
+
+.features-title {
+  color: rgba(2, 3, 59, 1);
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  min-height: 45px;
+  width: 100%;
+  gap: 16px;
+}
+
+.feature-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  align-self: center;
+}
+
+.feature-text {
+  align-self: center;
+  margin: 0;
+}
+
+.cta-wrapper {
+  border-radius: 40px;
+  align-self: center;
+  display: flex;
+  margin-top: 16px;
+  width: 272px;
+  max-width: 100%;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cta-button {
+  border-radius: 40px;
+  background-color: rgba(255, 196, 12, 1);
+  padding: 16px 27px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif; 
+  font-weight: 700;
+  font-size: 24px; 
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+  .sales-section {
+    padding: 0 20px;
+  }
+  .header-content {
+    max-width: 100%;
+  }
+  .main-title {
+    max-width: 100%;
+    font-size: 40px;
+  }
+  .subtitle {
+    max-width: 100%;
+  }
+  .hero-image {
+    max-width: 100%;
+  }
+  .cta-wrapper {
+    white-space: initial;
+    margin-left: -100px;
+    margin-top: 20px;
+  }
+  .cta-button {
+    white-space: initial;
+    padding: 0 20px;
+  }
+
+  .features-container{
+    transform: translateY(-80%);
+  }
+
+  .hero-image{
+    transform: translateY(350px);
+  }
+}

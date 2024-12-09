@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
+.features-section {
+  background: rgba(237, 236, 244, 1);
+  display: flex;
+  align-items: center;
+  gap: 40px 56px;
+  color: rgba(33, 37, 41, 1);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 128px 252px;
+  font: 400 24px 'Open Sans', sans-serif;
+}
+
+.features-content {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  width: 301px;
+  margin: auto 0;
+  padding: 16px;
+}
+
+.features-title {
+  color: rgba(2, 3, 59, 1);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px; /* Tamaño 24px */
+  font-weight: 800; /* ExtraBold */
+  text-align: center;
+  white-space: nowrap; /* Evita que se divida en varias líneas */
+}
+
+.feature-item {
+  display: flex;
+  margin-top: 16px;
+  min-height: 45px;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.feature-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.feature-text {
+  align-self: stretch;
+  width: 305px;
+  margin: auto 0;
+}
+
+.cta-wrapper {
+  border-radius: 40px;
+  align-self: center;
+  display: flex;
+  margin-top: 16px;
+  width: 272px;
+  max-width: 100%;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 700;
+}
+
+.cta-button {
+  border-radius: 40px;
+  background-color: rgba(255, 196, 12, 1);
+  padding: 16px 27px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px; /* Tamaño 24px */
+  font-weight: 700; /* Bold */
+}
+
+.feature-image {
+  aspect-ratio: 1.81;
+  object-fit: contain;
+  object-position: center;
+  width: 869px;
+  border-radius: 24px;
+  align-self: stretch;
+  min-width: 240px;
+  flex-grow: 1;
+  margin: auto 0;
+}
+
+@media (max-width: 991px) {
+  .features-section {
+    padding: 100px 20px;
+  }
+
+  .cta-wrapper {
+    white-space: initial;
+  }
+
+  .cta-button {
+    white-space: initial;
+    padding: 0 20px;
+  }
+
+  .feature-image {
+    max-width: 100%;
+  }
+}

@@ -1,64 +1,80 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RecoverPassword.css';
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from "./logo-login.png";
+import { auth } from "../../Auth/firebaseConfig"; 
+import { sendPasswordResetEmail } from "firebase/auth";
+import Swal from "sweetalert2";
+import NavBar from '../Home/Navbar';
+import Footer from '../Home/Footer';
 
-//Importar funciones para resetear la contraseña
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../Auth/firebaseConfig';
-
-const RecoverPassword = ({ estado, cambiarEstado}) => {
+function RecoverPassword(){
     
     const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-    const [message, setMessage] = useState("");
 
-    const handlePasswordReset = async (e) => {
+    const handleRecoverPassword = async (e) => {
         e.preventDefault();
-        console.log("te encuentras aqui");
 
-        try{
-            console.log("entraste al try");
-            await sendPasswordResetEmail(auth, email);
-            setMessage('Se ha enviado un enlace de recuperación a tu correo electrónico.');
-            setError('');
-        }catch(error){
-            console.log("no entro al try");
-            console.error(error);
-            setMessage('');
-            setError('No se pudo enviar el enlace. Verifica tu correo electrónico.');
+        if (!email) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campo vacío",
+                text: "Por favor, ingresa tu email.",
+            });
+            return;
         }
-    }
-    
 
+        try {
+            await sendPasswordResetEmail(auth, email);
+            Swal.fire({
+                icon: "success",
+                title: "Correo enviado",
+                text: "Hemos enviado un enlace de recuperación a tu email.",
+            });
+        } catch (error) {
+            console.error(error);
+            let errorMessage = "Ocurrió un error al enviar el correo.";
+            if (error.code === "auth/user-not-found") {
+                errorMessage = "No existe una cuenta asociada a este email.";
+            } else if (error.code === "auth/invalid-email") {
+                errorMessage = "El email ingresado no es válido.";
+            }
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: errorMessage,
+            });
+        }
+    };
     
 
     return(
         <>
-            { estado &&
-                <div className='overlay'>
-                    <div className='contenedorModal'>
-                        <div className="forgot-password-container">
-                            <h2>Recuperar Contraseña</h2>
-                            <form onSubmit={handlePasswordReset}>
-                                <div>
-                                    <label htmlFor="email">Correo Electrónico:</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <button type="submit">Enviar Enlace de Recuperación</button>
-                            </form>
-                            {message && <p className="success-message">{message}</p>}
-                            {error && <p className="error-message">{error}</p>}
-                        </div>
-                    </div>
-                </div>
-            }
+            <NavBar/>
+            <div class="container-custom-repass">
+                <img src={Logo} alt="Logo" class="logo-repass"/>
+                <p class="reupdate-pass-title">¿Has olvidado tu contraseña?</p>
+                <p class="reupdate-pass-subtitle">¡No te preocupes! Escribe tu email y recibirás instrucciones para recuperarla</p>
+                <form onSubmit={handleRecoverPassword}>
+                    <p class="col-12 relabel-pass-update">Email</p>
+                    <input
+                        type="email"
+                        className="col-12 reform-control-pass"
+                        placeholder="Ingresa tu email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required 
+                    />
+                
+                    <button type="submit" class="btn rebtn-custom-pass">Recuperar contraseña</button>
+                </form>
+                <Link to={"/login"}>
+                    <a class="reback-link-pass">Volver</a>
+                </Link>
+            </div>
+            <Footer/>
         </>
     );
 }

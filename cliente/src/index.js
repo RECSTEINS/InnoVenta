@@ -12,6 +12,7 @@ import DashboardCajero from "./Components/Dashboard/CajeroPanel/InicioCajero";
 import DashboardMesero from "./Components/Dashboard/MeseroPanel/InicioMesero";
 import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados/Empleados";
 import RecoverPassword from './Components/Login/RecoverPassword';
+import UpdatePassword from './Components/Login/UpdatePassword';
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
   {
     path:"/dashboardMesero",
     element:<DashboardMesero/>
-  }
+  },
+  {
+    path:"/updatePassword",
+    element:<UpdatePassword/>
+  },
   
 ])
 

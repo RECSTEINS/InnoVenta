@@ -4,7 +4,7 @@ import './css/Planes.css';
 
 function Planes(){
     return(
-        <div class=" fondo-planes">
+        <div class=" fondo-planes" id='planes'>
             <div class="container py-md-5 py-2 text-center prueba-plan">
                 <h1 class="plan-title">Elige el plan perfecto para ti</h1>
                 <p class="text-center plan-subtitle">Empieza con total tranquilidad. Si cambias de idea, tenemos garantía de reembolso por 30 días.</p>

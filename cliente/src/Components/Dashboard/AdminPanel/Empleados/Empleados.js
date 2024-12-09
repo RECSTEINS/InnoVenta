@@ -6,19 +6,28 @@ import { Link } from "react-router-dom";
 import AgregarEmpleado from "./AgregarEmpleado";
 import './css_Empleado/Empleado.css';
 import Swal from "sweetalert2";
+import EditarEmpleado from "./EditarEmpleado";
 
 function EmpleadosPanel(){
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [mostrarAddEmpleado, setMostrarAddEmpleado] = useState(false);
-
+    const [mostrarEditarEmpleado, setMostrarEditarEmpleado] = useState(false);
+    const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
     const [visibleColumns, setVisibleColumns] = useState([
         'Nombre',
         'Apellido',
         'Correo',
         'Opciones'
     ]);
+    const handleRegresar = () => {
+        setEmpleadoSeleccionado(null); // Puedes limpiar el empleado seleccionado si lo deseas
+      };
+
+    const handleEditarEmpleado = (empleadoId) => {
+        fetchEmpleadoById(empleadoId); // Esto debe traer el empleado por su ID
+      };
 
     const URL = 'http://localhost:7777/getEmpleados'
 
@@ -117,17 +126,17 @@ function EmpleadosPanel(){
         },
         {
             name: 'Opciones',
-            cell: row => (
+            cell: (empleado) => (
                 <div style={{ display: "flex", gap:'10px'}}>
                     <button
                         className="edit-btn-button"
-                        onClick={""}
+                        onClick={() => fetchEmpleadoById(empleado.pk_empleado)}
                     >
                         Editar
                     </button>
                     <button
                         className="delete-btn-button"
-                        onClick={() => mostrarAlerta(row.pk_empleado)}
+                        onClick={() => mostrarAlerta(empleado.pk_empleado)}
                     >
                         Eliminar
                     </button>
@@ -137,8 +146,7 @@ function EmpleadosPanel(){
             ignoreRowClick: true,
             allowOverflow: true,
             id: 'Opciones'
-            
-        },
+        }
     ];
 
     const columns = allColumns.filter(column => visibleColumns.includes(column.id));
@@ -152,6 +160,17 @@ function EmpleadosPanel(){
         );
     };
 
+    const fetchEmpleadoById = async (id) => {
+        try {
+          const response = await fetch(`http://localhost:7777/getEmpleadoId/${id}`);
+          const data = await response.json();
+          console.log("Empleado recibido del backend:", data); // Verifica si los datos llegan bien
+          setEmpleadoSeleccionado(data); 
+          setMostrarEditarEmpleado(true);// Asegúrate de estar configurando correctamente el estado
+        } catch (error) {
+          console.error("Error al obtener empleado:", error);
+        }
+      };
 
 
     useEffect(() => {
@@ -160,7 +179,7 @@ function EmpleadosPanel(){
 
     return(
         <div className="empleado-panel">
-            {!mostrarAddEmpleado ? (
+            {!mostrarAddEmpleado && !mostrarEditarEmpleado? (
                 <>
                     <div className="header-empleados">
                         <p className="titulo-dashboard-empleado">Lista de empleados</p>
@@ -213,11 +232,15 @@ function EmpleadosPanel(){
                         }}
                     />
                 </>
-            ) : (
+            ) : mostrarAddEmpleado ? (
                 <div className="agregar-empleado-panel">
                     <AgregarEmpleado onRegresar={() => setMostrarAddEmpleado(false)}/>   
                 </div>
-            )}
+            ) : mostrarEditarEmpleado && empleadoSeleccionado ? (
+                <div className="editar-empleado-panel">
+                    <EditarEmpleado empleadoSeleccionado={empleadoSeleccionado} onRegresar={handleRegresar} />
+            </div>
+             ) : null}
         </div>
     )
 }

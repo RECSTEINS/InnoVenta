@@ -53,24 +53,16 @@
     margin-left: 70px;
 }
 
-.rol-dashboard{
-    transform: translate(700%, 0%);
+.rol-dashboard-pao{
+    transform: translate(1000%, 0%);
     font-family: 'Open Sans';
     font-size: 24px;
     font-weight: 800;
 }
 
-.agregar-empleado-panel{
-    background-color: #070C33;
-    margin-left: -20px;
-    width: 968px;
-    height: 800px;
-    transform: translate(0%, -8%);
-    min-height: 100vh;
-}
 
-.cerrar-sesion-dashboard{
-    margin-top: 120px;
+.cerrar-sesion-dashboard-pao{
+    margin-top: 380px;
     margin-left: 45px;
 }
 

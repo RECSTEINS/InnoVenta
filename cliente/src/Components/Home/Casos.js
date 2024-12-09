@@ -7,7 +7,7 @@ import imagen14 from '../../Assets/Img_Home/caso3-editada.JPG';
  
 function Casos(){
     return(
-        <div class="fondo-casos">
+        <div class="fondo-casos" id='casos'>
             <div class="seccion-casos py-5 ">
                 <div class="container text-center">
                     <p class="caso-top-text d-none d-md-block">Innoventa Premium</p>

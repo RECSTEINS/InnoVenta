@@ -60,14 +60,6 @@
     font-weight: 800;
 }
 
-.agregar-empleado-panel{
-    background-color: #070C33;
-    margin-left: -20px;
-    width: 968px;
-    height: 800px;
-    transform: translate(0%, -8%);
-    min-height: 100vh;
-}
 
 .cerrar-sesion-dashboard{
     margin-top: 120px;
@@ -106,7 +98,7 @@
 
 .contenido-dashboard{
     margin-left: 60px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(179, 50, 50);
     width: 1545px;
     margin-top: 70px;
     height: auto;

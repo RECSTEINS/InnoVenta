@@ -185,16 +185,16 @@ function OrdenesVentasPanel(){
 
     const handleChangeEstado = async (idPedido, nuevoEstado) => {
         try {
-            // Verifica que los datos sean correctos antes de enviar la solicitud
+            
             console.log('ID Pedido:', idPedido);
             console.log('Nuevo Estado:', nuevoEstado);
     
             const url = `http://localhost:7777/pedidos/${idPedido}/estado`;
     
-            // Realiza la solicitud PUT para actualizar el estado del pedido
+        
             const response = await axios.put(url, { estado: nuevoEstado });
-            
-            // Verifica si la respuesta es exitosa
+        
+
             if (response.status === 200) {
                 Swal.fire({
                     icon: 'success',
@@ -213,7 +213,7 @@ function OrdenesVentasPanel(){
                 });
             }
         } catch (error) {
-            // Maneja cualquier error en la solicitud
+            
             console.error('Error al actualizar el estado del pedido:', error);
             Swal.fire({
                 icon: 'error',
@@ -243,9 +243,9 @@ function OrdenesVentasPanel(){
                     </div>
 
                     <div className="categorias">
-                            <button onClick={() => handleCategoriaChange('Comida')}>Comida<i class="bi bi-piggy-bank-fill icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Bebida')}>Bebida<i class="bi bi-cup-straw icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Postres')}>Postres<i class="bi bi-cake2-fill icono-categoria"></i></button>
+                            <button className='categorias-btn' onClick={() => handleCategoriaChange('Comida')}>Comida</button>
+                            <button className='categorias-btn' onClick={() => handleCategoriaChange('Bebida')}>Bebidas</button>
+                            <button className='categorias-btn' onClick={() => handleCategoriaChange('Postres')}>Postres</button>
                     </div>
 
                     <div className="ordenes-contenido">

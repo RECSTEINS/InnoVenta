@@ -1,0 +1,116 @@
+
+
+.innoventa-title {
+    font-family: 'Oswald', sans-serif;
+    color: #070C33;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 64px;
+    margin-top: 50px;
+}
+
+.innoventa-container {
+    max-width: 100%;
+    height: 574px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F0F0F0;
+}
+
+.innoventa-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.innoventa-card {
+    background-color: #BDE5F9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 520px;
+    height: 254px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.innoventa-card-title {
+    margin: 0;
+    color: #02033B;
+    font-size: 32px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.innoventa-card-description {
+    color: #212529;
+    font-size: 20px;
+    margin-top: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.innoventa-card-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+    .innoventa-title {
+        font-size: 32px;
+        text-align: left;
+        padding: 40px;
+        margin-bottom: -0px;
+    }
+    
+    .innoventa-card{
+        width: 392px;
+        height: 208px;
+        margin-top: 20px;
+        padding: 25px;
+        transform: translate(0%, -15%);
+    }
+
+    .innoventa-cards-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .innoventa-card-image{
+        width: 26px;
+        height: 26px;
+    }
+
+    .innoventa-card-title{
+        margin-top: 20px;
+        font-size: 16px;
+        text-align: left;
+        font-weight: 600;
+        color: #02033B;
+        font-family: 'Open Sans';
+    }
+
+    .innoventa-card-description{
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Open Sans';
+        color: #212529;
+        margin-top: 30px;
+        
+    }
+}

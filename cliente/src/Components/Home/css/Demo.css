@@ -47,6 +47,11 @@
 .btn-demo:hover{
   background-color: #91d1f1;
 }
+
+.fondo-oscuro {
+  filter: brightness(0.5); 
+  transition: filter 0.3s ease; 
+}
   
 .image-section img {
   width: 480px;
@@ -62,6 +67,19 @@
 
 .demo-text{
   padding-top: 25px;
+}
+
+
+.custom-modal-demo .modal-content {
+  background: transparent; 
+  border: none; 
+  box-shadow: none;
+  margin-left: -235px;
+}
+
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.9); 
 }
 
 /*Responsivo*/

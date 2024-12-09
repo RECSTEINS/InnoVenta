@@ -17,7 +17,7 @@ import card6mobile from '../../Assets/Img_Home/card6-mobile.jpg';
  
 function Resenas(){
     return(
-        <div class="fondo-resenas">
+        <div class="fondo-resenas" id='resenas'>
             <h2 class="section-title-resenas">Lea las reseñas que han dejado los usuarios del sistema InnoVenta</h2>
                 <div class="row resenas">
                 <div class="col-md-4 col-12 d-none d-md-block card-resena-completa">

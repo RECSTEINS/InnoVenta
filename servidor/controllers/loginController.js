@@ -51,3 +51,37 @@ module.exports.usuarios_login = (req, res) => {
         res.status(200).json(results);            
         });
 };
+
+module.exports.updatePassword = (req, res) => {
+    const { usuario_nombre, nueva_password } = req.body;
+
+
+    if (!usuario_nombre || !nueva_password) {
+        return res.status(400).send({ message: "Usuario y nueva contraseña son obligatorios." });
+    }
+
+    const updateQuery = `
+        UPDATE usuarios
+        SET usuario_password = ?
+        WHERE usuario_nombre = ?
+    ;`;
+
+    try {
+        connection.query(updateQuery, [nueva_password, usuario_nombre], (err, result) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send({ message: "Error al actualizar la contraseña." });
+                return;
+            }
+
+            if (result.affectedRows > 0) {
+                res.status(200).send({ message: "Contraseña actualizada con éxito." });
+            } else {
+                res.status(404).send({ message: "Usuario no encontrado." });
+            }
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).send({ message: "Error en el servidor." });
+    }
+};

@@ -48,7 +48,8 @@
 }
 
 .categorias button {
-    padding: 5px 0px;
+    padding: 10px 10px;
+    text-align: center; 
     border: none;
     border-radius: 8px;
     background-color: #ffcc00;
@@ -61,6 +62,10 @@
     text-align: start;
     padding-left: 16px;
     color: #030E1F;
+}
+
+.categorias-btn{
+    text-align: center;
 }
 
 .lista-platillos {

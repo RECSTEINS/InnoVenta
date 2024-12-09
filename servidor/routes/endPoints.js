@@ -1,6 +1,6 @@
 const express=require("express")
 const router = express.Router()
-const { login, usuarios_login } = require("../controllers/loginController")
+const { login, usuarios_login, updatePassword } = require("../controllers/loginController")
 const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../controllers/rolesController");
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
 const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, agregarEmpleado} = require("../controllers/empleadoController");
@@ -17,6 +17,7 @@ const { getReportes, getProductosBajoStock, getPlatillosMasVendidos } = require(
 //Login
 router.post('/login', login);
 router.get('/login-list', usuarios_login);
+router.post('/login-update', updatePassword);
 
 //Roles 
 router.get('/getRoles', getRoles);

@@ -10,7 +10,7 @@ function RolesPanel() {
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [mostrarAddEmpleado, setMostrarAddEmpleado] = useState(false);
-    const [editarRolId, setEditarRolId] = useState(null); // Nuevo estado para ID del rol a editar
+    const [editarRolId, setEditarRolId] = useState(null); 
     const [visibleColumns, setVisibleColumns] = useState([
         "Nombre",
         "Apellido",
@@ -86,7 +86,7 @@ function RolesPanel() {
                 <div style={{ display: "flex", gap: "10px" }}>
                     <button
                         className="edit-btn-button"
-                        onClick={() => setEditarRolId(row.pk_rol)} // Abre la vista de edición
+                        onClick={() => setEditarRolId(row.pk_rol)}
                     >
                         Editar
                     </button>

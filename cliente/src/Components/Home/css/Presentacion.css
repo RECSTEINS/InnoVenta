@@ -76,15 +76,28 @@
 }
 
 .btn-warnings{
-  background-color: #FFC700;
+  background-color: #FFC40C;
   border-radius: 40px;
   font-family: 'Open Sans';
   font-weight: 700;
   color: #000000;
   font-size: 24px;
-  height: 60px;
-  width: 260px;
+  height: 64px;
+  width: 272px;
 }
+
+.btn-warnings-2{
+  border: #FFC40C 4px solid;
+  border-radius: 40px;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  color: #000000;
+  font-size: 24px;
+  height: 64px;
+  width: 272px;
+  margin-left: 40px;
+}
+
 
 .btn-warnings:hover{
   background-color: #f0bc00;

@@ -5,7 +5,7 @@ import logo from '../../Assets/Img_Home/footer-mobile.png'
 
 function Footer(){
     return(
-        <footer class="footer ">
+        <footer class="footer " id='footer'>
             <div class="container py-5 prueba-footer">
                 <div class="row mx-md-5 mx-5">
                     <div class="col-12 d-md-none">

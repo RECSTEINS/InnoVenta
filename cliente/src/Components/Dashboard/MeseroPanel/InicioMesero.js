@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/Inicio.css";
+import "./css/InicioMesero.css";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
@@ -64,7 +64,7 @@ function InicioAdmin(){
 
                        
                         <li className="nav-item ">
-                            <Link to="/login" className="nav-link cerrar-sesion-dashboard">
+                            <Link to="/login" className="nav-link cerrar-sesion-dashboard-mesero">
                             <i className="bi bi-box-arrow-right   icono-dash"></i> Cerrar sesión
                             </Link>
                         </li>
@@ -75,7 +75,7 @@ function InicioAdmin(){
                 <div className="col-9 ">
                     {/* Barra Superior */}
                     <div className="d-flex  align-items-end  text-white py-2 px-4 barra-superior-dashboard">
-                        <p className="rol-dashboard">Administrador</p>
+                        <p className="rol-dashboard-mesero">Mesero</p>
                     </div>
 
                     {/* Contenido Dinámico */}

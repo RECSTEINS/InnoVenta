@@ -66,11 +66,11 @@
     margin-top: 5px;
 }
 
-.input-boton{
-    width: 464px;
+.input-boton-login{
+    width: 500px;
     height: 56px;
     margin-top: 26px;
-    margin-left: 150px;
+    margin-left: 250px;
     flex-shrink: 0;
     border-radius: 50px;
     background-color: #070C33;

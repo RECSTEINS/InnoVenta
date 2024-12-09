@@ -4,10 +4,12 @@ import { Button } from 'bootstrap';
 import imagen1 from "../../Assets/Img_Home/imagen1_editada_presentacion.JPG"
 import imagen2 from "../../Assets/Img_Home/imagen2_editada.JPG"
 import imagen3 from "../../Assets/Img_Home/presentacion-imagen.jpg"
-
+import { Link as ScrollLink } from 'react-scroll';
 import imagen1mobile from "../../Assets/Img_Home/presentacion-mobile.jpg"
 import imagen2mobile from "../../Assets/Img_Home/presentacion-mobile2.jpg"
 import imagen3mobile from "../../Assets/Img_Home/presentacion-mobile3.jpg"
+import { Link } from 'react-router-dom';
+
 
 function Presentacion(){
 
@@ -26,7 +28,18 @@ function Presentacion(){
                         <p class="presentacion-text d-md-none d-md-block">InnoVenta: Gestión que se adapta, resultados que crecen.</p>
                         
                         <p class="presentacion-subtext1 ">La solución definitiva para restaurantes: controla ventas,<br/> automatiza pago, gestiona inventarios y accede a reportes.</p>
-                        <button class="btn btn-warnings" onClick={handleOpenMenus}>Obtén Membresía</button>
+                        
+                        <Link to={"/login"}>
+                            <button class="btn btn-warnings" onClick={handleOpenMenus}>Probar Gratis Ahora</button>
+                        </Link>
+                        
+                        <ScrollLink
+                            to="footer"
+                            smooth={true}
+                            duration={1500}
+                        >
+                            <button class="btn btn-warnings-2" onClick={handleOpenMenus}>Contáctanos</button>
+                        </ScrollLink>
                     </div>
                     <div class="col-md-5 col-12">
                         <div class="image-grid">                  

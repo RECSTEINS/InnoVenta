@@ -28,11 +28,11 @@ const getEmpleadoId= (request, response) => {
 
 const updateEmpleado = (request, response) => {
     const id = request.params.id;
-    const { nombre, apellido, edad, email, telefono, direccion, rfc, nss} = request.body;
+    const { nombre, apellido, edad, genero, email, telefono, direccion, rfc, nss} = request.body;
 
     connection.query(
-        "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ? WHERE pk_empleado = ?",
-        [nombre, apellido, edad, email, telefono, direccion, rfc, nss, id],
+        "UPDATE empleados SET empleado_nombre = ?, empleado_apellido = ?, empleado_edad = ?, empleado_genero = ?,empleado_email = ?, empleado_telefono = ?, empleado_direccion = ?, empleado_rfc = ?, empleado_nss = ? WHERE pk_empleado = ?",
+        [nombre, apellido, edad, genero, email, telefono, direccion, rfc, nss, id],
         (error, results) => {
             if (error) {
                 console.error("Error al actualizar el empleado:", error);
