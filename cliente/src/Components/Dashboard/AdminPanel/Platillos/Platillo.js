@@ -87,12 +87,7 @@ function PlatillosPanel(){
             name: 'Opciones',
             cell: row => (
                 <div style={{ display:'flex', gap:'10px'}}>
-                    <button
-                        className='edit-btn-button'
-                        onClick={() => console.log('Editar clickeado', row.id)}
-                    >
-                        Editar
-                    </button>
+                    
                     <button
                         className='delete-btn-button'
                         onClick={() => mostrarAlerta(row.id)}

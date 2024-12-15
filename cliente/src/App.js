@@ -17,7 +17,7 @@ import Nosotros from "./Components/Home/Nosotros";
 import Nosotros2 from "./Components/Home/Nosotros2";
 
 import UpdatePassword from "./Components/Login/UpdatePassword";
-import Descuentos from "./Components/Home/Descuentos";
+import Tarjeta from "./Components/Home/Tarjeta";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Demo/>
         <Planes/>
         {/*<Formulario/>*/}
-        <Elite/>
+       
         <Casos/>
         <Resenas/>
         <Footer/>

@@ -1,4 +1,4 @@
-import './css_Ordenes/ordenes_ventas.css';
+
 import React, { useEffect, useState} from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';

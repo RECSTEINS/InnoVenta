@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Open+Sans:wght@400;700&display=swap');
 
 .sales-section {
-  background-color: rgba(237, 236, 244, 1);
+  background-color: #EDECF4;
   display: flex;
   align-items: center;
   gap: 56px;
@@ -9,6 +9,8 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 73px 252px;
+  padding-right: 255px;
+  padding-left: 255px;
 }
 
 .header-content {

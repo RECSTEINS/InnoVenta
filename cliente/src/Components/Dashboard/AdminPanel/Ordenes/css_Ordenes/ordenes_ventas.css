@@ -48,7 +48,7 @@
 }
 
 .categorias button {
-    padding: 10px 10px;
+    
     text-align: center; 
     border: none;
     border-radius: 8px;
@@ -60,7 +60,7 @@
     font-weight: 300;
     font-size: 20px;
     text-align: start;
-    padding-left: 16px;
+    padding-left: 66px;
     color: #030E1F;
 }
 
@@ -248,14 +248,24 @@
 
 .carrito-btn-minus{
     color: #FF0000;
-    opacity: 80%;
+    opacity: 50%;
     cursor: pointer;
 }
 
 .carrito-btn-plus{
     color: #2D9E45;
-    opacity: 80%;
+    opacity: 50%;
     cursor: pointer;
+}
+
+.carrito-btn-plus:hover{
+    opacity: 80%;
+    transition: 0.5s ease;
+}
+
+.carrito-btn-minus:hover{
+    opacity: 80%;
+    transition: 0.5s ease;
 }
 
 .carrito-item-number{
@@ -278,7 +288,7 @@
     font-weight: 700;
 }
 
-.custom-modal-header {
+.custom-modal-headers {
     background-color: #4CAF50;
     color: white;
     display: flex;
@@ -287,11 +297,11 @@
     border-bottom: none;
 }
 
-.custom-modal-header .bi {
+.custom-modal-headers .bi {
     margin-right: 10px;
 }
 
-.custom-modal-body {
+.custom-modal-bodys {
     padding: 20px;
     font-family: 'Roboto', sans-serif;
 }
@@ -337,6 +347,12 @@
     display: flex;
     justify-content: center;
     padding: 15px;
+
+}
+
+.custom--modals{
+    z-index: 1000000000;
+    background-color: #1E4A77;
 }
 
 .btn-close-modal {
@@ -368,3 +384,5 @@
     border-radius: 5px;
     margin-top: -20px;
 }
+
+

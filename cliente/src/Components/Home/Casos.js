@@ -4,6 +4,7 @@ import './css/Casos.css';
 import imagen13 from '../../Assets/Img_Home/caso2-editada.JPG';
 import imagen7 from '../../Assets/Img_Home/caso1-editada.JPG';
 import imagen14 from '../../Assets/Img_Home/caso3-editada.JPG';
+import { Link } from 'react-router-dom';
  
 function Casos(){
     return(
@@ -62,8 +63,9 @@ function Casos(){
                             </div>
                         </div>
                     </div>
-
+                    <Link to={"/pagosTarjeta"}>
                     <button class="btn btn-warning-caso mt-4">Membresía</button>
+                    </Link>
                 </div>
             </div>
         </div>

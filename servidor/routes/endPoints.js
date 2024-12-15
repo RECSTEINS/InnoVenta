@@ -5,7 +5,7 @@ const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../c
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
 const { getEmpleados, getEmpleadoId, updateEmpleado, postEmpleado, delEmpleado, agregarEmpleado} = require("../controllers/empleadoController");
 const { getRestaurantes, getRestauranteId, updateRestaurante, postRestaurante, delRestaurante} = require("../controllers/restauranteController");
-const { getInventario, agregarProducto, eliminarProducto, getProductos } =require("../controllers/inventarioController");
+const { getInventario, getProductoId ,agregarProducto, eliminarProducto, getProductos, editarProducto } =require("../controllers/inventarioController");
 const { agregarCategoria, getCategorias } = require("../controllers/categoriaController");
 const { agregarPlatillo, getPlatillos, eliminarPlatillo } = require("../controllers/platilloController");
 const { CrearPedido, getPedidosEnProceso, updatePedidoEstado, getPedidosListo } = require("../controllers/pedidoController")
@@ -57,7 +57,8 @@ router.get('/getInventario', getInventario);
 router.get('/get-productos-nombre', getProductos);
 router.post('/agregar-producto', agregarProducto);
 router.delete('/eliminar-producto/:id', eliminarProducto);
-
+router.get('/get-producto-id/:id', getProductoId);
+router.post('/updateProducto/:id', editarProducto)
 
 //Categoria
 router.post('/agregar-categoria', agregarCategoria);

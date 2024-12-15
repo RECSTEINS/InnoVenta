@@ -19,7 +19,7 @@ function Presentacion(){
 
     return(
         <div class="presentacion-fondo">
-            <div class="container">
+            <div class="container mx-[252px]">
                 <div class="row align-items-center mx-md-3">        
                     <div class="col-md-7 col-12 text-left">
                         <p class="display-4 presentacion-title prueba ">Gestiona tu negocio como<br/>un profesional.</p>

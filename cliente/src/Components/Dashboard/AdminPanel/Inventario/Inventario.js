@@ -1,176 +1,211 @@
-import DataTable from 'react-data-table-component';
-import './css_Inventario/Inventario.css';
 import React, { useEffect, useState } from 'react';
-import ClientAxios from '../../../../Config/axios';
 import Swal from 'sweetalert2';
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import DataTable from 'react-data-table-component';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './css_Inventario/Inventario.css';
+import ClientAxios from '../../../../Config/axios';
+import EditarProducto from './EditarProducto';
 import AgregarProducto from './AgregarProducto';
+import { data } from 'react-router-dom';
 
-function InventarioPanel(){
-    
+function InventarioPanel() {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [mostrarAddProducto, setMostrarAddProducto] = useState(false);
+    const [mostrarEditarProducto, setMostrarEditarProducto] = useState(false);
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-    const URL = 'http://localhost:7777/getInventario'
+    const URL = 'http://localhost:7777/getInventario';
 
     const showData = async () => {
         const response = await fetch(URL);
         const data = await response.json();
         setProducts(data);
-        setFilteredProducts(data)
-    }
+        setFilteredProducts(data);
+    };
 
-    const deleteProduct = async (id) =>{
+    const fetchProductoById = async (id) => {
         try {
-            await ClientAxios.delete(`/eliminar-producto/${id}`);
-            const updateProducts = products.filter(row => row.pk_productos !== id);
-            setProducts(updateProducts);
-            setFilteredProducts(updateProducts);
-        } catch(error){
-            console.error("Error al eliminar el producto: ", error);
-            alert("Error al eliminar el producto")
+            const response = await fetch(`http://localhost:7777/get-producto-id/${id}`);
+            const data = await response.json();
+            if (data.length > 0) {
+                setProductoSeleccionado(data[0]); // Selecciona el primer elemento
+                setMostrarEditarProducto(true); // Muestra el modal
+            } else {
+                Swal.fire('Error', 'No se encontró el producto.', 'error');
+            }
+        } catch (error) {
+            console.error('Error al obtener producto:', error);
+            Swal.fire('Error', 'No se pudo cargar el producto. Inténtalo nuevamente.', 'error');
         }
     };
 
-    const mostrarAlerta = (id) =>{
-        Swal.fire({
-            title: 'Advertencia',
-            text: '¿Está seguro que desea eliminar este producto?',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar',
-            showCancelButton: true,
-            cancelButtonColor: "Red",
-            cancelButtonText: "Cancelar" 
-        }).then(response => {
-            if(response.isConfirmed){
-                deleteProduct(id);
-                Swal.fire('Éxito', 'El producto se eliminó correctamente.', 'success');
-            }
-        });
-    }
+    const deleteProduct = async (id) => {
+        try {
+            await ClientAxios.delete(`/eliminar-producto/${id}`);
+            const updateProducts = products.filter((row) => row.pk_productos !== id);
+            setProducts(updateProducts);
+            setFilteredProducts(updateProducts);
+            Swal.fire('Éxito', 'El producto se eliminó correctamente.', 'success');
+        } catch (error) {
+            console.error('Error al eliminar el producto: ', error);
+            Swal.fire('Error', 'No se pudo eliminar el producto.', 'error');
+        }
+    };
+
+    const addProduct = async (newProduct) => {
+        try {
+            const response = await ClientAxios.post('/agregar-producto', newProduct);
+            setProducts([...products, response.data]);
+            setFilteredProducts([...filteredProducts, response.data]);
+            Swal.fire('Éxito', 'Producto agregado correctamente.', 'success');
+            setMostrarAddProducto(false);
+        } catch (error) {
+            console.error('Error al agregar producto:', error);
+            Swal.fire('Error', 'No se pudo agregar el producto.', 'error');
+        }
+    };
 
     const columns = [
         {
             name: 'ID',
-            selector: row => row.pk_productos,
+            selector: (row) => row.pk_productos,
             sortable: true,
-            width:'90px',
         },
         {
-            name:'Nombre del producto',
-            selector: row => row.producto_nombre,
+            name: 'Nombre del producto',
+            selector: (row) => row.producto_nombre,
             sortable: true,
-            grow: 2,
-            center: true,
-            width:'400px',
-            cell: row => (
-                <>
-                    {row.producto_nombre}{' '}
-                    {row.producto_stock <= row.producto_minimo_stock && (
-                        <div className='stock-bajo-row'>
-                            <i
-                            className="bi bi-exclamation-octagon"
-                            style={{
-                                color: '#FFC700',
-                                marginLeft: '8px',
-                                fontSize: '18px',
-                            }}
-                            title="Stock bajo"
-                            ></i>
-                        </div>
-                    )}
-                </>
-            ),
         },
         {
             name: 'Cantidad disponible',
-            selector: row => row.producto_stock,
+            selector: (row) => row.producto_stock,
             sortable: true,
-            center: true,
-            width:'275px',
-        },
-        {
-            name: 'Stock mínimo',
-            selector: row => row.producto_minimo_stock,
-            center: true,
-            width: '181px',
         },
         {
             name: 'Opciones',
-            cell: row => (
-                <div style={{ display:'flex', gap:'10px'}}>
+            cell: (row) => (
+                <div style={{ display: 'flex', gap: '10px' }}>
                     <button
-                        className='edit-btn-button'
-                        onClick={""}
+                        className="edit-btn-button"
+                        onClick={() => fetchProductoById(row.pk_productos)}
                     >
                         Editar
                     </button>
                     <button
-                        className='delete-btn-button'
-                        onClick={() => mostrarAlerta(row.pk_productos)}
+                        className="delete-btn-button"
+                        onClick={() => deleteProduct(row.pk_productos)}
                     >
                         Eliminar
                     </button>
                 </div>
             ),
-            center: true,
-            ignoreRowClick: true,
-            allowOverflow: true,
-            
-            //button: true,
         },
-    ]
+    ];
 
     useEffect(() => {
         showData();
     }, [products]);
 
-    return(
-        <div className='inventario-panel'>
-            {!mostrarAddProducto ? (
-                <>
-                    <div className='header-inventario'>
-                        <p className='titulo-dashboard-panel'>Inventario de productos</p>
-                        <button
-                            className='add-btn-button'
-                            onClick={() => setMostrarAddProducto(true)}
-                        >
-                            Agregar nuevo producto
+    const handleCloseModal = () => {
+        setMostrarEditarProducto(false);
+        setProductoSeleccionado(null);
+    };
+
+    
+
+    return (
+        <div className="inventario-panel">
+            <div className="header-inventario">
+                <p className="titulo-dashboard-panel">Inventario de productos</p>
+                <button
+                    className="add-btn-button"
+                    onClick={() => setMostrarAddProducto(true)}
+                >
+                    Agregar nuevo producto
+                </button>
+            </div>
+            <DataTable
+                columns={columns}
+                data={filteredProducts}
+                pagination
+                paginationPerPage={9}
+                highlightOnHover
+                responsive
+                conditionalRowStyles={[
+                    {
+                        when: (row) => row.producto_stock <= row.producto_minimo_stock,
+                        style: {
+                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                            color: '#FFC700',
+                            fontWeight: 'bold',
+                        },
+                    },
+                ]}
+                customStyles={{
+                    headRow: {
+                        style: {
+                            borderTopLeftRadius: '20px',
+                            borderTopRightRadius: '20px',
+                            border: 'none',
+                        },
+                    },
+                    table: {
+                        style: {
+                            border: '1.5px #070C33 solid',
+                            height: '783px',
+                            borderRadius: '20px',
+                            backgroundColor: '#070C33',
+                        },
+                    },
+                    headCells: {
+                        style: {
+                            backgroundColor: '#FFFFF',
+                            color: '#00000',
+                            fontWeight: '700',
+                            fontFamily: 'Roboto',
+                            fontSize: '24px',
+                        },
+                    },
+                    rows: {
+                        style: {
+                            fontSize: '24px',
+                            fontWeight: '400',
+                            fontFamily: 'Roboto',
+                            paddingTop: '16px',
+                            paddingBottom: '16px',
+                        },
+                    },
+                }}
+            />
+            {mostrarEditarProducto && (
+                <div className="modal">
+                    <div className="modal-content-edit">
+                        <EditarProducto
+                            productoSeleccionado={productoSeleccionado}
+                            onRegresar={handleCloseModal}
+                        />
+                        <button className="close-modal" onClick={handleCloseModal}>
+                            Cerrar
                         </button>
                     </div>
-                    <DataTable
-                        columns={columns}
-                        data={filteredProducts}
-                        pagination
-                        paginationPerPage={9}
-                        highlightOnHover
-                        responsive
-                        conditionalRowStyles={[
-                            {
-                                when: row => row.producto_stock <= row.producto_minimo_stock,
-                                style:{
-                                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                                    color: '#FFC700',
-                                    fontWeight: 'bold'
-                                },
-                            },
-                        ]}
-                        customStyles={{
-                            headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '783px', borderRadius: '20px', backgroundColor: '#070C33'}},
-                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}},
-                            rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}  
-                        }}
-                    />
-                </>
-            ): (
-                <div className='agregar-producto-panel'>
-                    <AgregarProducto onRegresar={() => setMostrarAddProducto(false)}/>
+                </div>
+            )}
+            {mostrarAddProducto && (
+                <div className="modal">
+                    <div className="modal-content-edit">
+                        <AgregarProducto onAgregar={addProduct} onRegresar={() => setMostrarAddProducto(false)} />
+                        <button
+                            className="close-modal"
+                            onClick={() => setMostrarAddProducto(false)}
+                        >
+                            Cerrar
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default InventarioPanel;

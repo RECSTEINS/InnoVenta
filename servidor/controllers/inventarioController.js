@@ -25,6 +25,17 @@ const getProductos = (request, response) => {
     )
 }
 
+const getProductoId = (request, response) => {
+    const id = request.params.id;
+    connection.query("SELECT * FROM productos WHERE pk_productos = ?",
+    [id],
+    (error, results)=>{
+        if(error)
+            throw error;
+        response.status(200).json(results);
+    });
+};
+
 const agregarProducto = (request, response) =>{
     const {nombre, stock, stock_minimo, fecha_actualizado} = request.body;
 
@@ -59,4 +70,30 @@ const eliminarProducto = (request, response)=>{
     });
 }
 
-module.exports = {getInventario, agregarProducto, eliminarProducto, getProductos}
+const editarProducto = (request, response) => {
+    const { id } = request.params; // ID del producto a editar
+    const { nombre, stock, stock_minimo} = request.body;
+
+   
+
+    // Consulta SQL para actualizar el producto
+    connection.query(
+        "UPDATE productos SET producto_nombre = ?, producto_stock = ?, producto_minimo_stock = ? WHERE pk_productos = ?",
+        [nombre, stock, stock_minimo, id],
+        (error, results) => {
+            if (error) {
+                console.error("Error al editar el producto: ", error);
+                return response.status(500).json({ error: "Error interno del servidor." });
+            }
+
+            // Verificar si se actualizó algún registro
+            if (results.affectedRows > 0) {
+                response.status(200).json({ message: "Producto actualizado correctamente." });
+            } else {
+                response.status(404).json({ error: "Producto no encontrado." });
+            }
+        }
+    );
+};
+
+module.exports = {getInventario, agregarProducto, eliminarProducto, getProductos, getProductoId, editarProducto}

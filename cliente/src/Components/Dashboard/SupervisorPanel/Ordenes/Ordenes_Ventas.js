@@ -1,4 +1,4 @@
-import './css_Ordenes/ordenes_ventas.css';
+
 import React, { useEffect, useState} from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
@@ -323,7 +323,7 @@ function OrdenesVentasPanel(){
 
 
             {/*MODAL, AQUI YA LO USAMOS*/}
-            <Modal show={showModal} onHide={handleClose} centered className="custom-modal">
+            <Modal show={showModal} onHide={handleClose} centered className="custom-modals">
             <Modal.Header closeButton className="custom-modal-header">
                 <Modal.Title>
                     <i className="bi bi-receipt-cutoff"></i> Detalles del Pedido

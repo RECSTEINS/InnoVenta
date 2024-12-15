@@ -1,0 +1,154 @@
+.popup-container {
+    display: flex;
+    width: 1080px;
+    height: 560px;
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+  
+  .fondo-oscuro {
+    filter: brightness(0.5); 
+    transition: filter 0.3s ease; 
+  }
+  
+  .promo-section {
+    width: 475px; 
+    height: 100%; 
+    background: url('../../../Assets/Img_Home_new/Rectangle\ 22617.png') no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .promo-section .coupon-code {
+    background-color: #CA2020;
+    color: #fff;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-family: 'Open Sans';
+    font-style: italic;
+  }
+  
+  .modal-nuevo{
+    font-family: 'Oswald';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.71px;
+  }
+  
+  .coupon-title{
+    font-family: 'Oswald';
+    font-size: 36px;
+    font-weight: 700;
+  }
+  
+  .promo-section h2 {
+    font-size: 28px;
+    margin: 10px 0;
+  }
+  
+  .promo-section .discount-percentage {
+    font-size: 96px;
+    font-weight: 400;
+    font-family: 'Oswald';
+    margin: 10px 0;
+  }
+  
+  .promo-section .discount-description {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Oswald';
+    line-height: 29.64px;
+    margin-bottom: 20px;
+  }
+  
+  .promo-section img {
+    margin-top: 20px;
+    width: 266px; 
+    height: 72px; 
+  }
+  
+  .content-section {
+    flex: 1;
+    padding: 20px; 
+    background-color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+  }
+  
+  .content-section h1 {
+    font-family: 'Oswald', sans-serif; 
+    font-size: 32px; 
+    font-weight: 700; 
+    color: #070c33;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-align: left; 
+  }
+  
+  .content-section h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #A30120;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-align: left; 
+  }
+  
+  .content-section p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #05041e;
+    margin-bottom: 16px;
+    text-align: left; 
+  }
+  
+  .content-section .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alineación hacia la derecha */
+    margin-top: 16px; /* Solo 16px debajo del contenido superior */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  }
+  
+  .content-section .expiry-date {
+    font-size: 16px;
+    margin-top: 20px;
+    font-family: 'Open Sans';
+    color: #212529;
+    margin-right: 20px; 
+    font-style: italic;
+    font-weight: 600;
+  }
+  
+  .content-section .cta-button-2 {
+    display: inline-block;
+    width: 208px; 
+    height: 64px; 
+    line-height: 64px;
+    background-color: #ffc40c;
+    color: #000;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: 'Open Sans';
+  }
+  
+  .content-section .cta-button-2:hover {
+    background-color: #e0a800;
+  }

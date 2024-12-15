@@ -24,8 +24,10 @@ const NavBar = () => {
     };
 
     return (
-        <header>
+        <header className='mx-[252px]'>
+            <Link to={"/"}>
             <img className="logo" src={Logo2} alt="InnoVenta Logo" />
+            </Link>
             <button id="abrir" className="abrir-menu" onClick={handleOpenMenu}>
                 <i className="bi bi-list"></i>
             </button>

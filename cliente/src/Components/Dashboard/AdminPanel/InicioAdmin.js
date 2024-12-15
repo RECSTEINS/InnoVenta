@@ -15,6 +15,7 @@ import ReportePanel from "./Reports/Reporte.js";
 import RolesPanel from "./Roles/roles.js";
 
 import Graficas from "./graficas.js";
+import InicioDefault from "./InicioDefault.js";
 
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
@@ -66,6 +67,10 @@ function InicioAdmin(){
             case "roles":
                 return  <div>
                             <RolesPanel/>
+                        </div>
+            default :
+                return <div>
+                            <InicioDefault/>
                         </div>
         }
     }

@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'; // Importa Firebase Auth
+import Swal from 'sweetalert2';
 import NavBar from '../Home/Navbar';
 import Footer from '../Home/Footer';
 import Logo from './logo-login.png';
 import "./Login.css";
-import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin"
+import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin";
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -40,18 +40,24 @@ function Login() {
             const response = await fetch('http://localhost:7777/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     email: email,
-                    password: password
-                })
+                    password: password,
+                }),
             });
 
             const result = await response.json();
 
             if (response.status === 200) {
                 const userRol = result.rol;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Inicio de sesión exitoso.',
+                });
 
                 if (userRol === 'Administrador') {
                     goTo('/dashboardAdmin');
@@ -63,15 +69,21 @@ function Login() {
                     goTo('/dashboardMesero');
                 }
             } else {
-                console.error(result.message);
-                alert(result.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.message,
+                });
             }
         } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al iniciar sesión. Por favor, intenta nuevamente.',
+            });
             console.error("Error al iniciar sesión: ", error);
         }
     };
-
-    
 
     return (
         <>

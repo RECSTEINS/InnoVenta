@@ -38,7 +38,7 @@ function EditarEmpleado({ empleadoSeleccionado, onRegresar }) {
         }
     }, [empleadoSeleccionado]);
     
-      // Manejar cambios en los campos
+   
       const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -50,7 +50,7 @@ function EditarEmpleado({ empleadoSeleccionado, onRegresar }) {
       const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const empleadoId = empleadoSeleccionado[0]?.pk_empleado; // Asegúrate de que esto esté definido
+        const empleadoId = empleadoSeleccionado[0]?.pk_empleado; 
 
         if (!empleadoId) {
             console.error("Empleado no tiene ID.");
@@ -72,9 +72,9 @@ function EditarEmpleado({ empleadoSeleccionado, onRegresar }) {
         });
       
         try {
-            // Enviar datos actualizados al servidor
+            
             const response = await fetch(
-                `http://localhost:7777/updateEmpleado/${empleadoId}`, // Usar empleadoId correctamente
+                `http://localhost:7777/updateEmpleado/${empleadoId}`, 
                 {
                     method: "POST",
                     headers: {

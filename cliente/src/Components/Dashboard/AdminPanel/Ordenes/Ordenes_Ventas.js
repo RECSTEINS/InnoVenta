@@ -323,13 +323,16 @@ function OrdenesVentasPanel(){
 
 
             {/*MODAL, AQUI YA LO USAMOS*/}
-            <Modal show={showModal} onHide={handleClose} centered className="custom-modal">
-            <Modal.Header closeButton className="custom-modal-header">
+            <Modal show={showModal} onHide={handleClose} centered className="custom-modals"
+                
+    backdrop="true"
+            >
+            <Modal.Header closeButton className="custom-modal-headers" >
                 <Modal.Title>
                     <i className="bi bi-receipt-cutoff"></i> Detalles del Pedido
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className="custom-modal-body">
+            <Modal.Body className="custom-modal-bodys">
                 {ordenSeleccionada ? (
                     <div>
                         <p><strong>Orden N°:</strong> {ordenSeleccionada.numero}</p>

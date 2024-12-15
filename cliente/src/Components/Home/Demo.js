@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "./css/Demo.css";
 import imagen3 from "../../Assets/Img_Home/Demo.jpg";
-import Descuentos from "./Descuentos";
+import Descuentos from "./Descuentros.js";
 
 function Demo() {
     const [showModal, setShowModal] = useState(false);

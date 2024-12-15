@@ -1,4 +1,4 @@
-import './css_Pago/pagos.css';
+
 import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png';
 import axios from 'axios';
@@ -236,7 +236,7 @@ function PagosPanel() {
                     <p className="pagos-caja">Caja: 2</p>
                     <div className="pagos-panel">
                     <p className='panel-ordenes-title'>Órdenes Listas</p>
-                    <button className="btn-gerenciales">Opciones Gerenciales</button>
+                   
                         <div className="panel-ordenes-listo-pago">
                             <CardOrdenes
                                 ordenes={ordenesListas}

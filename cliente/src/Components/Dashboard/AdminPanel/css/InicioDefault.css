@@ -1,0 +1,120 @@
+.card {
+    border: none;
+    border-radius: 12px;
+}
+.card-title-default {
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+.columna-default{
+    width: 400px;
+    height: 280.5px;
+}
+
+.columna-default-2{
+    width: 400px;
+    height: 280.5px;
+    margin-left: 30px;
+}
+
+.btn-comenzar-default {
+    background-color: #FFC700;
+    border: none;
+    width: 266px;
+    height: 64px;
+    border-radius: 40px;
+    font-size: 24px;
+    color: #000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    line-height: 32.68px;
+    padding: 10px 20px;
+    transform: translateY(90%);
+}
+.btn-comenzar-default:hover {
+    background-color: #E6A700;
+}
+.logo-default {
+    font-size: 80px;
+
+    transform: translateY(5%);
+    color: #070C33;
+}
+.icon-default{
+    width: 80px;
+    height: 80px;
+    margin-top: 50px;
+    color: #070C33;
+}
+
+.default-container{
+    background-color: #030E1F;
+    margin-top: 70px;
+    width: 1112px;
+    height: 1192px;
+    border-radius: 24px;
+}
+
+.pao{
+    padding-top: 30px;
+}
+
+.default-informacion{
+    margin-top: 20px;
+}
+
+.logo-default{
+    width: 276px;
+    height: 138px;
+    margin-top: -240px;
+}
+
+.default-title{
+    color: #ffffff;
+    font-family: 'Oswald';
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 71.14px;
+    margin-top: -50px;
+}
+
+.default-subtitle{
+    font-family: 'Open Sans';
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 43.58px;
+}
+
+.card-default{
+    width: 400px;
+    height: 200px;
+    background-color: #C1EAE4;
+    border-radius: 16px;
+}
+
+.card-default-3{
+    width: 400px;
+    height: 200px;
+    background-color: #E8D4ED;
+    border-radius: 16px;
+}
+
+.card-default2{
+    width: 400px;
+    height: 200px;
+    background-color: #BDE5F9;
+    border-radius: 16px;
+    margin-top: 35px;
+}
+
+.card-default4{
+    width: 400px;
+    height: 200px;
+    background-color: #FFE2DE;
+    border-radius: 16px;
+}

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'bootstrap';
 import './css/Planes.css';
+import { Link } from 'react-router-dom';
 
 function Planes(){
     return(
@@ -28,7 +29,9 @@ function Planes(){
                                 <li class="plan-list d-flex"><div class="col-10">Reportes básicos de ventas</div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 <li class="plan-list d-flex"><div class="col-10">Actualización manual de<br/>productos</div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>                               
                                 <div>
-                                    <a href="#" class="btn custom-btn">Comenzar</a>
+                                    <Link to={"/login"}>
+                                    <a class="btn custom-btn">Comenzar</a>
+                                    </Link>
                                 </div>
                             </ul>
                         </div>
@@ -52,7 +55,9 @@ function Planes(){
                                 <li class="plan-list d-flex"><div class="col-10">Modificación rápida de<br/>precios y promociones</div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 
                                 <div>
-                                    <a href="#" class="btn custom-btn">Membresía</a>
+                                    <Link to={"/pagosTarjeta"}>
+                                    <a class="btn custom-btn">Membresía</a>
+                                    </Link>
                                 </div>
                             </ul>
                         </div>
@@ -75,7 +80,9 @@ function Planes(){
                                 <li class="plan-list d-flex"><div class="col-10">Integración avanzada<br/><p class="plan-list-subtext">Opciones de Integración con otros sistemas de ventas o inventario</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 <li class="plan-list d-flex"><div class="col-10">Soporte exclusivo<br/><p class="plan-list-subtext">Atención personalizada para implementarfunciones adicionales</p></div><div class="col-2"><i class="bi bi-check-lg icon-check-plan mt-5"></i></div></li>
                                 <div>
-                                    <a href="#" class="btn custom-btn">Membresía</a>
+                                    <Link to={"/pagosTarjeta"}> 
+                                        <a class="btn custom-btn">Membresía</a>
+                                    </Link>
                                 </div>
                             </ul>
                         </div>

@@ -162,3 +162,11 @@
 .separacion-botones{
     margin-right: 112px;
 }
+
+.editar-producto-panel {
+    border: 2px solid red;
+    padding: 20px;
+    background-color: white;
+    z-index: 1000;
+    position: relative;
+}

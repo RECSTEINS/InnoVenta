@@ -78,18 +78,17 @@ function FormularioAgregarPlatillo() {
     const formData = new FormData();
     formData.append("image", file);
 
-    // Subir la imagen al servidor
+
     axios
       .post("http://localhost:7777/upload-image", formData)
       .then((response) => {
-        setImg(response.data.url); // Guarda la URL de la imagen en lugar de la base64
+        setImg(response.data.url); 
       })
       .catch((error) => {
         console.error("Error al subir la imagen:", error);
       });
   };
 
-  // Mueve la llamada al hook useDropzone fuera de manejarEnvio
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: manejarDrop,
     accept: 'image/*',

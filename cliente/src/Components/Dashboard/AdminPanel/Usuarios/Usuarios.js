@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react';
 import './css_Usuario/Usuario.css';
 import AgregarUsuario from './AgregarUsuario';
+import EditarUsuario from './EditarUsuario'; // Importar EditarUsuario
 import ClientAxios from "../../../../Config/axios";
 import DataTable from 'react-data-table-component';
 import Swal from "sweetalert2";
 
-function UsuariosPanel(){
-
+function UsuariosPanel() {
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [mostrarAddUsuario, setMostrarAddUsuario] = useState(false);
+    const [mostrarEditarUsuario, setMostrarEditarUsuario] = useState(false);
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
 
-    const URL = 'http://localhost:7777/getUsuarios'
+    const URL = 'http://localhost:7777/getUsuarios';
 
     const showData = async () => {
         const response = await fetch(URL);
         const data = await response.json();
         setUsers(data);
         setFilteredUsers(data);
-    }
+    };
+
+    const handleEditarUsuario = (usuario) => {
+        setUsuarioSeleccionado(usuario); // Pasar el objeto completo
+        setMostrarEditarUsuario(true);
+    };
 
     const deletEmpleado = async (id) => {
         try {
@@ -66,23 +73,12 @@ function UsuariosPanel(){
             sortable: true
         },
         {
-            name: 'Activo',
-            selector: row => (
-                <>
-                    {row.usuario_activo == 1 && (
-                        <a>Activo</a>
-                    )}
-                </>
-            ),
-            sortable: true
-        },
-        {
             name: 'Opciones',
             cell: row => (
-                <div style={{ display:'flex', gap:'10px'}}>
+                <div style={{ display: 'flex', gap: '10px' }}>
                     <button
                         className='edit-btn-button'
-                        onClick={""}
+                        onClick={() => handleEditarUsuario(row)}
                     >
                         Editar
                     </button>
@@ -103,12 +99,18 @@ function UsuariosPanel(){
 
     useEffect(() => {
         showData();
-    }, [users]);
+    }, []);
 
-
-    return(
+    return (
         <div className='usuarios-panel'>
-            {!mostrarAddUsuario ? (
+            {mostrarAddUsuario ? (
+                <AgregarUsuario onRegresar={() => setMostrarAddUsuario(false)} />
+            ) : mostrarEditarUsuario ? (
+                <EditarUsuario
+                    usuarioSeleccionado={usuarioSeleccionado}
+                    onRegresar={() => setMostrarEditarUsuario(false)}
+                />
+            ) : (
                 <>
                     <div className='header-usuario'>
                         <h2 className='titulo-dashboard-panel'>Usuarios</h2>
@@ -127,20 +129,16 @@ function UsuariosPanel(){
                         responsive
                         pagination
                         customStyles={{
-                            headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33'}},
-                            headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}}, 
-                            rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}} 
+                            headRow: { style: { borderTopLeftRadius: '20px', borderTopRightRadius: '20px', border: 'none' } },
+                            table: { style: { border: '1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33' } },
+                            headCells: { style: { backgroundColor: '#FFFFF', color: '#00000', fontWeight: '700', fontFamily: 'Roboto', fontSize: '24px' } },
+                            rows: { style: { fontSize: '24px', fontWeight: '400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom: '16px' } }
                         }}
                     />
                 </>
-            ) : (
-                <div>
-                    <AgregarUsuario onRegresar={() => setMostrarAddUsuario(false)} />
-                </div>
             )}
         </div>
-    )
+    );
 }
 
 export default UsuariosPanel;

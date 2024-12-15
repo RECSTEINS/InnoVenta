@@ -22,11 +22,23 @@ function EmpleadosPanel(){
         'Opciones'
     ]);
     const handleRegresar = () => {
-        setEmpleadoSeleccionado(null); // Puedes limpiar el empleado seleccionado si lo deseas
+        setEmpleadoSeleccionado(null); 
       };
 
     const handleEditarEmpleado = (empleadoId) => {
-        fetchEmpleadoById(empleadoId); // Esto debe traer el empleado por su ID
+        fetchEmpleadoById(empleadoId); 
+      };
+
+      const fetchEmpleadoById = async (id) => {
+        try {
+          const response = await fetch(`http://localhost:7777/getEmpleadoId/${id}`);
+          const data = await response.json();
+          console.log("Empleado recibido del backend:", data); // Verifica si los datos llegan bien
+          setEmpleadoSeleccionado(data); 
+          setMostrarEditarEmpleado(true);// Asegúrate de estar configurando correctamente el estado
+        } catch (error) {
+          console.error("Error al obtener empleado:", error);
+        }
       };
 
     const URL = 'http://localhost:7777/getEmpleados'
@@ -160,17 +172,7 @@ function EmpleadosPanel(){
         );
     };
 
-    const fetchEmpleadoById = async (id) => {
-        try {
-          const response = await fetch(`http://localhost:7777/getEmpleadoId/${id}`);
-          const data = await response.json();
-          console.log("Empleado recibido del backend:", data); // Verifica si los datos llegan bien
-          setEmpleadoSeleccionado(data); 
-          setMostrarEditarEmpleado(true);// Asegúrate de estar configurando correctamente el estado
-        } catch (error) {
-          console.error("Error al obtener empleado:", error);
-        }
-      };
+    
 
 
     useEffect(() => {

@@ -1,0 +1,245 @@
+.card {
+    border: none;
+    border-radius: 12px;
+}
+.card-title-default {
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+.columna-tarjeta{
+    width: 778px;
+    height: 180px;
+    border-radius: 40px;
+    background-color: #D9D9D9;
+}
+
+.tarjeta-total-crd{
+    font-family: 'Oswald';
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 71.14px;
+    margin-top: 10px;
+    color: #05041E;
+}
+
+.tarjeta-detalles-crd{
+    text-align: left;
+    color: #FFC700;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.pureba-tarjetas{
+    padding: 125px;
+    margin-left: 70px;
+    margin-left: 50px;
+    margin-top: -120px;
+}
+
+.input-grande-crd{
+    width: 672px;
+    height: 56px;
+    border-radius: 16px;
+    background-color: #D9D9D9;
+    margin-left: 10px;
+}
+
+.input-mediano-crd{
+    width: 353px;
+    height: 56px;border-radius: 16px;
+    background-color: #D9D9D9;
+    margin-left: -50px;
+}
+
+.input-pequeno-crd{
+    width: 284px;
+    height: 56px;
+    border-radius: 16px;
+    background-color: #D9D9D9;
+    margin-top: -60px;
+}
+
+.input-pequeno-crd-2{
+    width: 300px;
+    height: 56px;
+    border-radius: 16px;
+    background-color: #D9D9D9;
+    margin-top: -60px;
+    margin-right: 20px;
+    margin-left: 30px;
+    transform: translateY(-80%);
+}
+
+.input-mediano-crd3{
+    width: 353px;
+    height: 56px;border-radius: 16px;
+    background-color: #A9A8A8;
+    border: none;
+    margin-left: -50px;
+}
+
+
+.tarjeta-img{
+    width: 54px;
+    height: 56px;
+    align-items: start;
+    margin-left: -100px;
+}
+
+.tarjeta-img3{
+    width: 54px;
+    height: 56px;
+    align-items: start;
+    margin-left: 30px;
+    margin-top: -5px;
+}
+
+
+.tarjeta-img2{
+    width: 54px;
+    height: 56px;
+    align-items: start;
+    margin-left: -180px;
+    margin-right: 20px;
+}
+
+.tarjeta-datos{
+    text-align: left;
+    color: #ffffff;
+    font-family: 'Oswald';
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.columna-default-2{
+    width: 400px;
+    height: 280.5px;
+    margin-left: 30px;
+}
+
+.tarjeta-pao{
+    margin-top: 20px;
+}
+
+.btn-comenzar-default-tarjeta {
+    background-color: #FFC700;
+    border: none;
+    width: 400px;
+    height: 64px;
+    margin-top: -290px;
+    border-radius: 40px;
+    font-size: 24px;
+    color: #000;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    line-height: 32.68px;
+    padding: 10px 20px;
+    transform: translateY(90%);
+}
+.btn-comenzar-default-tarjeta:hover {
+    background-color: #E6A700;
+}
+.logo-default {
+    font-size: 80px;
+
+    transform: translateY(5%);
+    color: #070C33;
+}
+.icon-default{
+    width: 80px;
+    height: 80px;
+    margin-top: 50px;
+    color: #070C33;
+}
+
+.default-container-tarjeta{
+    background-color: #030E1F;
+    margin-top: 70px;
+    width: 1112px;
+    height: 1192px;
+    border-radius: 24px;
+    margin-bottom: 70px;
+}
+
+.pao{
+    padding-top: 30px;
+}
+
+.default-informacion{
+    margin-top: 20px;
+}
+
+.logo-default{
+    width: 276px;
+    height: 138px;
+    margin-top: -240px;
+}
+
+.tarjeta-title{
+    color: #ffffff;
+    font-family: 'Oswald';
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 71.14px;
+    margin-top: -50px;
+}
+
+.tarjeta-subtitle{
+    font-family: 'Open Sans';
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 43.58px;
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.card-default{
+    width: 400px;
+    height: 200px;
+    background-color: #C1EAE4;
+    border-radius: 16px;
+}
+
+.card-default-3{
+    width: 400px;
+    height: 200px;
+    background-color: #E8D4ED;
+    border-radius: 16px;
+}
+
+.card-default2{
+    width: 400px;
+    height: 200px;
+    background-color: #BDE5F9;
+    border-radius: 16px;
+    margin-top: 35px;
+}
+
+.card-default4{
+    width: 400px;
+    height: 200px;
+    background-color: #FFE2DE;
+    border-radius: 16px;
+}
+
+.btn-aplica-tarjeta{
+    background-color: #FFC700;
+    border:  none;
+    width: 176px;
+    height: 48px;
+    border-radius: 40px;
+    margin-top: -70px;
+    transform: translateY(-100%);
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: -20px;
+}
