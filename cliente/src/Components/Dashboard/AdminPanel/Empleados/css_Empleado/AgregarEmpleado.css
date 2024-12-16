@@ -1,294 +1,286 @@
+.agregar-empleadoss {
+  max-width: 1100px;
+  margin: 0 auto;
 
-.agregar-empleados {
-    max-width: 1100px; 
-    margin: 0 auto; 
-    height: auto; 
-    padding: 24px; 
-    background-color: #030e1f; 
-    border-radius: 16px;
-    overflow-y: hidden;
-    margin-left: 100px;
+  padding: 24px;
+  background-color: #030e1f;
+  border-radius: 16px;
+  overflow-y: hidden;
+  margin-left: 100px;
 }
 
-  
-  .agregar-empleados .ingreso-de-datos {
-    display: flex;
-    flex-wrap: wrap;
-    height: 800px;
-    align-items: center;
-    justify-content: center;
-    gap: 32px 32px;
-    padding: 0px 32px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-  }
-  
-  .agregar-empleados .titulo {
-    position: relative;
-    width: 602px;
-    height: 72px;
-  }
-  
-  .agregar-empleados .text-wrapper {
-    position: absolute;
-    width: 600px;
-    height: 72px;
-    top: 0;
-    left: 0;
-    font-family: "Oswald", Helvetica;
-    font-weight: 500;
-    color: #ffffff;
-    font-size: 48px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .div {
-    position: relative;
-    width: 392px;
-    height: 96px;
-  }
-  
-  .agregar-empleados .input {
-    position: absolute;
-    width: 392px;
-    height: 56px;
-    top: 40px;
-    left: 0;
-    background-color: #d9d9d9;
-    border-radius: 16px;
-  }
-  
-  .agregar-empleados .label {
-    position: absolute;
-    width: 394px;
-    height: 32px;
-    top: 0;
-    left: 0;
-  }
-  
-  .agregar-empleados .text-wrapper-2 {
-    position: absolute;
-    width: 392px;
-    top: 0;
-    left: 0;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .div-2 {
-    position: relative;
-    width: 248px;
-    height: 96px;
-  }
-  
-  .agregar-empleados .input-2 {
-    width: 248px;
-    top: 40px;
-    left: 0;
-    position: absolute;
-    height: 56px;
-    background-color: #d9d9d9;
-    border-radius: 16px;
-  }
-  
-  .agregar-empleados .div-wrapper {
-    width: 250px;
-    height: 32px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .agregar-empleados .text-wrapper-3 {
-    position: absolute;
-    width: 248px;
-    top: 0;
-    left: 0;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .genero {
-    position: relative;
-    width: 252.5px;
-    height: 97.5px;
-  }
-  
-  .agregar-empleados .overlap-group {
-    position: absolute;
-    width: 250px;
-    height: 56px;
-    top: 41px;
-    left: 0;
-  }
-  
-  .agregar-empleados .rectangle {
-    width: 250px;
-    height: 56px;
-    background-color: #d9d9d9;
-    border-radius: 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .agregar-empleados .caret-down-fill {
-    position: absolute;
-    width: 55px;
-    height: 56px;
-    top: 0;
-    left: 196px;
-  }
-  
-  .agregar-empleados .text-wrapper-4 {
-    position: absolute;
-    width: 173px;
-    top: 0;
-    left: 3px;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .overlap-wrapper {
-    position: relative;
-    width: 816px;
-    height: 56px;
-  }
-  
-  .agregar-empleados .overlap {
-    position: relative;
-    height: 56px;
-  }
-  
-  .agregar-empleados .label-2 {
-    width: 282px;
-    height: 56px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .agregar-empleados .text-wrapper-5 {
-    position: absolute;
-    width: 280px;
-    height: 56px;
-    top: 0;
-    left: 0;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .input-3 {
-    width: 536px;
-    top: 0;
-    left: 280px;
-    position: absolute;
-    height: 56px;
-    background-color: #d9d9d9;
-    border-radius: 16px;
-  }
-  
-  .agregar-empleados .botones-formularios {
-    display: flex;
-    height: 104px;
-    align-items: center;
-    justify-content: center;
-    gap: 192px;
-    padding: 8px 40px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    border-radius: 40px;
-    background-color: #030e1f;
-  }
-  
-  .agregar-empleados .group {
-    width: 230.5px;
-    position: relative;
-    height: 64px;
-  }
-  
-  .agregar-empleados .overlap-group-2 {
-    position: relative;
-    width: 228px;
-    height: 64px;
-    border: 1px solid #FFC700;
-  }
-  
-  .agregar-empleados .img {
-    width: 228px;
-    height: 64px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .agregar-empleados .text-wrapper-6 {
-    position: absolute;
-    width: 228px;
-    height: 33px;
-    top: 15px;
-    left: 0;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 700;
-    color: #f0f0f0;
-    font-size: 24px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .overlap-group-wrapper {
-    width: 268px;
-    position: relative;
-    height: 64px;
-  }
-  
-  .agregar-empleados .overlap-2 {
-    position: relative;
-    width: 266px;
-    height: 64px;
-    background-image: url(https://c.animaapp.com/rWO7gEcG/img/rectangle-22568-1.svg);
-    background-size: 100% 100%;
-  }
-  
-  .agregar-empleados .text-wrapper-7 {
-    position: absolute;
-    width: 185px;
-    top: 18px;
-    left: 24px;
-    font-family: "Open Sans", Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .agregar-empleados .vector {
-    position: absolute;
-    width: 32px;
-    height: 26px;
-    top: 22px;
-    left: 209px;
-  }
-  
+
+.agregar-empleadoss .ingreso-de-datos {
+  display: flex;
+  flex-wrap: wrap;
+  height: 800px;
+  align-items: center;
+  justify-content: center;
+  gap: 32px 32px;
+  padding: 0px 32px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+}
+
+.agregar-empleadoss .titulo {
+  position: relative;
+  width: 602px;
+  height: 72px;
+}
+
+.agregar-empleadoss .text-wrapper {
+  position: absolute;
+  width: 600px;
+  height: 72px;
+  top: 0;
+  left: 0;
+  font-family: "Oswald", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .div {
+  position: relative;
+  width: 392px;
+  height: 96px;
+}
+
+.agregar-empleadoss .input {
+  position: absolute;
+  width: 392px;
+  height: 56px;
+  top: 40px;
+  left: 0;
+  background-color: #d9d9d9;
+  border-radius: 16px;
+}
+
+.agregar-empleadoss .label {
+  position: absolute;
+  width: 394px;
+  height: 32px;
+  top: 0;
+  left: 0;
+}
+
+.agregar-empleadoss .text-wrapper-2 {
+  position: absolute;
+  width: 392px;
+  top: 0;
+  left: 0;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .div-2 {
+  position: relative;
+  width: 248px;
+  height: 96px;
+}
+
+.agregar-empleadoss .input-2 {
+  width: 248px;
+  top: 40px;
+  left: 0;
+  position: absolute;
+  height: 56px;
+  background-color: #d9d9d9;
+  border-radius: 16px;
+}
+
+.agregar-empleadoss .div-wrapper {
+  width: 250px;
+  height: 32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.agregar-empleadoss .text-wrapper-3 {
+  position: absolute;
+  width: 248px;
+  top: 0;
+  left: 0;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .genero {
+  position: relative;
+  width: 252.5px;
+  height: 97.5px;
+}
+
+.agregar-empleadoss .overlap-group {
+  position: absolute;
+  width: 250px;
+  height: 56px;
+  top: 41px;
+  left: 0;
+}
+
+.agregar-empleadoss .rectangle {
+  width: 250px;
+  height: 56px;
+  background-color: #d9d9d9;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.agregar-empleadoss .caret-down-fill {
+  position: absolute;
+  width: 55px;
+  height: 56px;
+  top: 0;
+  left: 196px;
+}
+
+.agregar-empleadoss .text-wrapper-4 {
+  position: absolute;
+  width: 173px;
+  top: 0;
+  left: 3px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .overlap-wrapper {
+  position: relative;
+  width: 816px;
+  height: 56px;
+}
+
+.agregar-empleadoss .overlap {
+  position: relative;
+  height: 56px;
+}
+
+.agregar-empleadoss .label-2 {
+  width: 282px;
+  height: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.agregar-empleadoss .text-wrapper-5 {
+  position: absolute;
+  width: 280px;
+  height: 56px;
+  top: 0;
+  left: 0;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .input-3 {
+  width: 536px;
+  top: 0;
+  left: 280px;
+  position: absolute;
+  height: 56px;
+  background-color: #d9d9d9;
+  border-radius: 16px;
+}
+
+.agregar-empleadoss .botones-formularios {
+  display: flex;
+  height: 104px;
+  align-items: center;
+  justify-content: center;
+  gap: 192px;
+  padding: 8px 40px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  border-radius: 40px;
+  background-color: #030e1f;
+}
+
+.agregar-empleadoss .group {
+  width: 230.5px;
+  position: relative;
+  height: 64px;
+}
+
+.agregar-empleadoss .overlap-group-2 {
+  position: relative;
+  width: 228px;
+  height: 64px;
+  border: 1px solid #FFC700;
+  background-color: #030e1f;
+  border-radius: 40px;
+  color: #F0F0F0;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Open Sans";
+}
+
+.agregar-empleadoss .img {
+  width: 228px;
+  height: 64px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+.agregar-empleadoss .overlap-group-wrapper {
+  width: 268px;
+  position: relative;
+  height: 64px;
+  background-color: #FFC700;
+  border: none;
+  border-radius: 40px;
+  color: #000000;
+  font-family: "Open Sans";
+  font-size: 24px;
+}
+
+
+
+.agregar-empleadoss .text-wrapper-7 {
+  position: absolute;
+  width: 185px;
+  top: 18px;
+  left: 24px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.agregar-empleadoss .vector {
+  position: absolute;
+  width: 32px;
+  height: 26px;
+  top: 22px;
+  left: 209px;
+  color: #070C33;
+}

@@ -73,7 +73,7 @@ function AgregarEmpleado({ onRegresar }) {
   };
 
   return (
-    <section className="agregar-empleados">
+    <section className="agregar-empleadoss">
       <form className="ingreso-de-datos" onSubmit={handleSubmit}>
         <div className="titulo">
           <div className="text-wrapper">Información del empleado</div>

@@ -96,7 +96,7 @@ function Login() {
                         <p className="login-title">Bienvenido</p>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="usuario" className="form-label mt-3">Usuario:</label><br />
+                                <label htmlFor="usuario" className="form-label mt-3">Email:</label><br />
                                 <input
                                     type="text"
                                     className="input-style-login inputs-letra"

@@ -2,7 +2,6 @@ import ClientAxios from "../../../../Config/axios";
 import React, { useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
 import { Dropdown, DropdownButton} from 'react-bootstrap';
-import { Link } from "react-router-dom";
 import AgregarEmpleado from "./AgregarEmpleado";
 import './css_Empleado/Empleado.css';
 import Swal from "sweetalert2";
@@ -11,7 +10,6 @@ import EditarEmpleado from "./EditarEmpleado";
 function EmpleadosPanel(){
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
     const [mostrarAddEmpleado, setMostrarAddEmpleado] = useState(false);
     const [mostrarEditarEmpleado, setMostrarEditarEmpleado] = useState(false);
     const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
@@ -21,25 +19,6 @@ function EmpleadosPanel(){
         'Correo',
         'Opciones'
     ]);
-    const handleRegresar = () => {
-        setEmpleadoSeleccionado(null); 
-      };
-
-    const handleEditarEmpleado = (empleadoId) => {
-        fetchEmpleadoById(empleadoId); 
-      };
-
-      const fetchEmpleadoById = async (id) => {
-        try {
-          const response = await fetch(`http://localhost:7777/getEmpleadoId/${id}`);
-          const data = await response.json();
-          console.log("Empleado recibido del backend:", data); // Verifica si los datos llegan bien
-          setEmpleadoSeleccionado(data); 
-          setMostrarEditarEmpleado(true);// Asegúrate de estar configurando correctamente el estado
-        } catch (error) {
-          console.error("Error al obtener empleado:", error);
-        }
-      };
 
     const URL = 'http://localhost:7777/getEmpleados'
 
@@ -82,7 +61,7 @@ function EmpleadosPanel(){
     const allColumns = [
         {
             name: 'Nombre',
-            selector: row => row.empleado_nombre,
+            selector: (row) => row.empleado_nombre,
             sortable: true,
             center: true,
             id: 'Nombre',
@@ -138,17 +117,20 @@ function EmpleadosPanel(){
         },
         {
             name: 'Opciones',
-            cell: (empleado) => (
+            cell: (row) => (
                 <div style={{ display: "flex", gap:'10px'}}>
                     <button
                         className="edit-btn-button"
-                        onClick={() => fetchEmpleadoById(empleado.pk_empleado)}
+                        onClick={() => {setEmpleadoSeleccionado(row.pk_empleado);
+                                        setMostrarEditarEmpleado(true);
+                                        console.log(row.pk_empleado);
+                        }}
                     >
                         Editar
                     </button>
                     <button
                         className="delete-btn-button"
-                        onClick={() => mostrarAlerta(empleado.pk_empleado)}
+                        onClick={() => mostrarAlerta(row.pk_empleado)}
                     >
                         Eliminar
                     </button>
@@ -163,7 +145,6 @@ function EmpleadosPanel(){
 
     const columns = allColumns.filter(column => visibleColumns.includes(column.id));
 
-
     const handleColumnToggle = (columnId) => {
         setVisibleColumns(prevState => 
             prevState.includes(columnId)
@@ -172,12 +153,9 @@ function EmpleadosPanel(){
         );
     };
 
-    
-
-
     useEffect(() => {
         showData();
-    }, [users]);
+    }, []);
 
     return(
         <div className="empleado-panel">
@@ -238,11 +216,16 @@ function EmpleadosPanel(){
                 <div className="agregar-empleado-panel">
                     <AgregarEmpleado onRegresar={() => setMostrarAddEmpleado(false)}/>   
                 </div>
-            ) : mostrarEditarEmpleado && empleadoSeleccionado ? (
+            ) : (
                 <div className="editar-empleado-panel">
-                    <EditarEmpleado empleadoSeleccionado={empleadoSeleccionado} onRegresar={handleRegresar} />
-            </div>
-             ) : null}
+                    <EditarEmpleado onRegresar={() => {
+                                                            setEmpleadoSeleccionado(null); 
+                                                            setMostrarEditarEmpleado(false);
+                                                            showData();}} 
+                                    empleadoPk={empleadoSeleccionado} 
+                                    />
+                </div>
+             )}
         </div>
     )
 }
