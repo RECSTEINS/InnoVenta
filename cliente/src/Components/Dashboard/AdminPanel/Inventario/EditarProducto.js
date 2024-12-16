@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import ClientAxios from "../../../../Config/axios";
 
-function EditarProducto({ productoSeleccionado, onRegresar }) {
+function EditarProducto({ productoPk, onRegresar }) {
     const [formData, setFormData] = useState({
         nombre: "",
         stock: "",
@@ -10,15 +10,15 @@ function EditarProducto({ productoSeleccionado, onRegresar }) {
     });
 
     useEffect(() => {
-        if (productoSeleccionado) {
+        if (productoPk) {
             setFormData({
-                nombre: productoSeleccionado.producto_nombre || "",
-                stock: productoSeleccionado.producto_stock || "",
-                stock_minimo: productoSeleccionado.producto_minimo_stock || "",
+                nombre: productoPk.producto_nombre || "",
+                stock: productoPk.producto_stock || "",
+                stock_minimo: productoPk.producto_minimo_stock || "",
             });
         }
-        console.log("Producto cargado en EditarProducto:", productoSeleccionado);
-    }, [productoSeleccionado]);
+        console.log("Producto cargado en EditarProducto:", productoPk);
+    }, [productoPk]);
 
     const handleChanges = (e) => {
         const { name, value } = e.target;
@@ -28,7 +28,7 @@ function EditarProducto({ productoSeleccionado, onRegresar }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await ClientAxios.post(`/updateProducto/${productoSeleccionado.pk_productos}`, formData);
+            await ClientAxios.post(`/updateProducto/${productoPk.pk_productos}`, formData);
             Swal.fire("Éxito", "Producto actualizado correctamente.", "success");
             onRegresar();
         } catch (error) {
@@ -37,7 +37,7 @@ function EditarProducto({ productoSeleccionado, onRegresar }) {
         }
     };
 
-    if (!productoSeleccionado) {
+    if (!productoPk) {
         return <p>Cargando datos del producto...</p>;
     }
 

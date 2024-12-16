@@ -112,96 +112,87 @@ function InventarioPanel() {
         setProductoSeleccionado(null);
     };
 
-    
+
 
     return (
         <div className="inventario-panel">
-            <div className="header-inventario">
-                <p className="titulo-dashboard-panel">Inventario de productos</p>
-                <button
-                    className="add-btn-button"
-                    onClick={() => setMostrarAddProducto(true)}
-                >
-                    Agregar nuevo producto
-                </button>
-            </div>
-            <DataTable
-                columns={columns}
-                data={filteredProducts}
-                pagination
-                paginationPerPage={9}
-                highlightOnHover
-                responsive
-                conditionalRowStyles={[
-                    {
-                        when: (row) => row.producto_stock <= row.producto_minimo_stock,
-                        style: {
-                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                            color: '#FFC700',
-                            fontWeight: 'bold',
-                        },
-                    },
-                ]}
-                customStyles={{
-                    headRow: {
-                        style: {
-                            borderTopLeftRadius: '20px',
-                            borderTopRightRadius: '20px',
-                            border: 'none',
-                        },
-                    },
-                    table: {
-                        style: {
-                            border: '1.5px #070C33 solid',
-                            height: '783px',
-                            borderRadius: '20px',
-                            backgroundColor: '#070C33',
-                        },
-                    },
-                    headCells: {
-                        style: {
-                            backgroundColor: '#FFFFF',
-                            color: '#00000',
-                            fontWeight: '700',
-                            fontFamily: 'Roboto',
-                            fontSize: '24px',
-                        },
-                    },
-                    rows: {
-                        style: {
-                            fontSize: '24px',
-                            fontWeight: '400',
-                            fontFamily: 'Roboto',
-                            paddingTop: '16px',
-                            paddingBottom: '16px',
-                        },
-                    },
-                }}
-            />
-            {mostrarEditarProducto && (
-                <div className="modal">
-                    <div className="modal-content-edit">
-                        <EditarProducto
-                            productoSeleccionado={productoSeleccionado}
-                            onRegresar={handleCloseModal}
-                        />
-                        <button className="close-modal" onClick={handleCloseModal}>
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            )}
-            {mostrarAddProducto && (
-                <div className="modal">
-                    <div className="modal-content-edit">
-                        <AgregarProducto onAgregar={addProduct} onRegresar={() => setMostrarAddProducto(false)} />
+            {!mostrarAddProducto && !mostrarEditarProducto ? (
+                <>
+                    <div className="header-inventario">
+                        <p className="titulo-dashboard-panel">Inventario de productos</p>
                         <button
-                            className="close-modal"
-                            onClick={() => setMostrarAddProducto(false)}
+                            className="add-btn-button"
+                            onClick={() => setMostrarAddProducto(true)}
                         >
-                            Cerrar
+                            Agregar nuevo producto
                         </button>
                     </div>
+                    <DataTable
+                        columns={columns}
+                        data={filteredProducts}
+                        pagination
+                        paginationPerPage={9}
+                        highlightOnHover
+                        responsive
+                        conditionalRowStyles={[
+                            {
+                                when: (row) => row.producto_stock <= row.producto_minimo_stock,
+                                style: {
+                                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                                    color: '#FFC700',
+                                    fontWeight: 'bold',
+                                },
+                            },
+                        ]}
+                        customStyles={{
+                            headRow: {
+                                style: {
+                                    borderTopLeftRadius: '20px',
+                                    borderTopRightRadius: '20px',
+                                    border: 'none',
+                                },
+                            },
+                            table: {
+                                style: {
+                                    border: '1.5px #070C33 solid',
+                                    height: '783px',
+                                    borderRadius: '20px',
+                                    backgroundColor: '#070C33',
+                                },
+                            },
+                            headCells: {
+                                style: {
+                                    backgroundColor: '#FFFFF',
+                                    color: '#00000',
+                                    fontWeight: '700',
+                                    fontFamily: 'Roboto',
+                                    fontSize: '24px',
+                                },
+                            },
+                            rows: {
+                                style: {
+                                    fontSize: '24px',
+                                    fontWeight: '400',
+                                    fontFamily: 'Roboto',
+                                    paddingTop: '16px',
+                                    paddingBottom: '16px',
+                                },
+                            },
+                        }}
+                    />
+                </>
+            ) : mostrarAddProducto ? (
+                <div className='agregar-empleado-panel'>
+                    <AgregarProducto onRegresar={() => setMostrarAddProducto(false)}/>
+                </div>
+            ) : (
+                <div className='editar-empleado-panel'>
+                    <EditarProducto onRegresar={() => {
+                                                            setProductoSeleccionado(null);
+                                                            setMostrarEditarProducto(false);
+                    }}
+                                    productoPk={productoSeleccionado}
+                    />
                 </div>
             )}
         </div>

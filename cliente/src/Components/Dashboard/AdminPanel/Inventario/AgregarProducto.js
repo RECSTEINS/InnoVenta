@@ -38,6 +38,7 @@ function AgregarProducto({ onRegresar}){
             const result = await response.json();
             if (response.status === 200) {
                 alert("Producto agregado correctamente.");
+                onRegresar();
             } else {
                 alert("Error al agregar producto al inventario: " + result.message);
             }
