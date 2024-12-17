@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./css_roles/Agregar_Roles.css";
+import Swal from "sweetalert2";
 
 
 function AgregarRol({ onRegresar }) {
@@ -33,7 +34,8 @@ function AgregarRol({ onRegresar }) {
     
             const result = await response.json();
             if (response.status === 200) {
-                alert("Rol agregado correctamente.");
+                Swal.fire('Éxito', 'Rol agregado correctamente', 'success');
+                onRegresar();
             } else {
                 alert("Error al agregar rol: " + result.message);
             }

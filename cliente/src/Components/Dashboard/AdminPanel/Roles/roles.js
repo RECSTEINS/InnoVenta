@@ -30,12 +30,11 @@ function RolesPanel() {
     const deletEmpleado = async (id) => {
         try {
             await ClientAxios.delete(`/delRol/${id}`);
-            const updateEmpleados = users.filter((row) => row.pk_rol !== id);
-            setUsers(updateEmpleados);
-            setFilteredUsers(updateEmpleados);
+            setUsers((prevUsers) => prevUsers.filter((row) => row.pk_rol !== id));
+            showData();
         } catch (error) {
             console.error("Error al eliminar el empleado: ", error);
-            alert("Error al eliminar el Empleado");
+            Swal.fire('Error', 'Error al eliminar el ro', 'error');
         }
     };
 
@@ -114,11 +113,12 @@ function RolesPanel() {
                 ? prevState.filter((col) => col !== columnId)
                 : [...prevState, columnId]
         );
+        showData();
     };
 
     useEffect(() => {
         showData();
-    }, [users]);
+    }, []);
 
     return (
         <div className="empleado-panel">

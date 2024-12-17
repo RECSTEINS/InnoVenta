@@ -5,6 +5,7 @@ import AgregarPlatillo from './AgregarPlatillo';
 import ClientAxios from '../../../../Config/axios';
 import Swal from 'sweetalert2';
 import EditarPlatillo from './EditarPlatillo';
+import { Dropdown, DropdownButton} from 'react-bootstrap';
 
 function PlatillosPanel(){
     
@@ -13,6 +14,13 @@ function PlatillosPanel(){
     const [platillos, setPlatillos] = useState([]);
     const [filteredPlatillos, setFilteredPlatillos] = useState([]);
     const [mostrarAddPlatillo, setMostrarAddPlatillo] = useState(false);
+    const [visibleColumns, setVisibleColumns] = useState([
+        'Nombre',
+        'Precio',
+        'Imagen',
+        'Productos',
+        'Opciones'
+    ]);
 
     const URL = 'http://localhost:7777/getPlatillos'
 
@@ -24,8 +32,6 @@ function PlatillosPanel(){
         setFilteredPlatillos(data);
     }
 
-    
-
     const deletePlatillo = async (id) => {
         try {
             if (!id) {
@@ -33,10 +39,8 @@ function PlatillosPanel(){
                 return;
             }
             await ClientAxios.delete(`http://localhost:7777/eliminar-platillo/${id}`);
-            const updateProducts = platillos.filter(row => row.id !== id); // Filtrar por `id`
-            setPlatillos(updateProducts);
-            setFilteredPlatillos(updateProducts);
-            Swal.fire('Éxito', 'El platillo se eliminó correctamente.', 'success');
+            setPlatillos((prevPlatillos) => prevPlatillos.filter((row) => row.pk_platillo !== id));
+            showData();
         } catch (error) {
             console.error("Error al eliminar el producto:", error);
             Swal.fire('Error', 'No se pudo eliminar el platillo.', 'error');
@@ -60,7 +64,7 @@ function PlatillosPanel(){
         });
     }
 
-    const columns = [
+    const allColumns = [
         {
             name:'ID',
             selector: row => row.id,
@@ -70,13 +74,28 @@ function PlatillosPanel(){
             name:'Nombre del platillo',
             selector: row => row.nombre,
             center: true,
-            width: '400px'
+            width: '400px',
+            id: "Nombre"
         },
         {
             name:'Precio',
             selector: row => row.precio,
             width: '150px',
-            center: true
+            center: true,
+            id: 'Precio'
+        },
+        {
+            name: "Imagen",
+            cell: row => (
+                <img
+                    src={`http://localhost:7777${row.img}`}
+                    alt={row.nombre}
+                    style={{width: '100px', height: '100px', borderRadius: '8px'}}
+                />
+            ),
+            width: '115px',
+            center: true,
+            id: 'Imagen'
         },
         {
             name: 'Productos',
@@ -84,6 +103,7 @@ function PlatillosPanel(){
                 Array.isArray(row.productos) ? row.productos.map(producto => producto.nombre_producto).join(', ') : 'Sin productos',
             center: true,
             width:'400px',
+            id: 'Productos'
         },
         {
             name: 'Opciones',
@@ -108,8 +128,20 @@ function PlatillosPanel(){
             center: true,
             ignoreRowClick: true,
             allowOverflow: true,
+            id: 'Opciones'
         },
-    ]
+    ];
+
+    const columns = allColumns.filter(column => visibleColumns.includes(column.id));
+
+    const handleColumnToggle = (columnId) => {
+        setVisibleColumns(prevState => 
+            prevState.includes(columnId)
+                ? prevState.filter(col => col !== columnId)
+                : [...prevState, columnId] 
+        );
+        showData();
+    };
 
     useEffect(() => {
         showData();
@@ -128,15 +160,41 @@ function PlatillosPanel(){
                             Agregar nuevo platillo
                         </button>
                     </div>
+
+                    <div className="columnas-btn">
+                        <DropdownButton
+                            id="dropdown-basic-button"
+                            title="Seleccionar columnas"
+                            variant="secondary"
+                            className="columnas-btns"
+                            style={{ marginLeft: "10px"}}
+                        >
+                        {allColumns.map(col => (
+                            <Dropdown.Item key={col.id}>
+                                <label className="columnas-btn-contenido">
+                                    <input
+                                        type="checkbox"
+                                        checked={visibleColumns.includes(col.id)}
+                                        onChange={() => handleColumnToggle(col.id)}
+                                        style={{ marginRight: '5px' }}
+                                    />
+                                    {col.name}
+                                </label>
+                            </Dropdown.Item>
+                        ))}
+                        </DropdownButton>
+                    </div>
+
                     <DataTable
                         columns={columns}
                         data={filteredPlatillos.length > 0 ? filteredPlatillos : []}
                         pagination
+                        paginationPerPage={10}
                         highlightOnHover
                         responsive
                         customStyles={{
                             headRow: { style: {borderTopLeftRadius:'20px', borderTopRightRadius:'20px', border: 'none'}},
-                            table: { style:{ border:'1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33'}},
+                            table: { style:{ border:'1.5px #070C33 solid', height: '1382px', borderRadius: '20px', backgroundColor: '#070C33'}},
                             headCells: {style:{ backgroundColor:'#FFFFF', color:'#00000', fontWeight: '700', fontFamily:'Roboto', fontSize: '24px'}},
                             rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}
                         }}

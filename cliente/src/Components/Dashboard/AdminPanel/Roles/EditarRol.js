@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css_roles/Agregar_Roles.css";
+import Swal from "sweetalert2";
 
 function EditarRol({ onRegresar, rolId }) {
     const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ function EditarRol({ onRegresar, rolId }) {
                 }
             } catch (error) {
                 console.error("Error al cargar el rol:", error);
-                alert("Ocurrió un error al cargar el rol.");
+                Swal.fire('Error', 'Ocurrió un error al cargar el rol', 'error')
                 setIsLoading(false);
             }
         };
@@ -63,7 +64,8 @@ function EditarRol({ onRegresar, rolId }) {
 
             const result = await response.json();
             if (response.status === 200) {
-                alert("Rol actualizado correctamente.");
+                Swal.fire('Éxito', 'Rol actualizado correctamente','success');
+                onRegresar();
             } else {
                 alert("Error al actualizar rol: " + result.error);
             }

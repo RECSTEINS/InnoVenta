@@ -30,9 +30,8 @@ function UsuariosPanel() {
     const deletEmpleado = async (id) => {
         try {
             await ClientAxios.delete(`/delUsuario/${id}`);
-            const updateEmpleados = users.filter((row) => row.pk_usuario !== id);
-            setUsers(updateEmpleados);
-            setFilteredUsers(updateEmpleados);
+            setUsers((prevUsers) => prevUsers.filter((row) => row.pk_usuario !== id));
+            showData();
         } catch (error) {
             console.error("Error al eliminar el Usuario: ", error);
             alert("Error al eliminar el Usuario");

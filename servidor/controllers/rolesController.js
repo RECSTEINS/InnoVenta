@@ -61,7 +61,7 @@ const postRoles = (request, response) => {
                     console.error("Error al insertar rol:", error);
                     return response.status(500).json({ message: "Error al insertar el rol." });
                 }
-                response.status(201).json({ message: "Rol añadido correctamente", affectedRows: results.affectedRows });
+                response.status(200).json({ message: "Rol añadido correctamente", affectedRows: results.affectedRows });
             }
         );
     } else if (action === "update") {

@@ -29,8 +29,8 @@ function InventarioPanel() {
             const response = await fetch(`http://localhost:7777/get-producto-id/${id}`);
             const data = await response.json();
             if (data.length > 0) {
-                setProductoSeleccionado(data[0]); // Selecciona el primer elemento
-                setMostrarEditarProducto(true); // Muestra el modal
+                setProductoSeleccionado(data[0]);
+                setMostrarEditarProducto(true);
             } else {
                 Swal.fire('Error', 'No se encontró el producto.', 'error');
             }
@@ -43,28 +43,31 @@ function InventarioPanel() {
     const deleteProduct = async (id) => {
         try {
             await ClientAxios.delete(`/eliminar-producto/${id}`);
-            const updateProducts = products.filter((row) => row.pk_productos !== id);
-            setProducts(updateProducts);
-            setFilteredProducts(updateProducts);
+            setProducts((prevProducts) => prevProducts.filter((row) => row.pk_productos !== id));
             Swal.fire('Éxito', 'El producto se eliminó correctamente.', 'success');
+            showData();
         } catch (error) {
             console.error('Error al eliminar el producto: ', error);
             Swal.fire('Error', 'No se pudo eliminar el producto.', 'error');
         }
     };
 
-    const addProduct = async (newProduct) => {
-        try {
-            const response = await ClientAxios.post('/agregar-producto', newProduct);
-            setProducts([...products, response.data]);
-            setFilteredProducts([...filteredProducts, response.data]);
-            Swal.fire('Éxito', 'Producto agregado correctamente.', 'success');
-            setMostrarAddProducto(false);
-        } catch (error) {
-            console.error('Error al agregar producto:', error);
-            Swal.fire('Error', 'No se pudo agregar el producto.', 'error');
-        }
-    };
+    const mostrarAlerta = (id) => {
+        Swal.fire({
+            title: 'Advertencia',
+            text: '¿Está seguro que desea eliminar este empleado?',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: true,
+            cancelButtonColor: "Red",
+            cancelButtonText: "Cancelar"
+        }).then(response => {
+            if (response.isConfirmed) {
+                deleteProduct(id);
+                Swal.fire('Éxito', 'El empleado se eliminó correctamente.', 'success');
+            }
+        });
+    }
 
     const columns = [
         {
@@ -94,7 +97,7 @@ function InventarioPanel() {
                     </button>
                     <button
                         className="delete-btn-button"
-                        onClick={() => deleteProduct(row.pk_productos)}
+                        onClick={() => mostrarAlerta(row.pk_productos)}
                     >
                         Eliminar
                     </button>
@@ -105,14 +108,7 @@ function InventarioPanel() {
 
     useEffect(() => {
         showData();
-    }, [products]);
-
-    const handleCloseModal = () => {
-        setMostrarEditarProducto(false);
-        setProductoSeleccionado(null);
-    };
-
-
+    }, []);
 
     return (
         <div className="inventario-panel">
@@ -183,15 +179,15 @@ function InventarioPanel() {
                 </>
             ) : mostrarAddProducto ? (
                 <div className='agregar-empleado-panel'>
-                    <AgregarProducto onRegresar={() => setMostrarAddProducto(false)}/>
+                    <AgregarProducto onRegresar={() => setMostrarAddProducto(false)} />
                 </div>
             ) : (
                 <div className='editar-empleado-panel'>
                     <EditarProducto onRegresar={() => {
-                                                            setProductoSeleccionado(null);
-                                                            setMostrarEditarProducto(false);
+                        setProductoSeleccionado(null);
+                        setMostrarEditarProducto(false);
                     }}
-                                    productoPk={productoSeleccionado}
+                        productoPk={productoSeleccionado}
                     />
                 </div>
             )}

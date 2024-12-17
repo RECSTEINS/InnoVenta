@@ -32,12 +32,11 @@ function EmpleadosPanel(){
     const deletEmpleado = async(id) => {
         try {
             await ClientAxios.delete(`/delEmpleado/${id}`);
-            const updateEmpleados = users.filter(row => row.pk_empleado !== id);
-            setUsers(updateEmpleados);
-            setFilteredUsers(updateEmpleados);
+            setUsers((prevUsers) => prevUsers.filter((row) => row.pk_empleado !== id));
+            showData();
         } catch(error){
             console.error("Error al eliminar el empleado: ", error);
-            alert("Error al eliminar el Empleado")
+            Swal.fire('Error', 'Error al eliminar empleado', 'error');
         }
     };
 
@@ -143,14 +142,15 @@ function EmpleadosPanel(){
         }
     ];
 
-    const columns = allColumns.filter(column => visibleColumns.includes(column.id));
+    const columns = allColumns.filter((column) => visibleColumns.includes(column.id));
 
     const handleColumnToggle = (columnId) => {
-        setVisibleColumns(prevState => 
+        setVisibleColumns((prevState) => 
             prevState.includes(columnId)
-                ? prevState.filter(col => col !== columnId)
+                ? prevState.filter((col) => col !== columnId)
                 : [...prevState, columnId] 
         );
+        showData();
     };
 
     useEffect(() => {
@@ -179,7 +179,7 @@ function EmpleadosPanel(){
                             className="columnas-btns"
                             style={{ marginLeft: "10px"}}
                         >
-                        {allColumns.map(col => (
+                        {allColumns.map((col) => (
                             <Dropdown.Item key={col.id}>
                                 <label className="columnas-btn-contenido">
                                     <input
