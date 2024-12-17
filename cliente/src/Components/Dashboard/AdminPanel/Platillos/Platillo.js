@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 import AgregarPlatillo from './AgregarPlatillo';
 import ClientAxios from '../../../../Config/axios';
 import Swal from 'sweetalert2';
+import EditarPlatillo from './EditarPlatillo';
 
 function PlatillosPanel(){
     
-
+    const [mostrarEditarPlatillo, setMostrarEditarPlatillo] = useState(false);
+    const [editarPlatilloId, setEditarPlatilloId] = useState(null);
     const [platillos, setPlatillos] = useState([]);
     const [filteredPlatillos, setFilteredPlatillos] = useState([]);
     const [mostrarAddPlatillo, setMostrarAddPlatillo] = useState(false);
@@ -87,7 +89,14 @@ function PlatillosPanel(){
             name: 'Opciones',
             cell: row => (
                 <div style={{ display:'flex', gap:'10px'}}>
-                    
+                    <button
+                        className='edit-btn-button'
+                        onClick={() => {setEditarPlatilloId(row.id);
+                                        setMostrarEditarPlatillo(true);
+                        }}    
+                    >
+                        Editar
+                    </button>
                     <button
                         className='delete-btn-button'
                         onClick={() => mostrarAlerta(row.id)}
@@ -99,8 +108,6 @@ function PlatillosPanel(){
             center: true,
             ignoreRowClick: true,
             allowOverflow: true,
-            
-            
         },
     ]
 
@@ -110,7 +117,7 @@ function PlatillosPanel(){
 
     return(
         <div className='platillos-panel'>
-            {!mostrarAddPlatillo ? (
+            {!mostrarAddPlatillo && !mostrarEditarPlatillo? (
                 <>
                     <div className='header-platillo'>
                         <h2 className='titulo-dashboard-panel'>Lista de platillos</h2>
@@ -135,11 +142,19 @@ function PlatillosPanel(){
                         }}
                     />
                 </>
-            ) : (
+            ) : mostrarAddPlatillo ? (
                 <div className='agregar-platillo-panel'>
                     <AgregarPlatillo onRegresar={() => setMostrarAddPlatillo(false)}/>
                 </div>
-            )}
+            ) : editarPlatilloId ? (
+                <div className='editar-empleado-panel'>
+                    <EditarPlatillo onRegresar={() =>{ setEditarPlatilloId(null);
+                                                       setMostrarEditarPlatillo(false);
+                                                       showData();}}
+                                    platilloId={editarPlatilloId}
+                    />
+                </div>
+            ) : null}
         </div>
     )
 }

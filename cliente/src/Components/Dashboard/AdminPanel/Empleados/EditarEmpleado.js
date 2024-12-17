@@ -55,12 +55,12 @@ function EditarEmpleado({ empleadoPk, onRegresar }) {
           }
           setIsLoading(false);
         } else{
-            alert("Error al cargar empleado");
+            Swal.fire("Error al cargar empleado", "Ocurrio un error, asegurese de colocar toda la información", "error");
             setIsLoading(false);
         }
       } catch(error){
         console.error("Error al cargar empleado: ",error);
-        alert("Ocurrió un error al cargar el empleado.");
+        Swal.fire("Error al cargar empleado", error.message, "error");
         setIsLoading(false);
       }
     };

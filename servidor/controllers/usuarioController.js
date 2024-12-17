@@ -90,19 +90,14 @@ const updateUsuario = (request, response) => {
         values.push(fkempleado);
     }
 
-
-    // Si no hay campos para actualizar, retornamos un error
     if (fieldsToUpdate.length === 0) {
         return response.status(400).json({ error: "No se proporcionaron campos para actualizar" });
     }
 
-    // Agregamos el id al final de los valores
     values.push(id);
 
-    // Construcción de la consulta SQL
     const query = `UPDATE usuarios SET ${fieldsToUpdate.join(", ")}, usuario_activo = 1 WHERE pk_usuario = ?`;
 
-    // Ejecución de la consulta
     connection.query(query, values, (error, results) => {
         if (error) {
             console.error("Error al actualizar el usuario:", error);

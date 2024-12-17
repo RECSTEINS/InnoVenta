@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import "./css_Platillos/Estilos-Platillos.css"
 
-function FormularioAgregarPlatillo() {
+function FormularioAgregarPlatillo({ onRegresar }) {
   const [nombre, setNombre] = useState('');
   const [precio, setPrecio] = useState('');
   const [disponible, setDisponible] = useState(true);
@@ -14,7 +14,7 @@ function FormularioAgregarPlatillo() {
   const [categorias, setCategorias] = useState([]);
   const [productosDisponibles, setProductosDisponibles] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchCategorias = async () => {
       try {
         const response = await axios.get('http://localhost:7777/getCategorias');
@@ -90,7 +90,7 @@ function FormularioAgregarPlatillo() {
       });
   };
 
-  
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: manejarDrop,
     accept: 'image/*',
@@ -105,7 +105,7 @@ function FormularioAgregarPlatillo() {
           <p class="titulo-nuevo-platillo">Datos del nuevo platillo</p>
         </div>
 
-        
+
 
         <div class="caja-grandes-agregar-platillo margen-vertical">
           <div class="label-grande-agregar-platillo">
@@ -185,72 +185,74 @@ function FormularioAgregarPlatillo() {
 
         </div>
         <div>
-        <div class="caja-titulo-agregar-platillo margen-vertical-agregar-platillo">
-          <p class="agregar-platillo-ingredientes2">Ingredientes</p>
-        </div>
-        {productos.map((producto, index) => (
-          <div key={index} class="caja-medianos-agregar-platillo margen-vertical-agregar-platillo">
-            <div class="cajita-select-agregar-platillo margen-horizontal-agregar-platillo">
-              <div class="label-mediano-agregar-platillo margen-entre-medianas-agregar-platillo">
-                <label class="estilo-label-agregar-platillo-2">Producto:</label>
-              </div>
-              <div class="contenedor-select-agregar-platillo">
-                <select
-                  class="caja-select-agregar-platillo"
-                  value={producto.id}
-                  onChange={(e) => actualizarProducto(index, 'id', e.target.value)}
-                  required
-                >
-                  <option value="">Selecciona un producto</option>
-                  {productosDisponibles.map((prod) => (
-                    <option key={prod.pk_productos} value={prod.pk_productos}>
-                      {prod.producto_nombre}
-                    </option>
-                  ))}
-                </select>
-                <div class="contenedor-icono-agregar-platillo">
-                  <i class="bi bi-caret-down-fill"></i>
+          <div class="caja-titulo-agregar-platillo margen-vertical-agregar-platillo">
+            <p class="agregar-platillo-ingredientes2">Ingredientes</p>
+          </div>
+          <div className='caja-productos-agregar-platillo'>
+            {productos.map((producto, index) => (
+              <div key={index} class="caja-medianos-agregar-platillo margen-vertical-agregar-platillo">
+                <div class="cajita-select-agregar-platillo margen-horizontal-agregar-platillo">
+                  <div class="label-mediano-agregar-platillo margen-entre-medianas-agregar-platillo">
+                    <label class="estilo-label-agregar-platillo-2">Producto:</label>
+                  </div>
+                  <div class="contenedor-select-agregar-platillo">
+                    <select
+                      class="caja-select-agregar-platillo"
+                      value={producto.id}
+                      onChange={(e) => actualizarProducto(index, 'id', e.target.value)}
+                      required
+                    >
+                      <option value="">Selecciona un producto</option>
+                      {productosDisponibles.map((prod) => (
+                        <option key={prod.pk_productos} value={prod.pk_productos}>
+                          {prod.producto_nombre}
+                        </option>
+                      ))}
+                    </select>
+                    <div class="contenedor-icono-agregar-platillo">
+                      <i class="bi bi-caret-down-fill"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="estilo-label-agregar-platillo-2">
+                    <label>Cantidad:</label>
+                  </div>
+                  <input
+                    type="number"
+                    class="input-cantidad-platillo"
+                    value={producto.cantidad}
+                    onChange={(e) => actualizarProducto(index, 'cantidad', e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div class="caja-boton-eliminar-agregar-platillo">
+                  <button type="button" class="eliminar-platillo" onClick={() => eliminarProducto(index)}>Eliminar</button>
                 </div>
               </div>
-            </div>
-
-            <div>
-              <div class="estilo-label-agregar-platillo-2">
-                <label>Cantidad:</label>
-              </div>
-              <input
-                type="number"
-                class="input-cantidad-platillo"
-                value={producto.cantidad}
-                onChange={(e) => actualizarProducto(index, 'cantidad', e.target.value)}
-                required
-              />
-            </div>
-
-            <div class="caja-boton-eliminar-agregar-platillo">
-              <button type="button" class="eliminar-platillo" onClick={() => eliminarProducto(index)}>Eliminar</button>
-            </div>
+            ))}
           </div>
-        ))}
 
-        <div class="caja-boton-agregar-platillo">
-          <button type="button" class="boton-ingresar-agregar-platillo" onClick={agregarProducto}>Agregar Producto</button>
+          <div class="caja-boton-agregar-platillo">
+            <button type="button" class="boton-ingresar-agregar-platillo" onClick={agregarProducto}>Agregar Producto</button>
+          </div>
+
         </div>
 
-      </div>
-      
         <div class="caja-botones-agregar-platillo">
           <div class="caja-boton separacion-botones-agregar-platillo">
-            <button type="submit" value="Regresar" class="boton-regresar"></button>
+            <button type="submit" value="Regresar" class="boton-regresar" onClick={onRegresar}>Regresar</button>
           </div>
           <div class="caja-boton-agregar-platillo">
-            <button type="submit" class="boton-ingresar">Ingresar   <i class="bi bi-arrow-right estilo-icono"></i></button>
+            <button type="submit" class="boton-ingresar">Ingresar <i class="bi bi-arrow-right estilo-icono"></i></button>
           </div>
         </div>
 
       </div>
 
-      
+
 
 
     </form>
