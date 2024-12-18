@@ -1,2 +1,4 @@
 # Ignorar la carpeta node_modules y su contenido
 node_modules/
+
+cliente/src/Auth/firebaseConfig.js
