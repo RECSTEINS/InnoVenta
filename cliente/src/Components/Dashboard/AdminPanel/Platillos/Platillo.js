@@ -202,10 +202,12 @@ function PlatillosPanel(){
                 </>
             ) : mostrarAddPlatillo ? (
                 <div className='agregar-platillo-panel'>
-                    <AgregarPlatillo onRegresar={() => setMostrarAddPlatillo(false)}/>
+                    <AgregarPlatillo onRegresar={() => {setMostrarAddPlatillo(false);
+                                                        showData();
+                                                        }}/>
                 </div>
             ) : editarPlatilloId ? (
-                <div className='editar-empleado-panel'>
+                <div className='agregar-platillo-panel'>
                     <EditarPlatillo onRegresar={() =>{ setEditarPlatilloId(null);
                                                        setMostrarEditarPlatillo(false);
                                                        showData();}}

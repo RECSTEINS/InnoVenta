@@ -1,5 +1,5 @@
 import ClientAxios from "../../../../Config/axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import DataTable from "react-data-table-component";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -13,10 +13,10 @@ function RolesPanel() {
     const [editarRolId, setEditarRolId] = useState(null); 
     const [visibleColumns, setVisibleColumns] = useState([
         "Nombre",
-        "Apellido",
-        "Correo",
+        "Descripcion",
         "Opciones",
     ]);
+    const [tableKey, setTableKey] = useState(0);
 
     const URL = "http://localhost:7777/getRoles";
 
@@ -24,7 +24,6 @@ function RolesPanel() {
         const response = await fetch(URL);
         const data = await response.json();
         setUsers(data);
-        setFilteredUsers(data);
     };
 
     const deletEmpleado = async (id) => {
@@ -61,7 +60,7 @@ function RolesPanel() {
             selector: (row) => row.pk_rol,
             center: true,
             sortable: true,
-            id: "Id",
+            id: "ID",
             width: "90px",
         },
         {
@@ -77,7 +76,7 @@ function RolesPanel() {
             selector: (row) => row.rol_descripcion,
             center: true,
             sortable: true,
-            id: "Apellido",
+            id: "Descripcion",
         },
         {
             name: "Opciones",
@@ -105,16 +104,21 @@ function RolesPanel() {
         },
     ];
 
-    const columns = allColumns.filter((column) => visibleColumns.includes(column.id));
+    const columns = useMemo(() => {
+        return allColumns.filter((col) => visibleColumns.includes(col.id));
+    }, [visibleColumns]);
 
     const handleColumnToggle = (columnId) => {
-        setVisibleColumns((prevState) =>
-            prevState.includes(columnId)
-                ? prevState.filter((col) => col !== columnId)
-                : [...prevState, columnId]
-        );
-        showData();
+        setVisibleColumns((prevState) => {
+            if (prevState.includes(columnId)) {
+                return prevState.filter((col) => col !== columnId);
+            } else {
+                return [...prevState, columnId];
+            }
+        });
+        setTableKey((prevKey) => prevKey + 1); // Forzar re-render
     };
+    
 
     useEffect(() => {
         showData();
@@ -159,8 +163,9 @@ function RolesPanel() {
                     </div>
 
                     <DataTable
+                        key={tableKey}
                         columns={columns}
-                        data={filteredUsers}
+                        data={users}
                         paginationPerPage={9}
                         pagination
                         highlightOnHover

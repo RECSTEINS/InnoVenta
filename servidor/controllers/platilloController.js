@@ -1,13 +1,13 @@
-const express=require("express")
-const app=express();
-const dotenv= require ("dotenv");
+const express = require("express")
+const app = express();
+const dotenv = require("dotenv");
 dotenv.config();
 
-const {connection}= require ("../config/config.db");
+const { connection } = require("../config/config.db");
 const { request, response } = require("..");
 
 
-const getPlatillos = (request, response) =>{
+const getPlatillos = (request, response) => {
     const query = `
             SELECT
                 platillos.pk_platillo,
@@ -25,46 +25,46 @@ const getPlatillos = (request, response) =>{
             LEFT JOIN productos ON platillos_productos.fk_producto = productos.pk_productos
                 
         `;
-        
-        connection.query(query, (error, results) => {
-            if (error) {
-                console.error("Error al obtener platillos: ", error);
-                return response.status(500).json({ error: "Error interno del servidor." });
+
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error("Error al obtener platillos: ", error);
+            return response.status(500).json({ error: "Error interno del servidor." });
+        }
+
+        const platillos = results.reduce((acc, row) => {
+
+            const {
+                pk_platillo,
+                platillo_nombre,
+                platillo_precio,
+                platillo_disponible,
+                platillo_img,
+                categoria_nombre,
+                producto_nombre,
+                fk_producto
+            } = row;
+
+            if (!acc[pk_platillo]) {
+                acc[pk_platillo] = {
+                    id: pk_platillo,
+                    nombre: platillo_nombre,
+                    precio: platillo_precio,
+                    disponible: !!platillo_disponible,
+                    img: platillo_img,
+                    categoria: categoria_nombre,
+                    productos: []
+                };
             }
 
-            const platillos = results.reduce((acc, row) => {
-                
-                const{
-                    pk_platillo,
-                    platillo_nombre,
-                    platillo_precio,
-                    platillo_disponible,
-                    platillo_img,
-                    categoria_nombre,
-                    producto_nombre,
-                    fk_producto
-                } = row;
-            
-                if (!acc[pk_platillo]) {
-                    acc[pk_platillo] = {
-                        id: pk_platillo,
-                        nombre: platillo_nombre,
-                        precio: platillo_precio,
-                        disponible: !!platillo_disponible,
-                        img: platillo_img,
-                        categoria: categoria_nombre,
-                        productos: []
-                    };
-                }
-                
-                if (fk_producto) {
-                    acc[pk_platillo].productos.push({
-                        nombre_producto: producto_nombre
-                    });
-                }
+            if (fk_producto) {
+                acc[pk_platillo].productos.push({
+                    nombre_producto: producto_nombre
+                });
+            }
 
             return acc;
-        },{});
+        }, {});
         response.status(200).json(Object.values(platillos));
     });
 };
@@ -83,12 +83,14 @@ const getPlatilloId = (req, res) => {
             platillos.fk_categoria,
             platillos.fk_restaurante,
             categorias.categoria_nombre,
+            restaurantes.restaunrate_nombre,
             productos.pk_productos,
             productos.producto_nombre,
             platillos_productos.platillo_producto_cantidad_producto
         FROM
             platillos
         LEFT JOIN categorias ON platillos.fk_categoria = categorias.pk_categoria
+        LEFT JOIN restaurantes ON platillos.fk_restaurante = restaurantes.pk_restaurante
         LEFT JOIN platillos_productos ON platillos.pk_platillo = platillos_productos.fk_platillo
         LEFT JOIN productos ON platillos_productos.fk_producto = productos.pk_productos
         WHERE platillos.pk_platillo = ?
@@ -97,11 +99,11 @@ const getPlatilloId = (req, res) => {
     connection.query(query, [id], (error, results) => {
         if (error) {
             console.error("Error al obtener el platillo: ", error);
-            return res.status(500).json({ error: "Error interno del servidor"});
+            return res.status(500).json({ error: "Error interno del servidor" });
         }
 
-        if (results.length === 0){
-            return res.status(404).json({ message: "Platillo no encontrado."});
+        if (results.length === 0) {
+            return res.status(404).json({ message: "Platillo no encontrado." });
         }
 
         const platillo = {
@@ -131,17 +133,17 @@ const getPlatilloId = (req, res) => {
 const agregarPlatillo = (request, response) => {
     const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos } = request.body;
 
-    
+
     if (!Array.isArray(productos) || productos.length === 0) {
         return response.status(400).json({ error: "Debe agregar al menos un producto para el platillo." });
     }
 
     if (!img.startsWith("/uploads/")) {
         return response.status(400).json({ error: "La imagen debe ser una URL válida del servidor." });
-      }
+    }
 
-    
-    if (!nombre || !precio || !img || !fkcategoria || !fkrestaurante) {
+
+    if (!nombre || !precio || !img || !fkcategoria) {
         return response.status(400).json({ error: "Todos los campos obligatorios deben estar presentes." });
     }
 
@@ -150,7 +152,7 @@ const agregarPlatillo = (request, response) => {
         VALUES (?, ?, ?, ?, ?, ?)
     `;
 
-    
+
     connection.query(
         insertarPlatilloQuery,
         [nombre, precio, disponible, img, fkcategoria, fkrestaurante],
@@ -162,7 +164,7 @@ const agregarPlatillo = (request, response) => {
 
             const platilloId = results.insertId;
 
-            
+
             const relaciones = productos.map(producto => [platilloId, producto.id, producto.cantidad]);
 
             const insertarRelacionQuery = `
@@ -185,7 +187,7 @@ const agregarPlatillo = (request, response) => {
 };
 
 const editarPlatillo = (req, res) => {
-    const { id } = req.params; 
+    const { id } = req.params;
     const { nombre, precio, disponible, img, fkcategoria, fkrestaurante, productos } = req.body;
 
     if (!nombre || !precio || !img || !fkcategoria || !fkrestaurante || !Array.isArray(productos)) {
@@ -253,14 +255,14 @@ const eliminarPlatillo = (req, res) => {
     const deleteQueryPedidosPlatillos = 'DELETE FROM pedidos_platillos WHERE fk_platillo = ?';
     const deleteQueryPlatillo = 'DELETE FROM platillos WHERE pk_platillo = ?';
 
-   
+
     connection.query(deleteQueryPedidosPlatillos, [id], (error) => {
         if (error) {
             console.error("Error al eliminar relaciones en pedidos_platillos:", error);
             return res.status(500).json({ error: "Error interno al eliminar relaciones." });
         }
 
-       
+
         connection.query(deleteQueryPlatillo, [id], (error) => {
             if (error) {
                 console.error("Error al eliminar platillo:", error);
@@ -272,4 +274,4 @@ const eliminarPlatillo = (req, res) => {
     });
 };
 
-module.exports = { agregarPlatillo, getPlatillos, eliminarPlatillo, editarPlatillo, getPlatilloId}
+module.exports = { agregarPlatillo, getPlatillos, eliminarPlatillo, editarPlatillo, getPlatilloId }
