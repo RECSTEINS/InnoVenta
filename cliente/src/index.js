@@ -13,6 +13,7 @@ import DashboardMesero from "./Components/Dashboard/MeseroPanel/InicioMesero";
 import EmpleadosPanel from "./Components/Dashboard/AdminPanel/Empleados/Empleados";
 import RecoverPassword from './Components/Login/RecoverPassword';
 import UpdatePassword from './Components/Login/UpdatePassword';
+import RegisterPage from './Components/Login/RegisterPage';
 import Tarjeta from './Components/Home/Tarjeta';
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/recoverPassword",
     element:<RecoverPassword/>
+  },
+  {
+    path: "/RegisterPage",
+    element:<RegisterPage/>
   },
 
   //Admin Paneles

@@ -7,6 +7,8 @@ import Footer from '../Home/Footer';
 import Logo from './logo-login.png';
 import "./Login.css";
 import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin";
+import { auth, provider } from "../../Auth/firebaseConfig";
+import { signInWithPopup } from "firebase/auth";
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -85,6 +87,24 @@ function Login() {
         }
     };
 
+    const handleGoogleLogin = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+            Swal.fire({
+                icon: "success",
+                title: "¡Éxito!",
+                text: "Has iniciado sesión con Google correctamente.",
+            });
+            goTo("/"); // Redirige al home
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo iniciar sesión con Google.",
+            });
+        }
+    };
+
     return (
         <>
             <NavBar />
@@ -121,7 +141,22 @@ function Login() {
                                     </a>
                                 </Link>
                             </div>
-                            <button type="submit" className="input-boton-login caja-boton boton-letra">Ingresar</button>
+                            <div className="login-btn-container">
+                                <button type="submit" className="input-boton-login caja-boton boton-letra">Ingresar</button>
+                                <button
+                                    type="button"
+                                    className="input-boton-login caja-boton boton-letra"
+                                    style={{ marginTop: "10px", backgroundColor: "#DB4437" }}
+                                    onClick={handleGoogleLogin}
+                                >
+                                    Iniciar sesión con Google
+                                </button>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-2px' }}>
+                                <Link to={"/RegisterPage"}>
+                                    <span className="register-link">¿No tienes cuenta? Regístrate</span>
+                                </Link>
+                            </div>
                         </form>
                     </div>
                     <div className="col-5 caja-decorativa">

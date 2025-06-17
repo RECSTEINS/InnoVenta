@@ -43,7 +43,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/', routes);
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7777;
 
 
 httpServer.listen(PORT, () => {
