@@ -1,14 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Presentacion.css';
-import { Button } from 'bootstrap';
-import imagen1 from "../../Assets/Img_Home/imagen1_editada_presentacion.JPG"
-import imagen2 from "../../Assets/Img_Home/imagen2_editada.JPG"
-import imagen3 from "../../Assets/Img_Home/presentacion-imagen.jpg"
 import { Link as ScrollLink } from 'react-scroll';
-import imagen1mobile from "../../Assets/Img_Home/presentacion-mobile.jpg"
-import imagen2mobile from "../../Assets/Img_Home/presentacion-mobile2.jpg"
-import imagen3mobile from "../../Assets/Img_Home/presentacion-mobile3.jpg"
 import { Link } from 'react-router-dom';
+import CloudImage from '../../cloudinary/CloudImage';
 
 
 function Presentacion(){
@@ -43,14 +37,14 @@ function Presentacion(){
                     </div>
                     <div class="col-md-5 col-12">
                         <div class="image-grid">                  
-                            <img src={imagen1} alt="Imagen 1" class="grid-image presentacion-imagen-1 d-none d-md-block"/>
-                            <img src={imagen1mobile} alt="Imagen 1" class="grid-image presentacion-imagen-1-mobile d-md-none w-100"/>
+                        <CloudImage publicId="imagen1_editada_presentacion_otoefr" className="grid-image presentacion-imagen-1 d-none d-md-block" alt="Imagen 1" />
+                        <CloudImage publicId="presentacion-mobile_a2zqos" className="grid-image presentacion-imagen-1-mobile d-md-none w-100"/>
 
-                            <img src={imagen2} alt="Imagen 2" class="grid-image presentacion-imagen-2 d-none d-md-block"/>
-                            <img src={imagen2mobile} alt="Imagen 1" class="grid-image presentacion-imagen-2-mobile d-md-none w-100"/>
+                        <CloudImage publicId="imagen2_editada_s8vavf" className="grid-image presentacion-imagen-2 d-none d-md-block"/>
+                        <CloudImage publicId="presentacion-mobile2_qnbj25" className="grid-image presentacion-imagen-2-mobile d-md-none w-100"/>
 
-                            <img src={imagen3} alt="Imagen 3" class="grid-image presentacion-imagen-3 d-none d-md-block"/>
-                            <img src={imagen3mobile} alt="Imagen 1" class="grid-image presentacion-imagen-3-mobile d-md-none w-100"/>
+                        <CloudImage publicId="presentacion-imagen_y8xbyi" className="grid-image presentacion-imagen-3 d-none d-md-block"/>
+                        <CloudImage publicId="presentacion-mobile3_fr3ahk" className="grid-image presentacion-imagen-3-mobile d-md-none w-100"/>
                         </div>
                     </div>            
                 </div>
