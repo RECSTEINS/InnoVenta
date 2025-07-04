@@ -8,7 +8,7 @@ import Logo from './logo-login.png';
 import "./Login.css";
 import DashboardAdmin from "../Dashboard/AdminPanel/InicioAdmin";
 import { auth, provider } from "../../Auth/firebaseConfig";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, getAuth, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -16,10 +16,16 @@ function Login() {
     const [loginSuccessful, setLoginSuccessful] = useState(false);
     const [users, setUsers] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
     const goTo = useNavigate();
 
     const URL = 'http://localhost:7777/login-list';
+
+    // Regular expressions for validation
+    const emailRegex = /^\d{9}@upqroo\.edu\.mx$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     useEffect(() => {
         showData();
@@ -35,8 +41,27 @@ function Login() {
         }
     };
 
+    const validateEmail = (value) => {
+        setNombre(value);
+        setEmailError(!emailRegex.test(value));
+    };
+
+    const validatePassword = (value) => {
+        setPassword(value);
+        setPasswordError(!passwordRegex.test(value));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (emailError || passwordError) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, verifica el formato del correo y la contraseña.',
+            });
+            return;
+        }
 
         try {
             const response = await fetch('http://localhost:7777/login', {
@@ -88,20 +113,62 @@ function Login() {
     };
 
     const handleGoogleLogin = async () => {
+        // Validación de formato
+        if (emailError || passwordError) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, verifica que el formato del correo y la contraseña sean correctos antes de continuar.',
+            });
+            return;
+        }
+
+        if (!email || !password) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos antes de continuar.',
+            });
+            return;
+        }
+
         try {
-            await signInWithPopup(auth, provider);
+            // Intentar login con email/contraseña
+            await signInWithEmailAndPassword(auth, email, password);
             Swal.fire({
                 icon: "success",
                 title: "¡Éxito!",
-                text: "Has iniciado sesión con Google correctamente.",
+                text: "Has iniciado sesión correctamente.",
             });
-            goTo("/"); // Redirige al home
+            // Aquí puedes redirigir si lo deseas
+            // goTo("/");
         } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "No se pudo iniciar sesión con Google.",
-            });
+            if (error.code === "auth/user-not-found") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No existe una cuenta con este correo electrónico.",
+                });
+            } else if (error.code === "auth/wrong-password") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "La contraseña es incorrecta.",
+                });
+            } else if (error.code === "auth/invalid-email") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "El correo electrónico no es válido.",
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No se pudo iniciar sesión. Por favor, intenta nuevamente.",
+                });
+            }
+            console.error("Error al iniciar sesión:", error);
         }
     };
 
@@ -119,21 +186,31 @@ function Login() {
                                 <label htmlFor="usuario" className="form-label mt-3">Email:</label><br />
                                 <input
                                     type="text"
-                                    className="input-style-login inputs-letra"
+                                    className={`input-style-login inputs-letra ${emailError ? 'border-danger' : email ? 'border-success' : ''}`}
                                     id="usuario"
                                     placeholder="Usuario"
-                                    onChange={(event) => setNombre(event.target.value)}
+                                    onChange={(event) => validateEmail(event.target.value)}
                                 />
+                                {email && (
+                                    <small className={`d-block mt-1 ${emailError ? 'text-danger' : 'text-success'}`}>
+                                        {emailError ? 'Formato de correo incorrecto' : 'Formato de correo correcto'}
+                                    </small>
+                                )}
                             </div>
                             <div className="caja-inputs">
                                 <label htmlFor="password" className="form-label">Contraseña:</label><br />
                                 <input
                                     type="password"
-                                    className="input-style-login caja-boton-login boton-letra"
+                                    className={`input-style-login caja-boton-login boton-letra ${passwordError ? 'border-danger' : password ? 'border-success' : ''}`}
                                     id="password"
                                     placeholder="******"
-                                    onChange={(event) => setPassword(event.target.value)}
+                                    onChange={(event) => validatePassword(event.target.value)}
                                 />
+                                {password && (
+                                    <small className={`d-block mt-1 ${passwordError ? 'text-danger' : 'text-success'}`}>
+                                        {passwordError ? 'Formato de contraseña incorrecto' : 'Formato de contraseña correcto'}
+                                    </small>
+                                )}
                                 <br />
                                 <Link to={"/recoverPassword"}>
                                     <a style={{marginLeft:"270px"}}>
