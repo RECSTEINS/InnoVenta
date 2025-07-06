@@ -469,3 +469,17 @@
 .btn-opcion-pago {
   transition: background-color 0.3s, border 0.3s; /* Animación suave */
 }
+
+.pagos_stripe_button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  background-color: #635bff;
+  padding: 4px 8px;
+  border-radius: 2rem;
+  width: 300px;
+  color: white;
+}

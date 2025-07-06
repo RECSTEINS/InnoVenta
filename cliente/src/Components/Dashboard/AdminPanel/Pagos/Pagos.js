@@ -1,11 +1,13 @@
-import './css_Pago/pagos.css';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png';
 import axios from 'axios';
 import html2pdf from 'html2pdf.js';
 import Swal from 'sweetalert2';
 
 import CardOrdenes from '../Ordenes/CardOrdenes';
+import StripeCheckoutButton from '../../../StripeCheckoutButton';
+import './css_Pago/pagos.css';
+
 function PagosPanel() {
 
     const [ordenesListas, setOrdenesListas] = useState([]);
@@ -432,6 +434,7 @@ function PagosPanel() {
                 </div>
             </div>
             <button className="btn-imprimir" onClick={handleImprimir}>Imprimir</button>
+            <StripeCheckoutButton className="pagos_stripe_button"/>
         </div>
     );
 }

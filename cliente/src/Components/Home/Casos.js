@@ -5,6 +5,7 @@ import imagen13 from '../../Assets/Img_Home/caso2-editada.JPG';
 import imagen7 from '../../Assets/Img_Home/caso1-editada.JPG';
 import imagen14 from '../../Assets/Img_Home/caso3-editada.JPG';
 import { Link } from 'react-router-dom';
+import CloudImage from '../../cloudinary/CloudImage';
  
 function Casos(){
     return(
@@ -20,7 +21,7 @@ function Casos(){
 
                         <div class="col-md-4 mb-4">
                             <div class="card caso-card">
-                                <img src={imagen7} alt="Parrilla La Tradición" class="card-img-top rounded-circle mx-auto mt-3 caso-img"/>
+                                <CloudImage publicId="caso1-editada_uhftsu" className="card-img-top rounded-circle mx-auto mt-3 caso-img"/>
                                 <div class="card-body">
                                     <p class="card-title-caso">Parrilla La Tradición</p>
                                     <p class="card-text"><strong class="caso-alert">20%</strong> de Reducción en</p>
