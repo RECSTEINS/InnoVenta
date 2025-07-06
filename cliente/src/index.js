@@ -15,6 +15,8 @@ import RecoverPassword from './Components/Login/RecoverPassword';
 import UpdatePassword from './Components/Login/UpdatePassword';
 import RegisterPage from './Components/Login/RegisterPage';
 import Tarjeta from './Components/Home/Tarjeta';
+import Success from './Components/Payments/Success.jsx';
+import Cancel from './Components/Payments/Cancel.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,7 +64,15 @@ const router = createBrowserRouter([
   {
     path:"/pagosTarjeta",
     element:<Tarjeta/>
-  }
+  },
+  {
+    path:"/success",
+    element:<Success/>
+  },
+  {
+    path:"/cancel",
+    element:<Cancel/>
+  },
   
 ])
 
