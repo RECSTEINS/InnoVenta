@@ -24,7 +24,8 @@ function Login() {
     const URL = 'http://localhost:7777/login-list';
 
     // Regular expressions for validation
-    const emailRegex = /^\d{9}@upqroo\.edu\.mx$/;
+    const emailRegex = /^(\d{9}@upqroo\.edu\.mx|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     useEffect(() => {

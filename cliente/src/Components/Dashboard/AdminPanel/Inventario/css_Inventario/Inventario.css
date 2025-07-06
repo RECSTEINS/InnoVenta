@@ -5,6 +5,7 @@
     background-color: #FFFF;
     color: black;   
     overflow-x: hidden; /* Oculta el scroll horizontal */
+    min-height: 100vh;
 }
 
 .header-inventario {
@@ -12,6 +13,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .titulo-dashboard-panel{
@@ -19,6 +22,8 @@
     font-family: 'Oswald';
     font-size: 40px;
     color: #000;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .add-btn-button{
@@ -33,6 +38,8 @@
     font-family: 'Roboto';
     font-weight: 700;
     font-size: 24px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .edit-btn-button{
@@ -44,8 +51,10 @@
     cursor: pointer;
     width: 160px;
     height: 48px;
-    font-weight:400;
+    font-weight: 400;
     font-family: 'Roboto';
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .delete-btn-button{
@@ -59,12 +68,53 @@
     height: 48px;
     font-family: 'Roboto';
     font-weight: 400;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-agregar:hover, .btn-edit:hover, .btn-delete:hover {
     opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* Estilos para la sección de gráficos */
+.charts-section {
+    margin-bottom: 30px;
+}
+
+.charts-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Roboto';
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chart-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.chart-canvas {
+    height: 300px;
+    width: 100%;
+}
 
 .modal {
     position: fixed;
@@ -94,4 +144,313 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+}
+
+/* Media Queries para Responsive Design */
+
+/* Tablets (768px y menos) */
+@media (max-width: 768px) {
+    .inventario-panel {
+        padding: 20px;
+        padding-left: 20px;
+        padding-top: 30px;
+    }
+
+    .header-inventario {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .add-btn-button {
+        width: 100%;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 140px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .chart-container {
+        padding: 15px;
+    }
+
+    .chart-canvas {
+        height: 250px;
+    }
+
+    .charts-title {
+        font-size: 20px;
+    }
+
+    .modal-content-edit {
+        margin-left: 0;
+        width: 95%;
+        max-width: 500px;
+    }
+}
+
+/* Móviles grandes (576px y menos) */
+@media (max-width: 576px) {
+    .inventario-panel {
+        padding: 15px;
+        padding-top: 20px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 28px;
+    }
+
+    .add-btn-button {
+        height: 40px;
+        font-size: 18px;
+        padding: 5px 15px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .charts-grid {
+        gap: 10px;
+    }
+
+    .chart-container {
+        padding: 10px;
+    }
+
+    .chart-canvas {
+        height: 200px;
+    }
+
+    .charts-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Móviles pequeños (480px y menos) */
+@media (max-width: 480px) {
+    .inventario-panel {
+        padding: 10px;
+        padding-top: 15px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 24px;
+    }
+
+    .add-btn-button {
+        height: 36px;
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 100px;
+        height: 36px;
+        font-size: 12px;
+        padding: 5px 5px;
+    }
+
+    .chart-container {
+        padding: 8px;
+    }
+
+    .chart-canvas {
+        height: 180px;
+    }
+
+    .charts-title {
+        font-size: 16px;
+    }
+}
+
+/* Pantallas muy pequeñas (360px y menos) */
+@media (max-width: 360px) {
+    .inventario-panel {
+        padding: 8px;
+        padding-top: 10px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 20px;
+    }
+
+    .add-btn-button {
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 80px;
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .chart-canvas {
+        height: 150px;
+    }
+
+    .charts-title {
+        font-size: 14px;
+    }
+}
+
+/* Pantallas grandes (1200px y más) */
+@media (min-width: 1200px) {
+    .inventario-panel {
+        padding: 40px;
+        padding-left: 60px;
+        padding-top: 50px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 44px;
+    }
+
+    .add-btn-button {
+        width: 350px;
+        height: 52px;
+        font-size: 26px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 170px;
+        height: 52px;
+        font-size: 18px;
+    }
+
+    .charts-grid {
+        gap: 30px;
+    }
+
+    .chart-container {
+        padding: 25px;
+    }
+
+    .chart-canvas {
+        height: 350px;
+    }
+
+    .charts-title {
+        font-size: 28px;
+    }
+}
+
+/* Pantallas extra grandes (1400px y más) */
+@media (min-width: 1400px) {
+    .inventario-panel {
+        padding: 50px;
+        padding-left: 70px;
+        padding-top: 60px;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 48px;
+    }
+
+    .add-btn-button {
+        width: 380px;
+        height: 56px;
+        font-size: 28px;
+    }
+
+    .edit-btn-button,
+    .delete-btn-button {
+        width: 180px;
+        height: 56px;
+        font-size: 20px;
+    }
+
+    .chart-canvas {
+        height: 400px;
+    }
+
+    .charts-title {
+        font-size: 32px;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .inventario-panel {
+        padding: 15px;
+        padding-top: 20px;
+    }
+
+    .header-inventario {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .titulo-dashboard-panel {
+        font-size: 24px;
+        text-align: left;
+    }
+
+    .add-btn-button {
+        width: 200px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .chart-canvas {
+        height: 200px;
+    }
+}
+
+/* Ajustes para DataTable responsive */
+@media (max-width: 768px) {
+    .rdt_Table {
+        font-size: 14px !important;
+    }
+
+    .rdt_TableHead {
+        font-size: 16px !important;
+    }
+
+    .rdt_TableCell {
+        padding: 8px 4px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .rdt_Table {
+        font-size: 12px !important;
+    }
+
+    .rdt_TableHead {
+        font-size: 14px !important;
+    }
+
+    .rdt_TableCell {
+        padding: 6px 2px !important;
+    }
 }
