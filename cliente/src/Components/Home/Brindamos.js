@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { Carousel, Card, Row, Col, Button } from 'react-bootstrap';
 import imagen8 from '../../Assets/Img_Home/imagen17.png';
 import imagen9 from '../../Assets/Img_Home/imagen19.png'
+import CloudImage from '../../cloudinary/CloudImage';
 
 const Brindamos = () => {
 
@@ -31,7 +32,8 @@ const Brindamos = () => {
                     <Row className="justify-content-center mx-3 ">
                         <Col md={5}>
                             <Card className="styled-card mb-3">
-                                <Card.Img variant="top" src={imagen8} className='circle-imagen-1'  alt="Card image 1" />
+                                <CloudImage publicId="imagen1_editada_presentacion_otoefr" className="" />
+                                {/* <Card.Img variant="top" src={imagen8} className='circle-imagen-1'  alt="Card image 1" /> */}
                                 <Card.Body>
                                     <Card.Title>Calidad Garantizada</Card.Title>
                                     <Card.Text>El sistema proporciona todas las herramientas necesarias para realizar el trabajo necesario.</Card.Text>

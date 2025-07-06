@@ -55,14 +55,14 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (emailError || passwordError) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Por favor, verifica el formato del correo y la contraseña.',
-            });
-            return;
-        }
+        // if (emailError || passwordError) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Error',
+        //         text: 'Por favor, verifica el formato del correo y la contraseña.',
+        //     });
+        //     return;
+        // }
 
         try {
             const response = await fetch('http://localhost:7777/login', {
