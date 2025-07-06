@@ -1,7 +1,7 @@
 import "./css/Nosotros2.css";
-import Venta2 from "../../Assets/Img_Home_new/venta2.png";
 import ventaPalomi from "../../Assets/Img_Home_new/Vectordepalomita.png";
 import { Link } from "react-router-dom";
+import CloudImage from '../../cloudinary/CloudImage';
 
 function Nosotros2(){
     return(
@@ -36,7 +36,7 @@ function Nosotros2(){
                 </div>
             </div>
     
-            <img class="feature-image" src={Venta2} alt="Interfaz de optimización de transacciones" />
+            <CloudImage publicId="venta2_mm1c3w" className="feature-image" alt="Interfaz de optimización de transacciones" />
         </section>
     )
 }
