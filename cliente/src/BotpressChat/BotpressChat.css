@@ -1,0 +1,56 @@
+/* src/BotpressChat/BotpressChat.css */
+
+.botpress-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 400px;
+  height: 600px;
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+/* Asegurar que el iframe de Botpress tenga el tamaño correcto */
+.botpress-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Estilos para el botón flotante */
+.botpress-container .bp-widget-widget {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Asegurar que el chat expandido tenga el tamaño correcto */
+.botpress-container .bp-widget-web {
+  width: 400px !important;
+  height: 600px !important;
+  max-width: 90vw !important;
+  max-height: 80vh !important;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .botpress-container {
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  
+  .botpress-container .bp-widget-web {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
+}

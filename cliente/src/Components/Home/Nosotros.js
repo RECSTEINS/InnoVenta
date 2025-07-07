@@ -3,7 +3,7 @@ import VectorPalomita from "../../Assets/Img_Home_new/Vectordepalomita.png";
 import venta1 from "../../Assets/Img_Home_new/venta1.png";
 import './css/Nosotros.css';
 import { Link } from 'react-router-dom';
-
+import CloudImage from '../../cloudinary/CloudImage';
 
 function Nosotros() {
   return (
@@ -12,10 +12,7 @@ function Nosotros() {
         <h1 class="main-title">Vender nunca fue tan fácil</h1>
         <p class="subtitle">Olvídate de capacitaciones y problemas con tu sistema</p>
       </div>
-      <img
-        loading="lazy"
-        src={venta1}
-        class="hero-image"
+      <CloudImage publicId="venta1_lejsy1" className="hero-image"
         alt="Sistema de punto de venta"
       />
       <div class="features-container">

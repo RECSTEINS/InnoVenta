@@ -26,6 +26,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// importar tus rutas/controladores aquí
+// const stripeRoutes = require('./routes/stripe');
+// app.use('/api/stripe', stripeRoutes);
 
 app.post('/upload-image', upload.single('image'), (req, res) => {
   if (!req.file) {
@@ -43,7 +46,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/', routes);
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7777;
 
 
 httpServer.listen(PORT, () => {

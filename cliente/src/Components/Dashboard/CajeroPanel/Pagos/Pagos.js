@@ -6,6 +6,7 @@ import html2pdf from 'html2pdf.js';
 import Swal from 'sweetalert2';
 
 import CardOrdenes from '../Ordenes/CardOrdenes';
+import StripeCheckoutButton from '../../../StripeCheckoutButton';
 function PagosPanel() {
 
     const [ordenesListas, setOrdenesListas] = useState([]);
@@ -431,7 +432,8 @@ function PagosPanel() {
                     <p className='resumen-gracias'>¡Gracias por su compra!</p>
                 </div>
             </div>
-            <button className="btn-imprimir" onClick={handleImprimir}>Imprimir</button>
+            {/* <button className="btn-imprimir" onClick={handleImprimir}>Imprimir</button> */}
+            <StripeCheckoutButton className="btn-imprimir" amount={5000} description="Curso Online" />
         </div>
     );
 }

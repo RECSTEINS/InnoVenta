@@ -1,11 +1,12 @@
 import ClientAxios from "../../../../Config/axios";
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import DataTable from 'react-data-table-component';
 import { Dropdown, DropdownButton} from 'react-bootstrap';
 import AgregarEmpleado from "./AgregarEmpleado";
 import './css_Empleado/Empleado.css';
 import Swal from "sweetalert2";
 import EditarEmpleado from "./EditarEmpleado";
+import Chart from 'chart.js/auto';
 
 function EmpleadosPanel(){
     const [users, setUsers] = useState([]);
@@ -19,6 +20,8 @@ function EmpleadosPanel(){
         'Correo',
         'Opciones'
     ]);
+    const chartRef = useRef(null);
+    const chartInstance = useRef(null);
 
     const URL = 'http://localhost:7777/getEmpleados'
 
@@ -28,6 +31,61 @@ function EmpleadosPanel(){
         setUsers(data);
         setFilteredUsers(data);
     }
+
+    // Función para crear el gráfico
+    const createChart = () => {
+        if (chartRef.current && chartInstance.current) {
+            chartInstance.current.destroy();
+        }
+
+        const data = [
+            { year: 2010, count: 10 },
+            { year: 2011, count: 20 },
+            { year: 2012, count: 15 },
+            { year: 2013, count: 25 },
+            { year: 2014, count: 22 },
+            { year: 2015, count: 30 },
+            { year: 2016, count: 28 },
+        ];
+
+        if (chartRef.current) {
+            chartInstance.current = new Chart(
+                chartRef.current,
+                {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(row => row.year),
+                        datasets: [
+                            {
+                                label: 'Empleados por año',
+                                data: data.map(row => row.count),
+                                backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Estadísticas de Empleados'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+        }
+    };
 
     const deletEmpleado = async(id) => {
         try {
@@ -155,6 +213,14 @@ function EmpleadosPanel(){
 
     useEffect(() => {
         showData();
+        createChart();
+        
+        // Cleanup function para destruir el gráfico cuando el componente se desmonte
+        return () => {
+            if (chartInstance.current) {
+                chartInstance.current.destroy();
+            }
+        };
     }, []);
 
     return(
@@ -211,6 +277,11 @@ function EmpleadosPanel(){
                             rows:{style: {fontSize:'24px', fontWeight:'400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom:'16px'}}  
                         }}
                     />
+
+                    {/* Sección del gráfico */}
+                    <div style={{ marginTop: '30px', padding: '20px', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                        <canvas ref={chartRef} style={{ maxHeight: '400px' }}></canvas>
+                    </div>
                 </>
             ) : mostrarAddEmpleado ? (
                 <div className="agregar-empleado-panel">

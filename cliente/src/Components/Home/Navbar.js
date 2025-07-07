@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo2 from '../Login/logo-login.png';
 import { Link as ScrollLink } from 'react-scroll';
+import CloudImage from '../../cloudinary/CloudImage';
 
 const NavBar = () => {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -26,7 +27,8 @@ const NavBar = () => {
     return (
         <header className='mx-[252px]'>
             <Link to={"/"}>
-            <img className="logo" src={Logo2} alt="InnoVenta Logo" />
+            <CloudImage publicId="Logo_dqp5jc" className="logo" alt="InnoVenta Logo" />
+
             </Link>
             <button id="abrir" className="abrir-menu" onClick={handleOpenMenu}>
                 <i className="bi bi-list"></i>
@@ -41,6 +43,7 @@ const NavBar = () => {
                         Inicio <i class="bi bi-chevron-down"></i>
                         <ul
                             style={{
+                           
                                 display: dropdownVisible ? 'block' : 'none',
                                 position: 'absolute',
                                 backgroundColor: '#050038',  // Un color más suave para el fondo

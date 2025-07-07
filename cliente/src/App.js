@@ -18,6 +18,7 @@ import Nosotros2 from "./Components/Home/Nosotros2";
 
 import UpdatePassword from "./Components/Login/UpdatePassword";
 import Tarjeta from "./Components/Home/Tarjeta";
+import BotpressChat from "./BotpressChat/BotpressProvider";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Casos/>
         <Resenas/>
         <Footer/>
+        <BotpressChat />
     </div>
   );
 }
