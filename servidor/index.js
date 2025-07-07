@@ -27,8 +27,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // importar tus rutas/controladores aquí
-// const stripeRoutes = require('./routes/stripe');
-// app.use('/api/stripe', stripeRoutes);
+const stripeRoutes = require('./routes/stripe');
+app.use('/api/stripe', stripeRoutes);
 
 app.post('/upload-image', upload.single('image'), (req, res) => {
   if (!req.file) {
