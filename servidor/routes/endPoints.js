@@ -14,10 +14,31 @@ const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
 const { getReportes, getProductosBajoStock, getPlatillosMasVendidos } = require("../controllers/reporteController");
 
+// Importar middleware de validación y DTOs
+const validateDTO = require("../middleware/validateDTO");
+const { 
+    loginDTO, 
+    updatePasswordDTO,
+    createUsuarioDTO,
+    updateUsuarioDTO,
+    createEmpleadoDTO,
+    updateEmpleadoDTO,
+    createRestauranteDTO,
+    updateRestauranteDTO,
+    createProductoDTO,
+    updateProductoDTO,
+    createPlatilloDTO,
+    updatePlatilloDTO,
+    createPedidoDTO,
+    updatePedidoEstadoDTO,
+    createCategoriaDTO,
+    reporteDTO
+} = require("../dto");
+
 //Login
-router.post('/login', login);
+router.post('/login', validateDTO(loginDTO), login);
 router.get('/login-list', usuarios_login);
-router.post('/login-update', updatePassword);
+router.post('/login-update', validateDTO(updatePasswordDTO), updatePassword);
 router.post('/register', register);
 
 //Roles 
@@ -31,46 +52,46 @@ router.post('/updateRoles/:id', updateRoles);
 //Usuarios
 router.get('/getUsuarios', getUsuarios);
 router.get('/getUsuarioId/:id', getUsuarioId);
-router.post('/postUsuario', postUsuario);
-router.post('/updateUsuario/:id', updateUsuario);
+router.post('/postUsuario', validateDTO(createUsuarioDTO), postUsuario);
+router.post('/updateUsuario/:id', validateDTO(updateUsuarioDTO), updateUsuario);
 router.delete('/delUsuario/:id', delUsuario);
 
 
 //Empleados
 router.get('/getEmpleados', getEmpleados);
 router.get('/getEmpleadoId/:id', getEmpleadoId);
-router.post('/postEmpleado', postEmpleado);
-router.post('/updateEmpleado/:id', updateEmpleado);
+router.post('/postEmpleado', validateDTO(createEmpleadoDTO), postEmpleado);
+router.post('/updateEmpleado/:id', validateDTO(updateEmpleadoDTO), updateEmpleado);
 router.delete('/delEmpleado/:id', delEmpleado);
-router.post('/agregar-empleado', agregarEmpleado);
+router.post('/agregar-empleado', validateDTO(createEmpleadoDTO), agregarEmpleado);
 
 
 //Restaurantes
 router.get('/getRestaurantes', getRestaurantes);
 router.get('/getRestauranteId/:id', getRestauranteId);
-router.post('/postRestaurante', postRestaurante);
-router.post('/updateRestaurante/:id', updateRestaurante);
+router.post('/postRestaurante', validateDTO(createRestauranteDTO), postRestaurante);
+router.post('/updateRestaurante/:id', validateDTO(updateRestauranteDTO), updateRestaurante);
 router.delete('/delRestaurante/:id', delRestaurante);
 
 
 //Inventario
 router.get('/getInventario', getInventario);
 router.get('/get-productos-nombre', getProductos);
-router.post('/agregar-producto', agregarProducto);
+router.post('/agregar-producto', validateDTO(createProductoDTO), agregarProducto);
 router.delete('/eliminar-producto/:id', eliminarProducto);
 router.get('/get-producto-id/:id', getProductoId);
-router.post('/updateProducto/:id', editarProducto)
+router.post('/updateProducto/:id', validateDTO(updateProductoDTO), editarProducto)
 
 //Categoria
-router.post('/agregar-categoria', agregarCategoria);
+router.post('/agregar-categoria', validateDTO(createCategoriaDTO), agregarCategoria);
 router.get('/getCategorias', getCategorias);
 
 
 //Platillo
-router.post('/agregar-platillo', agregarPlatillo);
+router.post('/agregar-platillo', validateDTO(createPlatilloDTO), agregarPlatillo);
 router.get('/getPlatillos', getPlatillos);
 router.delete('/eliminar-platillo/:id', eliminarPlatillo);
-router.put('/editar-platillo/:id', editarPlatillo);
+router.put('/editar-platillo/:id', validateDTO(updatePlatilloDTO), editarPlatillo);
 router.get('/get-platillo/:id', getPlatilloId);
 
 //imagenes
@@ -78,9 +99,9 @@ router.post("/upload-image", upload.single("image"), uploadImage);
 
 
 //Pedidos
-router.post("/crear-pedido", CrearPedido);
+router.post("/crear-pedido", validateDTO(createPedidoDTO), CrearPedido);
 router.get('/getPedidosEnProceso', getPedidosEnProceso);
-router.put('/pedidos/:id/estado', updatePedidoEstado)
+router.put('/pedidos/:id/estado', validateDTO(updatePedidoEstadoDTO), updatePedidoEstado)
 router.get('/getPedidosListo', getPedidosListo);
 
 
@@ -89,7 +110,7 @@ router.post('/realizar-pago', procesarPago);
 
 
 //Reportes
-router.post('/get-reportes', getReportes);
+router.post('/get-reportes', validateDTO(reporteDTO), getReportes);
 router.get('/productos-bajo-stock', getProductosBajoStock);
 router.get('/platillos-mas-vendidos', getPlatillosMasVendidos);
 

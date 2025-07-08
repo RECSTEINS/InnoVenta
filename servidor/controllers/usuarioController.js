@@ -4,7 +4,7 @@ const dotenv= require ("dotenv");
 dotenv.config();
 
 const {connection}= require ("../config/config.db");
-const { request, response } = require("..");
+const { createUsuarioDTO, updateUsuarioDTO } = require("../dto");
 
 const getUsuarios= (request, response) => {
     connection.query(`
@@ -24,9 +24,11 @@ const getUsuarios= (request, response) => {
         LEFT JOIN roles ON usuarios.fk_rol = roles.pk_rol
         `,
     (error,results)=>{
-        if(error)
-        throw error;
-    response.status(200).json(results);
+        if(error) {
+            console.error("Error al obtener usuarios:", error);
+            return response.status(500).json({ error: "Error al obtener usuarios" });
+        }
+        response.status(200).json(results); // RESPUESTA PLANA
     });
 };
 
@@ -51,15 +53,22 @@ const getUsuarioId= (request, response) => {
         `,
     [id],
     (error,results)=>{
-        if(error)
-        throw error;
-    response.status(200).json(results);
+        if(error) {
+            console.error("Error al obtener usuario:", error);
+            return response.status(500).json({ error: "Error al obtener usuario" });
+        }
+        
+        if (results.length === 0) {
+            return response.status(404).json({ error: "Usuario no encontrado" });
+        }
+        
+        response.status(200).json(results[0]); // RESPUESTA PLANA
     });
 };
 
 const updateUsuario = (request, response) => {
     const id = request.params.id;
-    const { nombre, password, img, fkrol, fkrestaurante, fkempleado,  } = request.body;
+    const { nombre, password, img, fkrol, fkrestaurante, fkempleado } = request.body;
 
     // Construcción dinámica de campos para la consulta
     const fieldsToUpdate = [];
@@ -112,15 +121,8 @@ const updateUsuario = (request, response) => {
     });
 };
 
-
-
 const postUsuario = (request, response) => {
     const { id, nombre, password, img, fecha_creacion, activo, fkrestaurante, fkempleado, fkrol, action } = request.body;
-
-    // Verifica que los valores necesarios están presentes
-    if (!nombre || !password || !fkempleado || !fkrestaurante || !fkrol) {
-        return response.status(400).json({ message: "Faltan datos obligatorios" });
-    }
 
     console.log("Datos recibidos:", {
         id,
@@ -142,9 +144,9 @@ const postUsuario = (request, response) => {
             (error, results) => {
                 if (error) {
                     console.error("Error al insertar usuario:", error);
-                    throw error;
+                    return response.status(500).json({ error: "Error al insertar usuario" });
                 }
-                response.status(200).json({ "Usuario añadido correctamente": results.affectedRows });
+                response.status(200).json({ message: "Usuario añadido correctamente", affectedRows: results.affectedRows });
             }
         );
     } else if (action === "update") {
@@ -154,20 +156,30 @@ const postUsuario = (request, response) => {
             (error, results) => {
                 if (error) {
                     console.error("Error al actualizar usuario:", error);
-                    throw error;
+                    return response.status(500).json({ error: "Error al actualizar usuario" });
                 }
-                response.status(200).json({ "Usuario actualizado correctamente": results.affectedRows });
+                response.status(200).json({ message: "Usuario actualizado correctamente", affectedRows: results.affectedRows });
             }
         );
+    } else {
+        return response.status(400).json({ error: "Acción no válida. Debe ser 'insert' o 'update'" });
     }
 };
+
 const delUsuario = (request, response)=>{
-    const id =request.params.id;
+    const id = request.params.id;
     connection.query("DELETE FROM usuarios WHERE pk_usuario = ?",[id],
     (error, results)=>{
-        if(error)
-            throw error;
-        response.status(201).json({"Usuario eliminado":results.affectedRows});
+        if(error) {
+            console.error("Error al eliminar usuario:", error);
+            return response.status(500).json({ error: "Error al eliminar usuario" });
+        }
+        
+        if (results.affectedRows > 0) {
+            response.status(200).json({ message: "Usuario eliminado correctamente", affectedRows: results.affectedRows });
+        } else {
+            response.status(404).json({ error: "Usuario no encontrado" });
+        }
     });
 };
 

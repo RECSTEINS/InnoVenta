@@ -1,7 +1,25 @@
 const { connection } = require("../config/config.db");
+const { loginDTO, updatePasswordDTO } = require("../dto");
 
 module.exports.login = (req, res) => {
-    const { email, password } = req.body; 
+    // Validar datos con DTO
+    const { error, value } = loginDTO.validate(req.body);
+    
+    if (error) {
+        const errorMessages = error.details.map(detail => ({
+            field: detail.path.join('.'),
+            message: detail.message
+        }));
+        
+        return res.status(400).json({
+            success: false,
+            message: 'Error de validación en login',
+            errors: errorMessages
+        });
+    }
+
+    const { email, password } = value; // Usar datos validados
+    
     const consult = `
         SELECT 
             usuarios.usuario_password,
@@ -17,23 +35,33 @@ module.exports.login = (req, res) => {
         connection.query(consult, [password, email], (err, result) => {
             if (err) {
                 console.error(err);
-                res.status(500).send({ message: 'Error al consultar la base de datos.' });
+                res.status(500).send({ 
+                    success: false,
+                    message: 'Error al consultar la base de datos.' 
+                });
                 return;
             }
             
             if (result.length > 0) {
                 const { rol } = result[0];
                 res.status(200).send({
+                    success: true,
                     message: 'Inicio de sesión exitoso.',
                     rol: rol 
                 });
             } else {
-                res.status(401).send({ message: 'Usuario no encontrado o contraseña incorrecta.' });
+                res.status(401).send({ 
+                    success: false,
+                    message: 'Usuario no encontrado o contraseña incorrecta.' 
+                });
             }
         });
     } catch (e) {
         console.error(e);
-        res.status(500).send({ message: 'Error en el servidor.' });
+        res.status(500).send({ 
+            success: false,
+            message: 'Error en el servidor.' 
+        });
     }
 };
 
@@ -48,17 +76,31 @@ module.exports.usuarios_login = (req, res) => {
         ;`,(error, results)=>{
             if(error)
             throw error;
-        res.status(200).json(results);            
+        res.status(200).json({
+            success: true,
+            data: results
+        });            
         });
 };
 
 module.exports.updatePassword = (req, res) => {
-    const { usuario_nombre, nueva_password } = req.body;
-
-
-    if (!usuario_nombre || !nueva_password) {
-        return res.status(400).send({ message: "Usuario y nueva contraseña son obligatorios." });
+    // Validar datos con DTO
+    const { error, value } = updatePasswordDTO.validate(req.body);
+    
+    if (error) {
+        const errorMessages = error.details.map(detail => ({
+            field: detail.path.join('.'),
+            message: detail.message
+        }));
+        
+        return res.status(400).json({
+            success: false,
+            message: 'Error de validación en actualización de contraseña',
+            errors: errorMessages
+        });
     }
+
+    const { usuario_nombre, nueva_password } = value; // Usar datos validados
 
     const updateQuery = `
         UPDATE usuarios
@@ -70,18 +112,30 @@ module.exports.updatePassword = (req, res) => {
         connection.query(updateQuery, [nueva_password, usuario_nombre], (err, result) => {
             if (err) {
                 console.error(err);
-                res.status(500).send({ message: "Error al actualizar la contraseña." });
+                res.status(500).send({ 
+                    success: false,
+                    message: "Error al actualizar la contraseña." 
+                });
                 return;
             }
 
             if (result.affectedRows > 0) {
-                res.status(200).send({ message: "Contraseña actualizada con éxito." });
+                res.status(200).send({ 
+                    success: true,
+                    message: "Contraseña actualizada con éxito." 
+                });
             } else {
-                res.status(404).send({ message: "Usuario no encontrado." });
+                res.status(404).send({ 
+                    success: false,
+                    message: "Usuario no encontrado." 
+                });
             }
         });
     } catch (e) {
         console.error(e);
-        res.status(500).send({ message: "Error en el servidor." });
+        res.status(500).send({ 
+            success: false,
+            message: "Error en el servidor." 
+        });
     }
 };

@@ -49,7 +49,7 @@ const getPlatillos = (request, response) => {
                 acc[pk_platillo] = {
                     id: pk_platillo,
                     nombre: platillo_nombre,
-                    precio: platillo_precio,
+                    precio: Number(platillo_precio),
                     disponible: !!platillo_disponible,
                     img: platillo_img,
                     categoria: categoria_nombre,
@@ -103,13 +103,13 @@ const getPlatilloId = (req, res) => {
         }
 
         if (results.length === 0) {
-            return res.status(404).json({ message: "Platillo no encontrado." });
+            return res.status(404).json({ error: "Platillo no encontrado." });
         }
 
         const platillo = {
             id: results[0].pk_platillo,
             nombre: results[0].platillo_nombre,
-            precio: results[0].platillo_precio,
+            precio: Number(results[0].platillo_precio),
             disponible: !!results[0].platillo_disponible,
             img: results[0].platillo_img,
             fkcategoria: results[0].fk_categoria,
@@ -125,7 +125,7 @@ const getPlatilloId = (req, res) => {
 
         };
 
-        res.status(200).json(platillo)
+        res.status(200).json(platillo);
     });
 };
 
