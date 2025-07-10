@@ -15,6 +15,7 @@ import RecoverPassword from "./Components/Login/RecoverPassword";
 import Beneficios from "./Components/Home/Beneficios";
 import Nosotros from "./Components/Home/Nosotros";
 import Nosotros2 from "./Components/Home/Nosotros2";
+import MapaRestaurantes from "./Components/Home/MapaRestaurantes";
 
 import UpdatePassword from "./Components/Login/UpdatePassword";
 import Tarjeta from "./Components/Home/Tarjeta";
@@ -34,6 +35,7 @@ function App() {
        
         <Casos/>
         <Resenas/>
+        <MapaRestaurantes/>
         <Footer/>
         <BotpressChat />
     </div>

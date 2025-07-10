@@ -1,9 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'bootstrap';
 import './css/Casos.css';
-import Vector from "../../Assets/Img_Home_new/Vector.png"
-import Vector2 from "../../Assets/Img_Home_new/Vector2.png"
-import Vector3 from "../../Assets/Img_Home_new/Vector3.png"
+
 import './css/Beneficios.css'
 import CloudImage from '../../cloudinary/CloudImage';
 

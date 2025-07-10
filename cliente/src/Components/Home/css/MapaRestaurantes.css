@@ -1,0 +1,111 @@
+.mapa-container {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.mapa-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mapa-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mapa-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+.mapa-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mapa-leaflet {
+  border-radius: 15px;
+}
+
+.loading-mapa {
+  text-align: center;
+  padding: 100px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.loading-mapa h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.loading-mapa p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Estilos para los popups del mapa */
+.popup-content {
+  text-align: center;
+  min-width: 200px;
+}
+
+.popup-content h3 {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 5px;
+}
+
+.popup-content p {
+  color: #666;
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.popup-content strong {
+  color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mapa-container {
+    padding: 40px 15px;
+  }
+  
+  .mapa-header h2 {
+    font-size: 2rem;
+  }
+  
+  .mapa-header p {
+    font-size: 1rem;
+  }
+  
+  .mapa-wrapper {
+    border-radius: 10px;
+  }
+  
+  .mapa-leaflet {
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapa-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .mapa-leaflet {
+    height: 350px !important;
+  }
+} 
