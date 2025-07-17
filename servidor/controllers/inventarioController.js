@@ -7,7 +7,7 @@ const {connection}= require ("../config/config.db");
 const { request, response } = require("..");
 
 const getInventario = (request, response) => {
-    connection.query("SELECT * FROM productos",
+    connection.query("SELECT * FROM productos WHERE estado = 'activo'",
         (error, results)=>{
             if(error)
             throw error;
@@ -16,7 +16,7 @@ const getInventario = (request, response) => {
 };
 
 const getProductos = (request, response) => {
-    connection.query("SELECT pk_productos, producto_nombre FROM productos",
+    connection.query("SELECT pk_productos, producto_nombre FROM productos WHERE producto_estado = 'activo'",
         (error, results)=>{
             if(error)
                 throw error;
@@ -27,7 +27,7 @@ const getProductos = (request, response) => {
 
 const getProductoId = (request, response) => {
     const id = request.params.id;
-    connection.query("SELECT * FROM productos WHERE pk_productos = ?",
+    connection.query("SELECT * FROM productos WHERE pk_productos = ? AND estado = 'activo'",
     [id],
     (error, results)=>{
         if(error)
@@ -60,15 +60,27 @@ const agregarProducto = (request, response) =>{
 };
 
 
-const eliminarProducto = (request, response)=>{
+const eliminarProducto = (request, response) => {
     const id = request.params.id;
-    connection.query("DELETE FROM productos WHERE pk_productos = ?",[id],
-    (error, results) =>{
-        if(error)
-            throw error;
-        response.status(201).json({"Producto eliminado":results.affectedRows});
-    });
-}
+
+    connection.query(
+        "UPDATE productos SET estado = 'inactivo' WHERE pk_productos = ?",
+        [id],
+        (error, results) => {
+            if (error) {
+                console.error("Error al eliminar el producto: ", error);
+                return response.status(500).json({ error: "Error interno del servidor." });
+            }
+
+            if (results.affectedRows > 0) {
+                response.status(200).json({ message: "Producto eliminado lógicamente." });
+            } else {
+                response.status(404).json({ error: "Producto no encontrado." });
+            }
+        }
+    );
+};
+
 
 const editarProducto = (request, response) => {
     const { id } = request.params; // ID del producto a editar
