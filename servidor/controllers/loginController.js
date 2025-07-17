@@ -1,5 +1,6 @@
 const { connection } = require("../config/config.db");
 const { loginDTO, updatePasswordDTO } = require("../dto");
+const bcrypt = require("bcrypt");
 
 module.exports.login = (req, res) => {
     // Validar datos con DTO
@@ -29,10 +30,10 @@ module.exports.login = (req, res) => {
             usuarios
         LEFT JOIN empleados ON usuarios.fk_empleado = empleados.pk_empleado
         LEFT JOIN roles ON usuarios.fk_rol = roles.pk_rol
-        WHERE usuarios.usuario_password = ? AND empleados.empleado_email = ?
+        WHERE empleados.empleado_email = ?
     ;` 
     try {
-        connection.query(consult, [password, email], (err, result) => {
+        connection.query(consult, [email], (err, result) => {
             if (err) {
                 console.error(err);
                 res.status(500).send({ 
@@ -43,11 +44,31 @@ module.exports.login = (req, res) => {
             }
             
             if (result.length > 0) {
-                const { rol } = result[0];
-                res.status(200).send({
-                    success: true,
-                    message: 'Inicio de sesión exitoso.',
-                    rol: rol 
+                const { usuario_password, rol } = result[0];
+                
+                // Compare the provided password with the hashed password
+                bcrypt.compare(password, usuario_password, (err, isMatch) => {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).send({ 
+                            success: false,
+                            message: 'Error al verificar la contraseña.' 
+                        });
+                        return;
+                    }
+                    
+                    if (isMatch) {
+                        res.status(200).send({
+                            success: true,
+                            message: 'Inicio de sesión exitoso.',
+                            rol: rol 
+                        });
+                    } else {
+                        res.status(401).send({ 
+                            success: false,
+                            message: 'Usuario no encontrado o contraseña incorrecta.' 
+                        });
+                    }
                 });
             } else {
                 res.status(401).send({ 
@@ -102,40 +123,52 @@ module.exports.updatePassword = (req, res) => {
 
     const { usuario_nombre, nueva_password } = value; // Usar datos validados
 
-    const updateQuery = `
-        UPDATE usuarios
-        SET usuario_password = ?
-        WHERE usuario_nombre = ?
-    ;`;
+    // Hash the new password before updating
+    bcrypt.hash(nueva_password, 10, (err, hashedPassword) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send({ 
+                success: false,
+                message: "Error al encriptar la nueva contraseña." 
+            });
+            return;
+        }
 
-    try {
-        connection.query(updateQuery, [nueva_password, usuario_nombre], (err, result) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send({ 
-                    success: false,
-                    message: "Error al actualizar la contraseña." 
-                });
-                return;
-            }
+        const updateQuery = `
+            UPDATE usuarios
+            SET usuario_password = ?
+            WHERE usuario_nombre = ?
+        ;`;
 
-            if (result.affectedRows > 0) {
-                res.status(200).send({ 
-                    success: true,
-                    message: "Contraseña actualizada con éxito." 
-                });
-            } else {
-                res.status(404).send({ 
-                    success: false,
-                    message: "Usuario no encontrado." 
-                });
-            }
-        });
-    } catch (e) {
-        console.error(e);
-        res.status(500).send({ 
-            success: false,
-            message: "Error en el servidor." 
-        });
-    }
+        try {
+            connection.query(updateQuery, [hashedPassword, usuario_nombre], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).send({ 
+                        success: false,
+                        message: "Error al actualizar la contraseña." 
+                    });
+                    return;
+                }
+
+                if (result.affectedRows > 0) {
+                    res.status(200).send({ 
+                        success: true,
+                        message: "Contraseña actualizada con éxito." 
+                    });
+                } else {
+                    res.status(404).send({ 
+                        success: false,
+                        message: "Usuario no encontrado." 
+                    });
+                }
+            });
+        } catch (e) {
+            console.error(e);
+            res.status(500).send({ 
+                success: false,
+                message: "Error en el servidor." 
+            });
+        }
+    });
 };

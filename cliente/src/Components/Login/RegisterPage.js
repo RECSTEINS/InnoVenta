@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import NavBar from '../Home/Navbar';
 import Footer from '../Home/Footer';
@@ -57,7 +57,7 @@ function RegisterPage() {
         }
 
         // Validar que todos los campos estén presentes
-        if (!nombre || !apellido || !email || !password || !rol || !edad || !telefono || !direccion || !rfc || !nss || !fkRestaurante || !genero) {
+        if (!usuarioNombre || !nombre || !apellido || !email || !password || !rol || !edad || !telefono || !direccion || !rfc || !nss || !fkRestaurante || !genero) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Error',
