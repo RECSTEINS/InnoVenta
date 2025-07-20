@@ -13,6 +13,7 @@ const { CrearPedido, getPedidosEnProceso, updatePedidoEstado, getPedidosListo } 
 const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
 const { getReportes, getProductosBajoStock, getPlatillosMasVendidos } = require("../controllers/reporteController");
+const { getResenas } = require("../controllers/resenaController");
 
 // Importar middleware de validación y DTOs
 const validateDTO = require("../middleware/validateDTO");
@@ -113,5 +114,8 @@ router.post('/realizar-pago', procesarPago);
 router.post('/get-reportes', validateDTO(reporteDTO), getReportes);
 router.get('/productos-bajo-stock', getProductosBajoStock);
 router.get('/platillos-mas-vendidos', getPlatillosMasVendidos);
+
+//Resenas
+router.get('/getResenas', getResenas);
 
 module.exports = router;
