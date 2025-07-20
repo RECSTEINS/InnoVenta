@@ -1,6 +1,6 @@
 const express=require("express")
 const router = express.Router()
-const { login, usuarios_login, updatePassword } = require("../controllers/loginController")
+const { login, usuarios_login, updatePassword, verifyToken } = require("../controllers/loginController")
 const { register } = require("../controllers/registerController")
 const { getRoles, getRolesId, updateRoles, postRoles, delRoles } = require("../controllers/rolesController");
 const { getUsuarios, getUsuarioId, updateUsuario, postUsuario, delUsuario} = require("../controllers/usuarioController");
@@ -14,6 +14,7 @@ const { procesarPago } = require("../controllers/pagosController");
 const { upload, uploadImage } = require("../controllers/imagenController");
 const { getReportes, getProductosBajoStock, getPlatillosMasVendidos } = require("../controllers/reporteController");
 const { getResenas, postResena, deleteResena, updateResena } = require("../controllers/resenaController");
+const auth = require('../middleware/auth');
 
 // Importar middleware de validación y DTOs
 const validateDTO = require("../middleware/validateDTO");
@@ -38,6 +39,7 @@ const {
 
 //Login
 router.post('/login', validateDTO(loginDTO), login);
+router.get('/verify-token', verifyToken);
 router.get('/login-list', usuarios_login);
 router.post('/login-update', validateDTO(updatePasswordDTO), updatePassword);
 router.post('/register', register);
@@ -51,11 +53,11 @@ router.post('/updateRoles/:id', updateRoles);
 
 
 //Usuarios
-router.get('/getUsuarios', getUsuarios);
-router.get('/getUsuarioId/:id', getUsuarioId);
-router.post('/postUsuario', validateDTO(createUsuarioDTO), postUsuario);
-router.post('/updateUsuario/:id', validateDTO(updateUsuarioDTO), updateUsuario);
-router.delete('/delUsuario/:id', delUsuario);
+router.get('/getUsuarios', auth(['Administrador', 'supervisor']), getUsuarios);
+router.get('/getUsuarioId/:id', auth(['Administrador', 'supervisor']), getUsuarioId);
+router.post('/postUsuario', auth('Administrador'), validateDTO(createUsuarioDTO), postUsuario);
+router.post('/updateUsuario/:id', auth('Administrador'), validateDTO(updateUsuarioDTO), updateUsuario);
+router.delete('/delUsuario/:id', auth('Administrador'), delUsuario);
 
 
 //Empleados
@@ -111,14 +113,23 @@ router.post('/realizar-pago', procesarPago);
 
 
 //Reportes
-router.post('/get-reportes', validateDTO(reporteDTO), getReportes);
-router.get('/productos-bajo-stock', getProductosBajoStock);
-router.get('/platillos-mas-vendidos', getPlatillosMasVendidos);
+router.post('/get-reportes', auth(['admin', 'supervisor']), validateDTO(reporteDTO), getReportes);
+router.get('/productos-bajo-stock', auth(['admin', 'supervisor']), getProductosBajoStock);
+router.get('/platillos-mas-vendidos', auth(['admin', 'supervisor']), getPlatillosMasVendidos);
 
 //Resenas
 router.get('/getResenas', getResenas);
 router.post('/postResena', postResena);
 router.delete('/delResena/:id', deleteResena);
 router.put('/updateResena/:id', updateResena);
+
+// Ejemplo de rutas protegidas por rol
+router.get('/admin-panel', auth('admin'), (req, res) => {
+    res.status(200).json({ message: 'Bienvenido al panel de administrador', user: req.user });
+});
+
+router.get('/supervisor-panel', auth('supervisor'), (req, res) => {
+    res.status(200).json({ message: 'Bienvenido al panel de supervisor', user: req.user });
+});
 
 module.exports = router;

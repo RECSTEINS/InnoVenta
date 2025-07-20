@@ -12,14 +12,32 @@ function UsuariosPanel() {
     const [mostrarAddUsuario, setMostrarAddUsuario] = useState(false);
     const [mostrarEditarUsuario, setMostrarEditarUsuario] = useState(false);
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const URL = 'http://localhost:7777/getUsuarios';
 
     const showData = async () => {
-        const response = await fetch(URL);
-        const data = await response.json();
-        setUsers(data);
-        setFilteredUsers(data);
+        setLoading(true);
+        setError(null);
+        
+        try {
+            const response = await ClientAxios.get('/getUsuarios');
+            console.log('Usuarios response:', response.data);
+            
+            // Asegurar que data sea un array
+            const data = Array.isArray(response.data) ? response.data : [];
+            setUsers(data);
+            setFilteredUsers(data);
+        } catch (error) {
+            console.error('Error al obtener usuarios:', error);
+            setError('Error al cargar usuarios');
+            // Si hay error, establecer arrays vacíos para evitar el error de slice
+            setUsers([]);
+            setFilteredUsers([]);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleEditarUsuario = (usuario) => {
@@ -120,20 +138,41 @@ function UsuariosPanel() {
                             Agregar usuario
                         </button>
                     </div>
-                    <DataTable
-                        columns={columns}
-                        data={filteredUsers}
-                        paginationPerPage={10}
-                        highlightOnHover
-                        responsive
-                        pagination
-                        customStyles={{
-                            headRow: { style: { borderTopLeftRadius: '20px', borderTopRightRadius: '20px', border: 'none' } },
-                            table: { style: { border: '1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33' } },
-                            headCells: { style: { backgroundColor: '#FFFFF', color: '#00000', fontWeight: '700', fontFamily: 'Roboto', fontSize: '24px' } },
-                            rows: { style: { fontSize: '24px', fontWeight: '400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom: '16px' } }
-                        }}
-                    />
+                    {loading ? (
+                        <div className="text-center p-4">
+                            <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Cargando...</span>
+                            </div>
+                            <p className="mt-2">Cargando usuarios...</p>
+                        </div>
+                    ) : error ? (
+                        <div className="text-center p-4">
+                            <div className="alert alert-danger" role="alert">
+                                {error}
+                            </div>
+                            <button 
+                                className="btn btn-primary" 
+                                onClick={showData}
+                            >
+                                Reintentar
+                            </button>
+                        </div>
+                    ) : (
+                        <DataTable
+                            columns={columns}
+                            data={filteredUsers}
+                            paginationPerPage={10}
+                            highlightOnHover
+                            responsive
+                            pagination
+                            customStyles={{
+                                headRow: { style: { borderTopLeftRadius: '20px', borderTopRightRadius: '20px', border: 'none' } },
+                                table: { style: { border: '1.5px #070C33 solid', height: '800px', borderRadius: '20px', backgroundColor: '#070C33' } },
+                                headCells: { style: { backgroundColor: '#FFFFF', color: '#00000', fontWeight: '700', fontFamily: 'Roboto', fontSize: '24px' } },
+                                rows: { style: { fontSize: '24px', fontWeight: '400', fontFamily: 'Roboto', paddingTop: '16px', paddingBottom: '16px' } }
+                            }}
+                        />
+                    )}
                 </>
             )}
         </div>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./css/Inicio.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../../Auth/useAuth";
 import EmpleadosPanel from "./Empleados/Empleados";
 import UsuariosPanel from "./Usuarios/Usuarios";
 import InventarioPanel from "./Inventario/Inventario.js";
@@ -21,6 +22,8 @@ import InicioDefault from "./InicioDefault.js";
 function InicioAdmin(){
     const [isMenuActive, setMenuActive] = useState(false);
     const [activeView, setActiveView] = useState("");
+    const navigate = useNavigate();
+    const { logout, user } = useAuth();
 
 
     /*const toggleMenu = () => {
@@ -28,6 +31,11 @@ function InicioAdmin(){
     };*/
     const handleViewChange = (view) => {
         setActiveView(view);
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
     };
 
 
@@ -179,9 +187,13 @@ function InicioAdmin(){
                         </li>
                         
                         <li className="nav-item ">
-                            <Link to="/login" className="nav-link cerrar-sesion-dashboard">
-                            <i className="bi bi-box-arrow-right   icono-dash"></i> Cerrar sesión
-                            </Link>
+                            <button 
+                                onClick={handleLogout} 
+                                className="nav-link cerrar-sesion-dashboard"
+                                style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+                            >
+                                <i className="bi bi-box-arrow-right icono-dash"></i> Cerrar sesión
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -189,8 +201,9 @@ function InicioAdmin(){
                 {/* Contenido Principal */}
                 <div className="col-9 ">
                     {/* Barra Superior */}
-                    <div className="d-flex  align-items-end  text-white py-2 px-4 barra-superior-dashboard">
+                    <div className="d-flex justify-content-between align-items-end text-white py-2 px-4 barra-superior-dashboard">
                         <p className="rol-dashboard">Administrador</p>
+                        <p className="mb-0">Bienvenido, {user?.nombre || 'Usuario'}</p>
                     </div>
 
                     {/* Contenido Dinámico */}

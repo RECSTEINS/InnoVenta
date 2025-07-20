@@ -5,6 +5,7 @@ import App from './App';
 import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import Login from "./Components/Login/Login";
+import Unauthorized from "./Components/Unauthorized";
 
 import DashboardSupervisor from "./Components/Dashboard/SupervisorPanel/InicioSupervisor";
 import DashboardAdmin from "./Components/Dashboard/AdminPanel/InicioAdmin";
@@ -18,6 +19,10 @@ import Tarjeta from './Components/Home/Tarjeta';
 import Success from './Components/Payments/Success.jsx';
 import Cancel from './Components/Payments/Cancel.jsx';
 
+// Importar componentes de autenticación
+import { AuthProvider } from './Auth/AuthContext';
+import ProtectedRoute from './Auth/ProtectedRoute';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +33,10 @@ const router = createBrowserRouter([
     element:<Login/>
   },
   {
+    path: "/unauthorized",
+    element:<Unauthorized/>
+  },
+  {
     path: "/recoverPassword",
     element:<RecoverPassword/>
   },
@@ -36,26 +45,44 @@ const router = createBrowserRouter([
     element:<RegisterPage/>
   },
 
-  //Admin Paneles
+  // Rutas protegidas por rol
+  {
+    path: "/admin-panel",
+    element:<ProtectedRoute requiredRole="admin"><DashboardAdmin/></ProtectedRoute>
+  },
+  {
+    path: "/supervisor-panel",
+    element:<ProtectedRoute requiredRole="supervisor"><DashboardSupervisor/></ProtectedRoute>
+  },
+  {
+    path: "/cajero-panel",
+    element:<ProtectedRoute requiredRole="cajero"><DashboardCajero/></ProtectedRoute>
+  },
+  {
+    path: "/mesero-panel",
+    element:<ProtectedRoute requiredRole="mesero"><DashboardMesero/></ProtectedRoute>
+  },
+
+  // Rutas legacy (mantener compatibilidad)
   {
     path: "/dashboardAdmin",
-    element:<DashboardAdmin/>
+    element:<ProtectedRoute requiredRole="admin"><DashboardAdmin/></ProtectedRoute>
   },
   {
     path: "/empleados",
-    element:<EmpleadosPanel/>
+    element:<ProtectedRoute requiredRole="admin"><EmpleadosPanel/></ProtectedRoute>
   },
   {
     path:"/dashboardSupervisor",
-    element:<DashboardSupervisor/>
+    element:<ProtectedRoute requiredRole="supervisor"><DashboardSupervisor/></ProtectedRoute>
   },
   {
     path:"/dashboardCajero",
-    element:<DashboardCajero/>
+    element:<ProtectedRoute requiredRole="cajero"><DashboardCajero/></ProtectedRoute>
   },
   {
     path:"/dashboardMesero",
-    element:<DashboardMesero/>
+    element:<ProtectedRoute requiredRole="mesero"><DashboardMesero/></ProtectedRoute>
   },
   {
     path:"/updatePassword",
@@ -80,7 +107,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <AuthProvider>
+      <RouterProvider router={router}/>
+    </AuthProvider>
   </React.StrictMode>
 );
 
