@@ -13,6 +13,7 @@ import PlatillosPanel from "./Platillos/Platillo.js";
 import OrdenesVentasPanel from "./Ordenes/Ordenes_Ventas.js";
 import ReportePanel from "./Reports/Reporte.js";
 import RolesPanel from "./Roles/roles.js";
+import ResenasPanel from "./Resenas/ResenasAdmin.js";
 
 import Graficas from "./graficas.js";
 import InicioDefault from "./InicioDefault.js";
@@ -67,6 +68,10 @@ function InicioAdmin(){
             case "roles":
                 return  <div>
                             <RolesPanel/>
+                        </div>
+            case "resenas":
+                return  <div>
+                            <ResenasPanel/>
                         </div>
             default :
                 return <div>
@@ -162,6 +167,14 @@ function InicioAdmin(){
                                 className="nav-link icono-otros"
                                 onClick={() => handleViewChange("empleados")}>
                                <i className="bi bi-people-fill me-4 icono-dashboard icono-dash-20"></i> Empleados
+                            </Link>
+                        </li>
+                        <li className={`nav-item ${activeView === "resenas" ? "active" : ""}`}>
+                            <Link
+                                to="#"
+                                className="nav-link icono-otros"
+                                onClick={() => handleViewChange("resenas")}> 
+                               <i className="bi bi-star-fill me-4 icono-dashboard icono-dash-20"></i> Reseñas
                             </Link>
                         </li>
                         
